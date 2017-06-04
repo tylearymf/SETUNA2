@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>SETUNA\Resources\SETUNA2.ico</ApplicationIcon>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
@@ -321,5 +324,9 @@
     <EmbeddedResource Include="SETUNA.Main.StyleItems.NothingStyleItemPanel.resources" />
     <EmbeddedResource Include="SETUNA.Main.StyleItems.CopyStyleItemPanel.resources" />
     <EmbeddedResource Include="SETUNA.Main.StyleItems.LayerRenameWindow.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SETUNA2.ico" />
+    <Content Include="SETUNA\Resources\SETUNA2.ico" />
   </ItemGroup>
 </Project>
