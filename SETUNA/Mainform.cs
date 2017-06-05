@@ -60,29 +60,32 @@
 
         void InitImage()
         {
-            var tPath = Cache.path;
-            DirectoryInfo tInfo = new DirectoryInfo(tPath);
-            var tFiles = tInfo.GetFiles("*.jpeg");
-            if (tFiles != null && tFiles.Length > 0)
+            try
             {
-                foreach (var tFileInfo in tFiles)
+                var tPath = Cache.path;
+                DirectoryInfo tInfo = new DirectoryInfo(tPath);
+                var tFiles = tInfo.GetFiles("*.jpeg");
+                if (tFiles != null && tFiles.Length > 0)
                 {
-                    try
+                    foreach (var tFileInfo in tFiles)
                     {
-                        Image tImg = Image.FromFile(tFileInfo.FullName);
-                        var tGuid = tFileInfo.Name.Replace(tFileInfo.Extension, string.Empty);
-                        if (tImg != null)
+                        try
                         {
-                            this.scrapBook.AddScrap(tImg, 0, 0, tImg.Width, tImg.Height, tGuid);
+                            Image tImg = Image.FromFile(tFileInfo.FullName);
+                            var tGuid = tFileInfo.Name.Replace(tFileInfo.Extension, string.Empty);
+                            if (tImg != null)
+                            {
+                                this.scrapBook.AddScrap(tImg, 0, 0, tImg.Width, tImg.Height, tGuid);
+                            }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("加载图片失败：" + ex.ToString());
-                    }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("加载图片失败：" + ex.ToString());
+                        }
 
+                    }
                 }
-            }
+            }catch { }
         }
 
         public void AddImageList(ScrapSource src)
