@@ -78,18 +78,25 @@
             this._interpolationmode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
         }
 
+        void DestroyImg()
+        {
+            imgView.Dispose();
+            Cache.DestroyImage(mInstanceId);
+            Console.WriteLine("删除缓存图片");
+        }
+
         public void addScrapMenuEvent(IScrapMenuListener listener)
         {
-            this.ScrapSubMenuOpening = (ScrapSubMenuHandler) Delegate.Combine(this.ScrapSubMenuOpening, new ScrapSubMenuHandler(listener.ScrapMenuOpening));
+            this.ScrapSubMenuOpening = (ScrapSubMenuHandler)Delegate.Combine(this.ScrapSubMenuOpening, new ScrapSubMenuHandler(listener.ScrapMenuOpening));
         }
 
         public void addScrapStyleEvent(IScrapStyleListener listener)
         {
-            this.ScrapCreateEvent = (ScrapEventHandler) Delegate.Combine(this.ScrapCreateEvent, new ScrapEventHandler(listener.ScrapCreated));
-            this.ScrapActiveEvent = (ScrapEventHandler) Delegate.Combine(this.ScrapActiveEvent, new ScrapEventHandler(listener.ScrapActivated));
-            this.ScrapInactiveEvent = (ScrapEventHandler) Delegate.Combine(this.ScrapInactiveEvent, new ScrapEventHandler(listener.ScrapInactived));
-            this.ScrapInactiveEnterEvent = (ScrapEventHandler) Delegate.Combine(this.ScrapInactiveEnterEvent, new ScrapEventHandler(listener.ScrapInactiveMouseOver));
-            this.ScrapInactiveOutEvent = (ScrapEventHandler) Delegate.Combine(this.ScrapInactiveOutEvent, new ScrapEventHandler(listener.ScrapInactiveMouseOut));
+            this.ScrapCreateEvent = (ScrapEventHandler)Delegate.Combine(this.ScrapCreateEvent, new ScrapEventHandler(listener.ScrapCreated));
+            this.ScrapActiveEvent = (ScrapEventHandler)Delegate.Combine(this.ScrapActiveEvent, new ScrapEventHandler(listener.ScrapActivated));
+            this.ScrapInactiveEvent = (ScrapEventHandler)Delegate.Combine(this.ScrapInactiveEvent, new ScrapEventHandler(listener.ScrapInactived));
+            this.ScrapInactiveEnterEvent = (ScrapEventHandler)Delegate.Combine(this.ScrapInactiveEnterEvent, new ScrapEventHandler(listener.ScrapInactiveMouseOver));
+            this.ScrapInactiveOutEvent = (ScrapEventHandler)Delegate.Combine(this.ScrapInactiveOutEvent, new ScrapEventHandler(listener.ScrapInactiveMouseOut));
         }
 
         public void ApplyStyleItem(object sender, EventArgs e)
@@ -196,14 +203,14 @@
                 Size size = new Size(this.imgView.Width - 1, this.imgView.Height - 1);
                 if (((size.Width - image.Width) - 1) <= ((size.Height - image.Height) - 1))
                 {
-                    num = ((double) (image.Width - 1)) / ((double) (size.Width - 1));
+                    num = ((double)(image.Width - 1)) / ((double)(size.Width - 1));
                 }
                 else
                 {
-                    num = ((double) (image.Height - 1)) / ((double) (size.Height - 1));
+                    num = ((double)(image.Height - 1)) / ((double)(size.Height - 1));
                 }
-                size.Width = (int) (size.Width * num);
-                size.Height = (int) (size.Height * num);
+                size.Width = (int)(size.Width * num);
+                size.Height = (int)(size.Height * num);
                 graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                 graphics.DrawImage(this.imgView, 1, 1, size.Width, size.Height);
             }
@@ -250,7 +257,7 @@
             this.DoubleBuffered = true;
             this.ForeColor = SystemColors.ControlText;
             base.FormBorderStyle = FormBorderStyle.None;
-            base.Icon = (Icon) manager.GetObject("$this.Icon");
+            base.Icon = (Icon)manager.GetObject("$this.Icon");
             base.MaximizeBox = false;
             this.MinimumSize = new Size(1, 1);
             this.Name = "ScrapBase";
@@ -294,8 +301,8 @@
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            int width = (int) (this.imgView.Width * (((float) this._scale) / 100f));
-            int height = (int) (this.imgView.Height * (((float) this._scale) / 100f));
+            int width = (int)(this.imgView.Width * (((float)this._scale) / 100f));
+            int height = (int)(this.imgView.Height * (((float)this._scale) / 100f));
             int all = this.Padding.All;
             e.Graphics.InterpolationMode = this._interpolationmode;
             e.Graphics.DrawImage(this.imgView, all, all, width, height);
@@ -371,7 +378,7 @@
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                foreach (string str in (string[]) e.Data.GetData(DataFormats.FileDrop))
+                foreach (string str in (string[])e.Data.GetData(DataFormats.FileDrop))
                 {
                     this.Manager.AddDragImageFileName(str);
                 }
@@ -391,6 +398,7 @@
             if (e.KeyChar == Convert.ToChar(Keys.Escape))
             {
                 base.Close();
+                DestroyImg();
             }
         }
 
@@ -565,8 +573,11 @@
 
         public int ActiveMargin
         {
-            get{return  
-                this._activeMargin;}
+            get
+            {
+                return
+                this._activeMargin;
+            }
             set
             {
                 this._activeMargin = value;
@@ -576,8 +587,11 @@
 
         public double ActiveOpacity
         {
-            get{return  
-                this._activeOpacity;}
+            get
+            {
+                return
+                this._activeOpacity;
+            }
             set
             {
                 this._activeOpacity = value;
@@ -590,22 +604,30 @@
 
         public string DateTime
         {
-            get{return  
-                this._datetime;}
+            get
+            {
+                return
+                this._datetime;
+            }
             set
             {
                 this._datetime = value;
             }
         }
 
+        string mInstanceId;
+
         public System.Drawing.Image Image
         {
-            get{return  
-                this.imgView;}
+            get
+            {
+                return
+                this.imgView;
+            }
             set
             {
                 this.ImageAllDispose();
-                this.imgView = (System.Drawing.Image) value.Clone();
+                this.imgView = (System.Drawing.Image)value.Clone();
                 if (this.imgView == null)
                 {
                     Console.WriteLine("ScrapBase Image : unll");
@@ -615,10 +637,20 @@
             }
         }
 
+        public void SaveImg(Image pImg, string pGuid = null)
+        {
+            if (string.IsNullOrEmpty(pGuid)) mInstanceId = System.DateTime.Now.Ticks.ToString();
+            else mInstanceId = pGuid;
+            Cache.SaveImage(mInstanceId, imgView);
+        }
+
         public int InactiveMargin
         {
-            get{return  
-                this._inactiveMargin;}
+            get
+            {
+                return
+                this._inactiveMargin;
+            }
             set
             {
                 this._inactiveMargin = value;
@@ -631,8 +663,11 @@
 
         public double InactiveOpacity
         {
-            get{return  
-                this._inactiveOpacity;}
+            get
+            {
+                return
+                this._inactiveOpacity;
+            }
             set
             {
                 this._inactiveOpacity = value;
@@ -645,8 +680,11 @@
 
         public System.Drawing.Drawing2D.InterpolationMode InterpolationMode
         {
-            get{return  
-                this._interpolationmode;}
+            get
+            {
+                return
+                this._interpolationmode;
+            }
             set
             {
                 this._interpolationmode = value;
@@ -655,14 +693,17 @@
 
         public ScrapBook Manager
         {
-            get{return  
-                this._parent;}
+            get
+            {
+                return
+                this._parent;
+            }
             set
             {
                 this._parent = value;
                 if (this.ScrapCloseEvent == null)
                 {
-                    this.ScrapCloseEvent = (ScrapEventHandler) Delegate.Combine(this.ScrapCloseEvent, new ScrapEventHandler(this._parent.ScrapClose));
+                    this.ScrapCloseEvent = (ScrapEventHandler)Delegate.Combine(this.ScrapCloseEvent, new ScrapEventHandler(this._parent.ScrapClose));
                     base.KeyDown += new KeyEventHandler(this._parent.OnKeyUp);
                 }
             }
@@ -670,8 +711,11 @@
 
         public string Name
         {
-            get{return  
-                this._name;}
+            get
+            {
+                return
+                this._name;
+            }
             set
             {
                 this._name = value;
@@ -681,8 +725,11 @@
 
         public double Opacity
         {
-            get{return  
-                this._opacity;}
+            get
+            {
+                return
+                this._opacity;
+            }
             set
             {
                 this._opacity = value;
@@ -695,16 +742,19 @@
 
         public System.Windows.Forms.Padding Padding
         {
-            get{return  
-                base.Padding;}
+            get
+            {
+                return
+                base.Padding;
+            }
             set
             {
                 base.Padding = value;
                 BoundsSpecified none = BoundsSpecified.None;
                 int x = 0;
                 int y = 0;
-                int width = ((int) (this.imgView.Width * (((float) this._scale) / 100f))) + (value.All * 2);
-                int height = ((int) (this.imgView.Height * (((float) this._scale) / 100f))) + (value.All * 2);
+                int width = ((int)(this.imgView.Width * (((float)this._scale) / 100f))) + (value.All * 2);
+                int height = ((int)(this.imgView.Height * (((float)this._scale) / 100f))) + (value.All * 2);
                 if (base.Width != width)
                 {
                     none |= BoundsSpecified.Width | BoundsSpecified.X;
@@ -725,8 +775,11 @@
 
         public int RollOverMargin
         {
-            get{return  
-                this._rolloverMargin;}
+            get
+            {
+                return
+                this._rolloverMargin;
+            }
             set
             {
                 this._rolloverMargin = value;
@@ -739,8 +792,11 @@
 
         public double RollOverOpacity
         {
-            get{return  
-                this._rolloverOpacity;}
+            get
+            {
+                return
+                this._rolloverOpacity;
+            }
             set
             {
                 this._rolloverOpacity = value;
@@ -753,8 +809,11 @@
 
         public int Scale
         {
-            get{return  
-                this._scale;}
+            get
+            {
+                return
+                this._scale;
+            }
             set
             {
                 this._scale = value;
@@ -766,16 +825,19 @@
                 {
                     this._scale = 200;
                 }
-                base.Width = ((int) (this.imgView.Width * (((float) this._scale) / 100f))) + (this.Padding.All * 2);
-                base.Height = ((int) (this.imgView.Height * (((float) this._scale) / 100f))) + (this.Padding.All * 2);
+                base.Width = ((int)(this.imgView.Width * (((float)this._scale) / 100f))) + (this.Padding.All * 2);
+                base.Height = ((int)(this.imgView.Height * (((float)this._scale) / 100f))) + (this.Padding.All * 2);
                 this.Refresh();
             }
         }
 
         public bool SolidFrame
         {
-            get{return  
-                this._solidframe;}
+            get
+            {
+                return
+                this._solidframe;
+            }
             set
             {
                 this._solidframe = value;
@@ -805,8 +867,11 @@
 
         public bool Visible
         {
-            get{return  
-                base.Visible;}
+            get
+            {
+                return
+                base.Visible;
+            }
             set
             {
                 if (!value && (base.FormBorderStyle != FormBorderStyle.None))

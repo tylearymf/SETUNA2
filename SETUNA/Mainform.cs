@@ -52,6 +52,37 @@
             this.keyBook = this.optSetuna.GetKeyItemBook();
             this._imgpool = new Queue<ScrapSource>();
             this.SetSubMenu();
+            this.Width = 300;
+            this.Height = 100;
+
+            InitImage();
+        }
+
+        void InitImage()
+        {
+            var tPath = Cache.path;
+            DirectoryInfo tInfo = new DirectoryInfo(tPath);
+            var tFiles = tInfo.GetFiles("*.jpeg");
+            if (tFiles != null && tFiles.Length > 0)
+            {
+                foreach (var tFileInfo in tFiles)
+                {
+                    try
+                    {
+                        Image tImg = Image.FromFile(tFileInfo.FullName);
+                        var tGuid = tFileInfo.Name.Replace(tFileInfo.Extension, string.Empty);
+                        if (tImg != null)
+                        {
+                            this.scrapBook.AddScrap(tImg, 0, 0, tImg.Width, tImg.Height, tGuid);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("加载图片失败：" + ex.ToString());
+                    }
+
+                }
+            }
         }
 
         public void AddImageList(ScrapSource src)
@@ -140,7 +171,8 @@
                             string[] strArray = path.Split(new char[] { ',' });
                             if (strArray.Length == 4)
                             {
-                                rect = new Rectangle {
+                                rect = new Rectangle
+                                {
                                     X = int.Parse(strArray[0]),
                                     Y = int.Parse(strArray[1]),
                                     Width = int.Parse(strArray[2]),
@@ -215,7 +247,7 @@
         {
             if (image != null)
             {
-                using (Bitmap bitmap = (Bitmap) image.Clone())
+                using (Bitmap bitmap = (Bitmap)image.Clone())
                 {
                     if (location == Point.Empty)
                     {
@@ -223,7 +255,7 @@
                     }
                     int x = location.X;
                     int y = location.Y;
-                    this.scrapBook.AddScrap((Bitmap) bitmap.Clone(), x, y, bitmap.Width, bitmap.Height);
+                    this.scrapBook.AddScrap((Bitmap)bitmap.Clone(), x, y, bitmap.Width, bitmap.Height);
                 }
             }
         }
@@ -368,7 +400,7 @@
                     System.Type[] allType = SetunaOption.GetAllType();
                     XmlSerializer serializer = new XmlSerializer(typeof(SetunaOption), allType);
                     FileStream stream = new FileStream(configFile, FileMode.Open);
-                    this.optSetuna = (SetunaOption) serializer.Deserialize(stream);
+                    this.optSetuna = (SetunaOption)serializer.Deserialize(stream);
                     stream.Close();
                 }
             }
@@ -427,10 +459,10 @@
 
         public void OnActiveScrapInList(object sender, EventArgs e)
         {
-            ToolStripMenuItem item = (ToolStripMenuItem) sender;
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
             if (item.Tag != null)
             {
-                ((ScrapBase) item.Tag).Activate();
+                ((ScrapBase)item.Tag).Activate();
             }
         }
 
@@ -439,7 +471,7 @@
             if (!this.IsCapture)
             {
                 this.IsOption = true;
-                SetunaOption opt = (SetunaOption) this.optSetuna.Clone();
+                SetunaOption opt = (SetunaOption)this.optSetuna.Clone();
                 List<ScrapBase> list = new List<ScrapBase>();
                 try
                 {
@@ -460,7 +492,8 @@
                     {
                         this.frmClickCapture.Stop();
                     }
-                    OptionForm form = new OptionForm(opt) {
+                    OptionForm form = new OptionForm(opt)
+                    {
                         StartPosition = FormStartPosition.CenterScreen
                     };
                     form.ShowDialog();
@@ -472,7 +505,7 @@
                     if (!this.optSetuna.RegistHotKey(base.Handle))
                     {
                         this.optSetuna.ScrapHotKeyEnable = false;
-                        new HotkeyMsg { HotKey = (Keys) this.optSetuna.ScrapHotKey }.ShowDialog();
+                        new HotkeyMsg { HotKey = (Keys)this.optSetuna.ScrapHotKey }.ShowDialog();
                     }
                     if (form.DialogResult == DialogResult.OK)
                     {
@@ -498,7 +531,7 @@
                 this.keyBook = this.optSetuna.GetKeyItemBook();
                 if (this.optSetuna.Setuna.DustBoxEnable)
                 {
-                    this.scrapBook.DustBoxCapacity = (short) this.optSetuna.Setuna.DustBoxCapacity;
+                    this.scrapBook.DustBoxCapacity = (short)this.optSetuna.Setuna.DustBoxCapacity;
                 }
                 else
                 {
@@ -507,7 +540,7 @@
                 if (!this.optSetuna.RegistHotKey(base.Handle))
                 {
                     this.optSetuna.ScrapHotKeyEnable = false;
-                    new HotkeyMsg { HotKey = (Keys) this.optSetuna.ScrapHotKey }.ShowDialog();
+                    new HotkeyMsg { HotKey = (Keys)this.optSetuna.ScrapHotKey }.ShowDialog();
                 }
                 if (this.optSetuna.Setuna.AppType == SetunaOption.SetunaOptionData.ApplicationType.ApplicationMode)
                 {
@@ -575,7 +608,7 @@
 
         public void RestoreScrap(object sender, EventArgs e)
         {
-            ToolStripMenuItem item = (ToolStripMenuItem) sender;
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
             List<ScrapBase> list = new List<ScrapBase>();
             while (this.dustbox.Count > 0)
             {
@@ -606,7 +639,7 @@
             {
                 XmlSerializer serializer = new XmlSerializer(this.optSetuna.GetType(), allType);
                 FileStream stream = new FileStream(configFile, FileMode.Create);
-                serializer.Serialize((Stream) stream, this.optSetuna);
+                serializer.Serialize((Stream)stream, this.optSetuna);
                 stream.Close();
             }
             catch
@@ -643,7 +676,7 @@
         {
             if (this.optSetuna.Scrap.InactiveAlphaChange)
             {
-                e.scrap.InactiveOpacity = 1.0 - (((double) this.optSetuna.Scrap.InactiveAlphaValue) / 100.0);
+                e.scrap.InactiveOpacity = 1.0 - (((double)this.optSetuna.Scrap.InactiveAlphaValue) / 100.0);
             }
             else
             {
@@ -656,7 +689,7 @@
         {
             if (this.optSetuna.Scrap.InactiveAlphaChange)
             {
-                e.scrap.InactiveOpacity = 1.0 - (((double) this.optSetuna.Scrap.InactiveAlphaValue) / 100.0);
+                e.scrap.InactiveOpacity = 1.0 - (((double)this.optSetuna.Scrap.InactiveAlphaValue) / 100.0);
             }
             else
             {
@@ -669,7 +702,7 @@
         {
             if (this.optSetuna.Scrap.MouseOverAlphaChange)
             {
-                e.scrap.RollOverOpacity = 1.0 - (((double) this.optSetuna.Scrap.MouseOverAlphaValue) / 100.0);
+                e.scrap.RollOverOpacity = 1.0 - (((double)this.optSetuna.Scrap.MouseOverAlphaValue) / 100.0);
             }
             else
             {
@@ -683,7 +716,7 @@
             KeyItem item = this.keyBook.FindKeyItem(e.key);
             if (item != null)
             {
-                ScrapBase scrap = (ScrapBase) sender;
+                ScrapBase scrap = (ScrapBase)sender;
                 item.ParentStyle.Apply(ref scrap);
             }
         }
@@ -771,7 +804,7 @@
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
-            if ((m.Msg == 0x312) && (((int) m.WParam) == 1))
+            if ((m.Msg == 0x312) && (((int)m.WParam) == 1))
             {
                 this.StartCapture();
             }
@@ -779,8 +812,11 @@
 
         public bool IsCapture
         {
-            get{return  
-                this._iscapture;}
+            get
+            {
+                return
+                this._iscapture;
+            }
             set
             {
                 this._iscapture = value;
@@ -793,8 +829,11 @@
 
         public bool IsOption
         {
-            get{return  
-                this._isoption;}
+            get
+            {
+                return
+                this._isoption;
+            }
             set
             {
                 this._isoption = value;
@@ -807,8 +846,11 @@
 
         public bool IsStart
         {
-            get{return  
-                this._isstart;}
+            get
+            {
+                return
+                this._isstart;
+            }
             set
             {
                 this._isstart = value;

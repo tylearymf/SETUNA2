@@ -60,9 +60,16 @@
             this.targetScreen = this.GetCurrentScreen();
             InitScreenNewSize();
             var tBitmap = new Bitmap(this.ScreenNewSize.Width, this.ScreenNewSize.Height, PixelFormat.Format24bppRgb);
-            var tXDpi = (float)this.ScreenNewSize.Width / this.targetScreen.Bounds.Width - .1F;
-            var tYDpi = (float)this.ScreenNewSize.Height / this.targetScreen.Bounds.Height - .1F;
-            tBitmap.SetResolution(tXDpi * 100, tYDpi * 100);
+            var tXDpi = (float)this.ScreenNewSize.Width / this.targetScreen.Bounds.Width;
+            var tYDpi = (float)this.ScreenNewSize.Height / this.targetScreen.Bounds.Height;
+            if (tXDpi != 1 || tYDpi != 1)
+            {
+                tXDpi = tXDpi - .1F;
+                tYDpi = tYDpi - .1F;
+                tBitmap.SetResolution(tXDpi * 100, tYDpi * 100);
+            }
+
+            Console.WriteLine(string.Format("XDpi:{0},YDpi:{1}", tXDpi, tYDpi));
             imgSnap = tBitmap;
             selArea = new Form();
             selArea.AutoScaleMode = AutoScaleMode.None;

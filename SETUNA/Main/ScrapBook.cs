@@ -35,7 +35,7 @@
 
         public void addKeyPressListener(IScrapKeyPressEventListener listener)
         {
-            this.KeyPress = (KeyPressHandler) Delegate.Combine(this.KeyPress, new KeyPressHandler(listener.ScrapKeyPress));
+            this.KeyPress = (KeyPressHandler)Delegate.Combine(this.KeyPress, new KeyPressHandler(listener.ScrapKeyPress));
         }
 
         public void AddScrap(ScrapBase newScrap)
@@ -49,12 +49,12 @@
             }
         }
 
-        public void AddScrap(Image img, int x, int y, int width, int height)
+        public void AddScrap(Image img, int x, int y, int width, int height, string pGuid = null)
         {
-            this.AddScrap(img, x, y, width, height, "");
+            this.AddScrap(img, x, y, width, height, "", pGuid);
         }
 
-        public void AddScrap(Image img, int x, int y, int width, int height, string scrapname)
+        public void AddScrap(Image img, int x, int y, int width, int height, string scrapname, string pGuid = null)
         {
             ScrapBase newScrap = new ScrapBase();
             newScrap.addScrapStyleEvent(this._mainform);
@@ -64,6 +64,7 @@
                 newScrap.Name = scrapname;
             }
             newScrap.Image = img;
+            newScrap.SaveImg(img, pGuid);
             newScrap.SetBounds(x, y, img.Width, img.Height, BoundsSpecified.All);
             newScrap.Refresh();
             newScrap.Show();
@@ -72,12 +73,12 @@
 
         public void addScrapAddedListener(IScrapAddedListener listener)
         {
-            this.ScrapAdded = (ScrapAddedHandler) Delegate.Combine(this.ScrapAdded, new ScrapAddedHandler(listener.ScrapAdded));
+            this.ScrapAdded = (ScrapAddedHandler)Delegate.Combine(this.ScrapAdded, new ScrapAddedHandler(listener.ScrapAdded));
         }
 
         public void addScrapRemovedListener(IScrapRemovedListener listener)
         {
-            this.ScrapRemoved = (ScrapRemovedHandler) Delegate.Combine(this.ScrapRemoved, new ScrapRemovedHandler(listener.ScrapRemoved));
+            this.ScrapRemoved = (ScrapRemovedHandler)Delegate.Combine(this.ScrapRemoved, new ScrapRemovedHandler(listener.ScrapRemoved));
         }
 
         public void CloseAllScrap()
@@ -111,7 +112,7 @@
             this.EraseDustBox();
         }
 
-        public ScrapBase GetDummyScrap() => 
+        public ScrapBase GetDummyScrap() =>
             new ScrapBase { Manager = this };
 
         public IEnumerator<ScrapBase> GetEnumerator()
@@ -119,7 +120,7 @@
             IEnumerator enumerator = this._scraps.GetEnumerator();
             while (enumerator.MoveNext())
             {
-                ScrapBase current = (ScrapBase) enumerator.Current;
+                ScrapBase current = (ScrapBase)enumerator.Current;
                 yield return current;
             }
         }
@@ -136,7 +137,8 @@
         {
             if (this.KeyPress != null)
             {
-                ScrapKeyPressEventArgs args = new ScrapKeyPressEventArgs {
+                ScrapKeyPressEventArgs args = new ScrapKeyPressEventArgs
+                {
                     key = e.KeyCode | e.Modifiers
                 };
                 Console.WriteLine(args.key.ToString());
@@ -146,7 +148,7 @@
 
         public void ScrapClose(object sender, ScrapEventArgs e)
         {
-            ScrapBase base2 = (ScrapBase) sender;
+            ScrapBase base2 = (ScrapBase)sender;
             this._scraps.Remove(base2);
             if ((this._dustbox != null) && (this._dustcap > 0))
             {
@@ -193,8 +195,11 @@
 
         public Queue<ScrapBase> DustBox
         {
-            get{return  
-                this._dustbox;}
+            get
+            {
+                return
+                this._dustbox;
+            }
             set
             {
                 this._dustbox = value;
@@ -206,8 +211,11 @@
 
         public short DustBoxCapacity
         {
-            get{return  
-                this._dustcap;}
+            get
+            {
+                return
+                this._dustcap;
+            }
             set
             {
                 this._dustcap = value;

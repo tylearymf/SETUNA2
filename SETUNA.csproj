@@ -41,6 +41,7 @@
     <Reference Include="System.Runtime.Remoting" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="SETUNA\Main\Cache.cs" />
     <Compile Include="SETUNA\Main\StyleItems\ToolBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
