@@ -158,6 +158,7 @@
                 }
                 this._dustbox.Enqueue(base2);
                 base2.Hide();
+                Cache.DestroyImage(base2.instanceId);
             }
             else
             {

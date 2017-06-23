@@ -80,7 +80,8 @@
 
         void DestroyImg()
         {
-            imgView.Dispose();
+            //imgView.Dispose();
+            //imgView = null;
             Cache.DestroyImage(mInstanceId);
             Console.WriteLine("删除缓存图片");
         }
@@ -615,6 +616,10 @@
             }
         }
 
+        public string instanceId
+        {
+            get { return mInstanceId; }
+        }
         string mInstanceId;
 
         public System.Drawing.Image Image

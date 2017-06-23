@@ -43,9 +43,14 @@ namespace SETUNA.Main
 
         static public void DestroyImage(string pGuid)
         {
-            var tName = pGuid + ".jpeg";
-            string tPath = Path.Combine(path, tName);
-            if (File.Exists(tPath)) File.Delete(tPath);
+            try
+            {
+                var tName = pGuid + ".jpeg";
+                string tPath = Path.Combine(path, tName);
+                if (File.Exists(tPath)) File.Delete(tPath);
+            }
+            catch (Exception ex)
+            { Console.WriteLine(ex.ToString()); }
         }
     }
 }
