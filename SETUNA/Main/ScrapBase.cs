@@ -632,7 +632,12 @@
             set
             {
                 this.ImageAllDispose();
-                this.imgView = (System.Drawing.Image)value.Clone();
+
+                var bitmap = new Bitmap(value);
+                this.imgView = (System.Drawing.Image)bitmap;
+
+                //this.imgView = (System.Drawing.Image)value.Clone();
+
                 if (this.imgView == null)
                 {
                     Console.WriteLine("ScrapBase Image : unll");
@@ -646,7 +651,7 @@
         {
             if (string.IsNullOrEmpty(pGuid)) mInstanceId = System.DateTime.Now.Ticks.ToString();
             else mInstanceId = pGuid;
-            Cache.SaveImage(mInstanceId, imgView);
+            Cache.SaveImage(mInstanceId, pImg);
         }
 
         public int InactiveMargin
