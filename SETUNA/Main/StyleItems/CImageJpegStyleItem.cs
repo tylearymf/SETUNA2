@@ -13,11 +13,11 @@
         public int Quality = 100;
         public bool ShowPreview = true;
 
-        public override string GetDescription() => 
-            "用JPEG格式的图像保存参考图。";
+        public override string GetDescription() =>
+            "用PNG格式的图像保存参考图。";
 
         public override string GetDisplayName() => 
-            "保存为JPEG格式";
+            "保存为PNG格式";
 
         protected override EncoderParameter[] GetEncoderParams(ref ScrapBase scrap)
         {
@@ -48,13 +48,13 @@
         }
 
         public override Bitmap GetIcon() => 
-            Resources.Icon_Jpeg;
+            Resources.Icon_Png;
 
         protected override ImageFormat GetImageFormat() => 
-            ImageFormat.Jpeg;
+            ImageFormat.Png;
 
         public override string GetName() => 
-            "ImageJpeg";
+            "ImagePng";
 
         protected override ToolBoxForm GetToolBoxForm() => 
             new ImageJpegStyleItemPanel(this);
@@ -73,10 +73,10 @@
         }
 
         protected override string Extension =>
-            "jpg";
+            "png";
 
         protected override string FileFilter =>
-            "Jpeg格式 (.jpg)|*.jpg|所有文件 (*.*)|*.*";
+            "Png格式 (.png)|*.png|所有文件 (*.*)|*.*";
     }
 }
 
