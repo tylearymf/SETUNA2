@@ -32,6 +32,12 @@
   <PropertyGroup>
     <ApplicationIcon>SETUNA\Resources\SETUNA2.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Reference Include="System.Windows.Forms" />
@@ -329,5 +335,8 @@
   <ItemGroup>
     <Content Include="SETUNA2.ico" />
     <Content Include="SETUNA\Resources\SETUNA2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
   </ItemGroup>
 </Project>
