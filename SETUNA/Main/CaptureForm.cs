@@ -581,6 +581,7 @@
 
         private void ThreadTask()
         {
+            imgSnap = new Bitmap(imgSnap, imgSnap.Width, imgSnap.Height);
             if (CopyFromScreen(imgSnap, new Point(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y)))
             {
                 base.Invoke(new ShowFormDelegate(this.ShowForm));
