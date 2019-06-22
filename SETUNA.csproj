@@ -323,7 +323,6 @@
   <ItemGroup>
     <None Include="Resources\ExeIcon.bmp" />
     <None Include="Resources\ExeIcon.ico" />
-    <Content Include="SETUNA2.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
