@@ -1,8 +1,8 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
     using com.clearunit;
-    using SETUNA.Properties;
-    using SETUNA.Resources;
+    using Properties;
+    using Properties;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -328,16 +328,16 @@
             get
             {
                 byte[] buffer = new byte[8];
-                int width = SETUNA.Resources.Image.Crypt.Width;
-                int height = SETUNA.Resources.Image.Crypt.Height;
-                buffer[0] = SETUNA.Resources.Image.Crypt.GetPixel(6, 3).R;
-                buffer[1] = SETUNA.Resources.Image.Crypt.GetPixel(0x12, 2).G;
-                buffer[2] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[0] % width, buffer[1] % height).B;
-                buffer[3] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[1] % width, buffer[2] % height).R;
-                buffer[4] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[2] % width, buffer[3] % height).G;
-                buffer[5] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[3] % width, buffer[4] % height).G;
-                buffer[6] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[4] % width, buffer[5] % height).R;
-                buffer[7] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[5] % width, buffer[6] % height).B;
+                int width = Properties.Image.Crypt.Width;
+                int height = Properties.Image.Crypt.Height;
+                buffer[0] = Properties.Image.Crypt.GetPixel(6, 3).R;
+                buffer[1] = Properties.Image.Crypt.GetPixel(0x12, 2).G;
+                buffer[2] = Properties.Image.Crypt.GetPixel(buffer[0] % width, buffer[1] % height).B;
+                buffer[3] = Properties.Image.Crypt.GetPixel(buffer[1] % width, buffer[2] % height).R;
+                buffer[4] = Properties.Image.Crypt.GetPixel(buffer[2] % width, buffer[3] % height).G;
+                buffer[5] = Properties.Image.Crypt.GetPixel(buffer[3] % width, buffer[4] % height).G;
+                buffer[6] = Properties.Image.Crypt.GetPixel(buffer[4] % width, buffer[5] % height).R;
+                buffer[7] = Properties.Image.Crypt.GetPixel(buffer[5] % width, buffer[6] % height).B;
                 return buffer;
             }
         }
@@ -347,24 +347,24 @@
             get
             {
                 byte[] buffer = new byte[0x10];
-                int width = SETUNA.Resources.Image.Crypt.Width;
-                int height = SETUNA.Resources.Image.Crypt.Height;
-                buffer[0] = SETUNA.Resources.Image.Crypt.GetPixel(10, 8).R;
-                buffer[1] = SETUNA.Resources.Image.Crypt.GetPixel(4, 9).G;
-                buffer[2] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[0] % width, buffer[1] % height).B;
-                buffer[3] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[1] % width, buffer[2] % height).R;
-                buffer[4] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[2] % width, buffer[3] % height).G;
-                buffer[5] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[3] % width, buffer[4] % height).G;
-                buffer[6] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[4] % width, buffer[5] % height).R;
-                buffer[7] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[5] % width, buffer[6] % height).B;
-                buffer[8] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[6] % width, buffer[7] % height).G;
-                buffer[9] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[7] % width, buffer[8] % height).R;
-                buffer[10] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[8] % width, buffer[9] % height).G;
-                buffer[11] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[9] % width, buffer[10] % height).B;
-                buffer[12] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[10] % width, buffer[11] % height).R;
-                buffer[13] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[11] % width, buffer[12] % height).G;
-                buffer[14] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[12] % width, buffer[13] % height).R;
-                buffer[15] = SETUNA.Resources.Image.Crypt.GetPixel(buffer[13] % width, buffer[14] % height).G;
+                int width = Properties.Image.Crypt.Width;
+                int height = Properties.Image.Crypt.Height;
+                buffer[0] = Properties.Image.Crypt.GetPixel(10, 8).R;
+                buffer[1] = Properties.Image.Crypt.GetPixel(4, 9).G;
+                buffer[2] = Properties.Image.Crypt.GetPixel(buffer[0] % width, buffer[1] % height).B;
+                buffer[3] = Properties.Image.Crypt.GetPixel(buffer[1] % width, buffer[2] % height).R;
+                buffer[4] = Properties.Image.Crypt.GetPixel(buffer[2] % width, buffer[3] % height).G;
+                buffer[5] = Properties.Image.Crypt.GetPixel(buffer[3] % width, buffer[4] % height).G;
+                buffer[6] = Properties.Image.Crypt.GetPixel(buffer[4] % width, buffer[5] % height).R;
+                buffer[7] = Properties.Image.Crypt.GetPixel(buffer[5] % width, buffer[6] % height).B;
+                buffer[8] = Properties.Image.Crypt.GetPixel(buffer[6] % width, buffer[7] % height).G;
+                buffer[9] = Properties.Image.Crypt.GetPixel(buffer[7] % width, buffer[8] % height).R;
+                buffer[10] = Properties.Image.Crypt.GetPixel(buffer[8] % width, buffer[9] % height).G;
+                buffer[11] = Properties.Image.Crypt.GetPixel(buffer[9] % width, buffer[10] % height).B;
+                buffer[12] = Properties.Image.Crypt.GetPixel(buffer[10] % width, buffer[11] % height).R;
+                buffer[13] = Properties.Image.Crypt.GetPixel(buffer[11] % width, buffer[12] % height).G;
+                buffer[14] = Properties.Image.Crypt.GetPixel(buffer[12] % width, buffer[13] % height).R;
+                buffer[15] = Properties.Image.Crypt.GetPixel(buffer[13] % width, buffer[14] % height).G;
                 return buffer;
             }
         }

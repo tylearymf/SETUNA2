@@ -1,6 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
-    using SETUNA.Resources;
+    using Properties;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -282,7 +282,7 @@
             {
                 graphics.CopyFromScreen(new Point(0, 0), new Point(0, 0), this.imgBackground.Size);
             }
-            this.imgScrap = SETUNA.Resources.Image.SampleImage;
+            this.imgScrap = Properties.Image.SampleImage;
             this.picSample = new PictureBox();
             this.picSample.Image = this.imgScrap;
             this.picSample.Size = this.imgScrap.Size;

@@ -1,6 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
-    using SETUNA.Properties;
+    using Properties;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;

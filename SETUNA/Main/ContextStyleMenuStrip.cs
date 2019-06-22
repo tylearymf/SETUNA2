@@ -18,8 +18,11 @@
 
         public ScrapBase Scrap
         {
-            get{return  
-                this._scrap;}
+            get
+            {
+                return
+                this._scrap;
+            }
             set
             {
                 this._scrap = value;

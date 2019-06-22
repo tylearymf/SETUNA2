@@ -1,6 +1,6 @@
 ﻿namespace SETUNA.Main
 {
-    using SETUNA.Properties;
+    using Properties;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -46,53 +46,53 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::Properties.Resources.Logo;
             this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(-2, -2);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(989, 298);
+            this.pictureBox1.Size = new System.Drawing.Size(923, 268);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            this.pictureBox1.Image = Resources.Logo;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(202, 375);
-            this.label1.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.label1.Location = new System.Drawing.Point(189, 337);
+            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(553, 30);
+            this.label1.Size = new System.Drawing.Size(516, 27);
             this.label1.TabIndex = 1;
             this.label1.Text = "https://github.com/tylearymf/SETUNA2";
             // 
             // lblVer
             // 
             this.lblVer.ForeColor = System.Drawing.Color.Gray;
-            this.lblVer.Location = new System.Drawing.Point(30, 322);
-            this.lblVer.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.lblVer.Location = new System.Drawing.Point(28, 290);
+            this.lblVer.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblVer.Name = "lblVer";
-            this.lblVer.Size = new System.Drawing.Size(915, 45);
+            this.lblVer.Size = new System.Drawing.Size(854, 40);
             this.lblVer.TabIndex = 4;
             this.lblVer.Text = "SETUNA 2.0α";
             this.lblVer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SplashForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 30F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(982, 425);
+            this.ClientSize = new System.Drawing.Size(913, 379);
             this.ControlBox = false;
             this.Controls.Add(this.lblVer);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SplashForm";

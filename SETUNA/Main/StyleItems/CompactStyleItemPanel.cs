@@ -1,6 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
-    using SETUNA.Resources;
+    using Properties;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -281,7 +281,7 @@
             this.imgScrap = new Bitmap(50, 50, PixelFormat.Format24bppRgb);
             using (Graphics graphics2 = Graphics.FromImage(this.imgScrap))
             {
-                graphics2.DrawImageUnscaled(SETUNA.Resources.Image.SampleImage, (this.imgScrap.Width / 2) - (SETUNA.Resources.Image.SampleImage.Width / 2), (this.imgScrap.Height / 2) - (SETUNA.Resources.Image.SampleImage.Height / 2));
+                graphics2.DrawImageUnscaled(Properties.Image.SampleImage, (this.imgScrap.Width / 2) - (Properties.Image.SampleImage.Width / 2), (this.imgScrap.Height / 2) - (Properties.Image.SampleImage.Height / 2));
             }
             this.UpdateLine();
         }

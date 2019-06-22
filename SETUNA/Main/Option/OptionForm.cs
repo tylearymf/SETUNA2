@@ -3,8 +3,8 @@
     using com.clearunit;
     using SETUNA.Main;
     using SETUNA.Main.KeyItems;
+    using SETUNA.Main.Other;
     using SETUNA.Main.Style;
-    using SETUNA.Properties;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -114,6 +114,10 @@
         private RadioButton rdoSelLineTypeDotted;
         private RadioButton rdoSelLineTypeSolid;
         private WithoutTabControl tabControl1;
+        private GroupBox groupBox13;
+        private LinkLabel linkLabel1;
+        private LinkLabel linkLabel2;
+        private CheckBox checkBox2;
         private ToolTip toolTip1;
 
         public OptionForm(SetunaOption opt)
@@ -137,10 +141,11 @@
             {
                 KeyItemBook book;
                 this.GetKeyItemBook_ScrapStyle(out book);
-                CStyle trgStyle = ((CStyle) this.listStyles.SelectedItem).DeepCopy();
+                CStyle trgStyle = ((CStyle)this.listStyles.SelectedItem).DeepCopy();
                 trgStyle.StyleName = "";
                 trgStyle.ClearKey();
-                StyleEditForm form = new StyleEditForm(trgStyle, book) {
+                StyleEditForm form = new StyleEditForm(trgStyle, book)
+                {
                     Text = "新建自动操作"
                 };
                 if (form.ShowDialog() == DialogResult.OK)
@@ -155,7 +160,7 @@
         {
             if (this.listStyles.SelectedItem != null)
             {
-                int styleID = ((CStyle) this.listStyles.SelectedItem).StyleID;
+                int styleID = ((CStyle)this.listStyles.SelectedItem).StyleID;
                 this.listStyles.Items.Remove(this.listStyles.SelectedItem);
                 if (this._createStyleId == styleID)
                 {
@@ -231,7 +236,7 @@
         {
             try
             {
-                CheckBox box = (CheckBox) sender;
+                CheckBox box = (CheckBox)sender;
                 if (box.Checked)
                 {
                     box.BackColor = Color.FromArgb(0xdf, 0xf1, 0xff);
@@ -248,7 +253,7 @@
 
         private void cmbCreateStyle_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            CStyle selectedItem = (CStyle) this.cmbCreateStyle.SelectedItem;
+            CStyle selectedItem = (CStyle)this.cmbCreateStyle.SelectedItem;
             if (selectedItem.StyleName != "")
             {
                 this._createStyleId = selectedItem.StyleID;
@@ -261,7 +266,7 @@
 
         private void cmbWClickStyle_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            CStyle selectedItem = (CStyle) this.cmbWClickStyle.SelectedItem;
+            CStyle selectedItem = (CStyle)this.cmbWClickStyle.SelectedItem;
             if (selectedItem.StyleName != "")
             {
                 this._wclickStyleId = selectedItem.StyleID;
@@ -288,8 +293,9 @@
                 KeyItemBook book;
                 this.GetKeyItemBook_ScrapStyle(out book);
                 int selectedIndex = this.listStyles.SelectedIndex;
-                StyleEditForm form = new StyleEditForm((CStyle) this.listStyles.SelectedItem, book) {
-                    Text = ((CStyle) this.listStyles.SelectedItem).StyleName + "的相关编辑"
+                StyleEditForm form = new StyleEditForm((CStyle)this.listStyles.SelectedItem, book)
+                {
+                    Text = ((CStyle)this.listStyles.SelectedItem).StyleName + "的相关编辑"
                 };
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -305,7 +311,7 @@
             {
                 for (int i = 0; i < combo.Items.Count; i++)
                 {
-                    CStyle style = (CStyle) combo.Items[i];
+                    CStyle style = (CStyle)combo.Items[i];
                     if (style.StyleID == styleId)
                     {
                         return i;
@@ -320,7 +326,7 @@
             keybook = new KeyItemBook();
             for (int i = 0; i < this.listStyles.Items.Count; i++)
             {
-                CStyle style = (CStyle) this.listStyles.Items[i];
+                CStyle style = (CStyle)this.listStyles.Items[i];
                 keybook.AddKeyItem(style.KeyItems);
             }
         }
@@ -337,313 +343,555 @@
 
         private void InitializeComponent()
         {
-            this.components = new Container();
-            this.panel2 = new Panel();
-            this.lblComment = new Label();
-            this.btnCancel = new Button();
-            this.btnOK = new Button();
-            this.panel3 = new Panel();
-            this.detailPanel = new Panel();
-            this.tabControl1 = new WithoutTabControl();
-            this.pageAll = new TabPage();
-            this.groupBox7 = new GroupBox();
-            this.chkSplash = new CheckBox();
-            this.groupBox5 = new GroupBox();
-            this.chkDustBox = new CheckBox();
-            this.label14 = new Label();
-            this.numDustBox = new NumericUpDown();
-            this.btnInitialize = new Button();
-            this.groupBox6 = new GroupBox();
-            this.chkShowMainWindow = new CheckBox();
-            this.rdoExeTypeResident = new RadioButton();
-            this.rdoExeTypeApp = new RadioButton();
-            this.pageCapture = new TabPage();
-            this.groupBox12 = new GroupBox();
-            this.label16 = new Label();
-            this.chkCC6 = new CheckBox();
-            this.chkCC4 = new CheckBox();
-            this.chkCC2 = new CheckBox();
-            this.chkCC8 = new CheckBox();
-            this.chkCC3 = new CheckBox();
-            this.chkCC1 = new CheckBox();
-            this.chkCC9 = new CheckBox();
-            this.chkCC7 = new CheckBox();
-            this.groupBox3 = new GroupBox();
-            this.rdoDupCapture = new RadioButton();
-            this.rdoDupNone = new RadioButton();
-            this.groupBox4 = new GroupBox();
-            this.rdoSelLineTypeDotted = new RadioButton();
-            this.rdoSelLineTypeSolid = new RadioButton();
-            this.label12 = new Label();
-            this.numSelectAreaTrans = new NumericUpDown();
-            this.picSelectAreaBackColor = new PictureBox();
-            this.picSelectAreaLineColor = new PictureBox();
-            this.label10 = new Label();
-            this.label9 = new Label();
-            this.label8 = new Label();
-            this.label7 = new Label();
-            this.groupBox2 = new GroupBox();
-            this.checkBox1 = new CheckBox();
-            this.label3 = new Label();
-            this.hotkeyControl1 = new HotkeyControl();
-            this.pageScrap = new TabPage();
-            this.flowLayoutPanel1 = new FlowLayoutPanel();
-            this.pnlScrapStyle = new Panel();
-            this.cmbWClickStyle = new ComboBox();
-            this.label5 = new Label();
-            this.cmbCreateStyle = new ComboBox();
-            this.label4 = new Label();
-            this.panel4 = new Panel();
-            this.chkScrapImageDrag = new CheckBox();
-            this.groupBox11 = new GroupBox();
-            this.label15 = new Label();
-            this.label13 = new Label();
-            this.numMouseOverAlpha = new NumericUpDown();
-            this.chkMouseOverAlphaChange = new CheckBox();
-            this.label11 = new Label();
-            this.label6 = new Label();
-            this.numInactiveAlpha = new NumericUpDown();
-            this.chkInactiveAlphaChange = new CheckBox();
-            this.pageStyle = new TabPage();
-            this.groupBox1 = new GroupBox();
-            this.button1 = new Button();
-            this.listStyles = new SetunaListBox();
-            this.listKeyItems = new ListBox();
-            this.label2 = new Label();
-            this.label1 = new Label();
-            this.btnEditStyle = new Button();
-            this.listStyleItems = new ListBox();
-            this.btnDeleteStyle = new Button();
-            this.btnNewStyle = new Button();
-            this.pageScrapMenu = new TabPage();
-            this.btnScrapMenuMove = new Button();
-            this.groupBox10 = new GroupBox();
-            this.listScrapMenuList = new SetunaListBox();
-            this.groupBox9 = new GroupBox();
-            this.listScrapMenuItems = new SetunaListBox();
-            this.groupBox8 = new GroupBox();
-            this.listScrapMenuStyles = new SetunaListBox();
-            this.panel1 = new Panel();
-            this.lblMenuStyle = new Label();
-            this.lblMenuCapture = new Label();
-            this.lblMenuMenu = new Label();
-            this.lblMenuScrap = new Label();
-            this.lblMenuAll = new Label();
-            this.pictureBox1 = new PictureBox();
-            this.toolTip1 = new ToolTip(this.components);
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionForm));
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblComment = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.detailPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblMenuStyle = new System.Windows.Forms.Label();
+            this.lblMenuCapture = new System.Windows.Forms.Label();
+            this.lblMenuMenu = new System.Windows.Forms.Label();
+            this.lblMenuScrap = new System.Windows.Forms.Label();
+            this.lblMenuAll = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tabControl1 = new com.clearunit.WithoutTabControl();
+            this.pageAll = new System.Windows.Forms.TabPage();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.chkSplash = new System.Windows.Forms.CheckBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.chkDustBox = new System.Windows.Forms.CheckBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.numDustBox = new System.Windows.Forms.NumericUpDown();
+            this.btnInitialize = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.chkShowMainWindow = new System.Windows.Forms.CheckBox();
+            this.rdoExeTypeResident = new System.Windows.Forms.RadioButton();
+            this.rdoExeTypeApp = new System.Windows.Forms.RadioButton();
+            this.pageCapture = new System.Windows.Forms.TabPage();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.chkCC6 = new System.Windows.Forms.CheckBox();
+            this.chkCC4 = new System.Windows.Forms.CheckBox();
+            this.chkCC2 = new System.Windows.Forms.CheckBox();
+            this.chkCC8 = new System.Windows.Forms.CheckBox();
+            this.chkCC3 = new System.Windows.Forms.CheckBox();
+            this.chkCC1 = new System.Windows.Forms.CheckBox();
+            this.chkCC9 = new System.Windows.Forms.CheckBox();
+            this.chkCC7 = new System.Windows.Forms.CheckBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.rdoDupCapture = new System.Windows.Forms.RadioButton();
+            this.rdoDupNone = new System.Windows.Forms.RadioButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.rdoSelLineTypeDotted = new System.Windows.Forms.RadioButton();
+            this.rdoSelLineTypeSolid = new System.Windows.Forms.RadioButton();
+            this.label12 = new System.Windows.Forms.Label();
+            this.numSelectAreaTrans = new System.Windows.Forms.NumericUpDown();
+            this.picSelectAreaBackColor = new System.Windows.Forms.PictureBox();
+            this.picSelectAreaLineColor = new System.Windows.Forms.PictureBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.hotkeyControl1 = new SETUNA.Main.HotkeyControl();
+            this.pageScrap = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlScrapStyle = new System.Windows.Forms.Panel();
+            this.cmbWClickStyle = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbCreateStyle = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.chkScrapImageDrag = new System.Windows.Forms.CheckBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.numMouseOverAlpha = new System.Windows.Forms.NumericUpDown();
+            this.chkMouseOverAlphaChange = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.numInactiveAlpha = new System.Windows.Forms.NumericUpDown();
+            this.chkInactiveAlphaChange = new System.Windows.Forms.CheckBox();
+            this.pageStyle = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.listStyles = new SETUNA.Main.SetunaListBox();
+            this.listKeyItems = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnEditStyle = new System.Windows.Forms.Button();
+            this.listStyleItems = new System.Windows.Forms.ListBox();
+            this.btnDeleteStyle = new System.Windows.Forms.Button();
+            this.btnNewStyle = new System.Windows.Forms.Button();
+            this.pageScrapMenu = new System.Windows.Forms.TabPage();
+            this.btnScrapMenuMove = new System.Windows.Forms.Button();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.listScrapMenuList = new SETUNA.Main.SetunaListBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.listScrapMenuItems = new SETUNA.Main.SetunaListBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.listScrapMenuStyles = new SETUNA.Main.SetunaListBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.detailPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.pageAll.SuspendLayout();
+            this.groupBox13.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.numDustBox.BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDustBox)).BeginInit();
             this.groupBox6.SuspendLayout();
             this.pageCapture.SuspendLayout();
             this.groupBox12.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.numSelectAreaTrans.BeginInit();
-            ((ISupportInitialize) this.picSelectAreaBackColor).BeginInit();
-            ((ISupportInitialize) this.picSelectAreaLineColor).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSelectAreaTrans)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSelectAreaBackColor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSelectAreaLineColor)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.pageScrap.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.pnlScrapStyle.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox11.SuspendLayout();
-            this.numMouseOverAlpha.BeginInit();
-            this.numInactiveAlpha.BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMouseOverAlpha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numInactiveAlpha)).BeginInit();
             this.pageStyle.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.pageScrapMenu.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((ISupportInitialize) this.pictureBox1).BeginInit();
-            base.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // panel2
+            // 
             this.panel2.Controls.Add(this.lblComment);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.btnOK);
-            this.panel2.Dock = DockStyle.Bottom;
-            this.panel2.Location = new Point(0, 360);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 810);
+            this.panel2.Margin = new System.Windows.Forms.Padding(7);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new Size(580, 40);
+            this.panel2.Size = new System.Drawing.Size(1353, 90);
             this.panel2.TabIndex = 1;
-            this.lblComment.Location = new Point(12, 6);
+            // 
+            // lblComment
+            // 
+            this.lblComment.Location = new System.Drawing.Point(28, 14);
+            this.lblComment.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblComment.Name = "lblComment";
-            this.lblComment.Size = new Size(0x166, 0x17);
+            this.lblComment.Size = new System.Drawing.Size(835, 52);
             this.lblComment.TabIndex = 2;
-            this.btnCancel.Anchor = AnchorStyles.Right | AnchorStyles.Bottom;
-            this.btnCancel.DialogResult = DialogResult.Cancel;
-            this.btnCancel.Location = new Point(0x1dc, 6);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(1111, 14);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(7);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new Size(0x5e, 0x1b);
+            this.btnCancel.Size = new System.Drawing.Size(219, 61);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new EventHandler(this.btnCancel_Click);
-            this.btnOK.Anchor = AnchorStyles.Right | AnchorStyles.Bottom;
-            this.btnOK.Location = new Point(0x178, 6);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnOK
+            // 
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.Location = new System.Drawing.Point(877, 14);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(7);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new Size(0x5e, 0x1b);
+            this.btnOK.Size = new System.Drawing.Size(219, 61);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
             this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Click += new EventHandler(this.btnOK_Click);
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // panel3
+            // 
             this.panel3.Controls.Add(this.detailPanel);
             this.panel3.Controls.Add(this.panel1);
-            this.panel3.Dock = DockStyle.Fill;
-            this.panel3.Location = new Point(0, 0);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(7);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new Size(580, 360);
+            this.panel3.Size = new System.Drawing.Size(1353, 810);
             this.panel3.TabIndex = 2;
-            this.detailPanel.BackColor = Color.White;
-            this.detailPanel.BorderStyle = BorderStyle.Fixed3D;
+            // 
+            // detailPanel
+            // 
+            this.detailPanel.BackColor = System.Drawing.Color.White;
+            this.detailPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.detailPanel.Controls.Add(this.tabControl1);
-            this.detailPanel.Location = new Point(0x81, 0);
-            this.detailPanel.Margin = new Padding(0);
+            this.detailPanel.Location = new System.Drawing.Point(301, 0);
+            this.detailPanel.Margin = new System.Windows.Forms.Padding(0);
             this.detailPanel.Name = "detailPanel";
-            this.detailPanel.Size = new Size(0x1c3, 360);
+            this.detailPanel.Size = new System.Drawing.Size(1047, 805);
             this.detailPanel.TabIndex = 0;
-            this.tabControl1.Appearance = TabAppearance.Buttons;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(163)))), ((int)(((byte)(236)))));
+            this.panel1.Controls.Add(this.lblMenuStyle);
+            this.panel1.Controls.Add(this.lblMenuCapture);
+            this.panel1.Controls.Add(this.lblMenuMenu);
+            this.panel1.Controls.Add(this.lblMenuScrap);
+            this.panel1.Controls.Add(this.lblMenuAll);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(7);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(301, 810);
+            this.panel1.TabIndex = 1;
+            // 
+            // lblMenuStyle
+            // 
+            this.lblMenuStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuStyle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuStyle.ForeColor = System.Drawing.Color.White;
+            this.lblMenuStyle.Location = new System.Drawing.Point(63, 158);
+            this.lblMenuStyle.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMenuStyle.Name = "lblMenuStyle";
+            this.lblMenuStyle.Size = new System.Drawing.Size(233, 32);
+            this.lblMenuStyle.TabIndex = 2;
+            this.lblMenuStyle.Text = "创建自动操作";
+            this.lblMenuStyle.Click += new System.EventHandler(this.lblMenuStyle_Click);
+            this.lblMenuStyle.MouseEnter += new System.EventHandler(this.lblMenuStyle_MouseEnter);
+            this.lblMenuStyle.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
+            // 
+            // lblMenuCapture
+            // 
+            this.lblMenuCapture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuCapture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuCapture.ForeColor = System.Drawing.Color.White;
+            this.lblMenuCapture.Location = new System.Drawing.Point(28, 68);
+            this.lblMenuCapture.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMenuCapture.Name = "lblMenuCapture";
+            this.lblMenuCapture.Size = new System.Drawing.Size(233, 32);
+            this.lblMenuCapture.TabIndex = 5;
+            this.lblMenuCapture.Text = "截取设置";
+            this.lblMenuCapture.Click += new System.EventHandler(this.lblMenuCapture_Click);
+            this.lblMenuCapture.MouseEnter += new System.EventHandler(this.lblMenuCapture_MouseEnter);
+            this.lblMenuCapture.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
+            // 
+            // lblMenuMenu
+            // 
+            this.lblMenuMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuMenu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuMenu.ForeColor = System.Drawing.Color.White;
+            this.lblMenuMenu.Location = new System.Drawing.Point(63, 202);
+            this.lblMenuMenu.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMenuMenu.Name = "lblMenuMenu";
+            this.lblMenuMenu.Size = new System.Drawing.Size(233, 32);
+            this.lblMenuMenu.TabIndex = 3;
+            this.lblMenuMenu.Text = "参考图菜单";
+            this.lblMenuMenu.Click += new System.EventHandler(this.lblMenuMenu_Click);
+            this.lblMenuMenu.MouseEnter += new System.EventHandler(this.lblMenuMenu_MouseEnter);
+            this.lblMenuMenu.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
+            // 
+            // lblMenuScrap
+            // 
+            this.lblMenuScrap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuScrap.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuScrap.ForeColor = System.Drawing.Color.White;
+            this.lblMenuScrap.Location = new System.Drawing.Point(28, 112);
+            this.lblMenuScrap.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMenuScrap.Name = "lblMenuScrap";
+            this.lblMenuScrap.Size = new System.Drawing.Size(233, 32);
+            this.lblMenuScrap.TabIndex = 1;
+            this.lblMenuScrap.Text = "参考图设置";
+            this.lblMenuScrap.Click += new System.EventHandler(this.lblMenuScrap_Click);
+            this.lblMenuScrap.MouseEnter += new System.EventHandler(this.lblMenuScrap_MouseEnter);
+            this.lblMenuScrap.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
+            // 
+            // lblMenuAll
+            // 
+            this.lblMenuAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuAll.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblMenuAll.ForeColor = System.Drawing.Color.White;
+            this.lblMenuAll.Location = new System.Drawing.Point(28, 22);
+            this.lblMenuAll.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMenuAll.Name = "lblMenuAll";
+            this.lblMenuAll.Size = new System.Drawing.Size(233, 34);
+            this.lblMenuAll.TabIndex = 0;
+            this.lblMenuAll.Text = "常规";
+            this.lblMenuAll.Click += new System.EventHandler(this.lblMenuAll_Click);
+            this.lblMenuAll.MouseEnter += new System.EventHandler(this.lblMenuAll_MouseEnter);
+            this.lblMenuAll.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(7);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(301, 810);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.tabControl1.Controls.Add(this.pageAll);
             this.tabControl1.Controls.Add(this.pageCapture);
             this.tabControl1.Controls.Add(this.pageScrap);
             this.tabControl1.Controls.Add(this.pageStyle);
             this.tabControl1.Controls.Add(this.pageScrapMenu);
-            this.tabControl1.Dock = DockStyle.Fill;
-            this.tabControl1.Location = new Point(0, 0);
-            this.tabControl1.Margin = new Padding(0);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new Size(0x1bf, 0x164);
-            this.tabControl1.SizeMode = TabSizeMode.Fixed;
+            this.tabControl1.Size = new System.Drawing.Size(1043, 801);
+            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
-            this.tabControl1.SelectedIndexChanged += new EventHandler(this.tabControl1_TabIndexChanged);
-            this.pageAll.BackColor = Color.White;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_TabIndexChanged);
+            // 
+            // pageAll
+            // 
+            this.pageAll.BackColor = System.Drawing.Color.White;
+            this.pageAll.Controls.Add(this.groupBox13);
             this.pageAll.Controls.Add(this.groupBox7);
             this.pageAll.Controls.Add(this.groupBox5);
             this.pageAll.Controls.Add(this.btnInitialize);
             this.pageAll.Controls.Add(this.groupBox6);
-            this.pageAll.Location = new Point(4, 0x18);
+            this.pageAll.Location = new System.Drawing.Point(4, 40);
+            this.pageAll.Margin = new System.Windows.Forms.Padding(7);
             this.pageAll.Name = "pageAll";
-            this.pageAll.Padding = new Padding(5);
-            this.pageAll.Size = new Size(0x1b7, 0x148);
+            this.pageAll.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
+            this.pageAll.Size = new System.Drawing.Size(1035, 757);
             this.pageAll.TabIndex = 1;
             this.pageAll.Text = "常规";
             this.pageAll.UseVisualStyleBackColor = true;
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.linkLabel2);
+            this.groupBox13.Controls.Add(this.linkLabel1);
+            this.groupBox13.Location = new System.Drawing.Point(19, 529);
+            this.groupBox13.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Padding = new System.Windows.Forms.Padding(7);
+            this.groupBox13.Size = new System.Drawing.Size(987, 115);
+            this.groupBox13.TabIndex = 11;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "信息";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(32, 38);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(282, 27);
+            this.linkLabel2.TabIndex = 2;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "官方版本（地址已挂）";
+            this.toolTip1.SetToolTip(this.linkLabel2, "http://www.clearunit.com/clearup/setuna2");
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(32, 81);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(302, 27);
+            this.linkLabel1.TabIndex = 0;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "优化版本 by tylearymf";
+            this.toolTip1.SetToolTip(this.linkLabel1, "https://github.com/tylearymf/SETUNA2");
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.checkBox2);
             this.groupBox7.Controls.Add(this.chkSplash);
-            this.groupBox7.Location = new Point(8, 0xb2);
+            this.groupBox7.Location = new System.Drawing.Point(19, 400);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(7);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new Size(0x1a7, 0x33);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(7);
+            this.groupBox7.Size = new System.Drawing.Size(987, 115);
             this.groupBox7.TabIndex = 10;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "其他";
+            // 
+            // chkSplash
+            // 
             this.chkSplash.AutoSize = true;
-            this.chkSplash.Location = new Point(0x10, 0x16);
+            this.chkSplash.Location = new System.Drawing.Point(37, 50);
+            this.chkSplash.Margin = new System.Windows.Forms.Padding(7);
             this.chkSplash.Name = "chkSplash";
-            this.chkSplash.Size = new Size(0x9a, 0x10);
+            this.chkSplash.Size = new System.Drawing.Size(206, 31);
             this.chkSplash.TabIndex = 7;
             this.chkSplash.Text = "显示启动界面";
             this.toolTip1.SetToolTip(this.chkSplash, "将在启动SETUNA时的几秒钟内显示标志。");
             this.chkSplash.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
             this.groupBox5.Controls.Add(this.chkDustBox);
             this.groupBox5.Controls.Add(this.label14);
             this.groupBox5.Controls.Add(this.numDustBox);
-            this.groupBox5.Location = new Point(8, 0x66);
+            this.groupBox5.Location = new System.Drawing.Point(19, 230);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(7);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new Size(0x1a7, 70);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(7);
+            this.groupBox5.Size = new System.Drawing.Size(987, 158);
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "回收站的设置";
+            // 
+            // chkDustBox
+            // 
             this.chkDustBox.AutoSize = true;
-            this.chkDustBox.Location = new Point(0x10, 0x16);
+            this.chkDustBox.Location = new System.Drawing.Point(37, 50);
+            this.chkDustBox.Margin = new System.Windows.Forms.Padding(7);
             this.chkDustBox.Name = "chkDustBox";
-            this.chkDustBox.Size = new Size(0x54, 0x10);
+            this.chkDustBox.Size = new System.Drawing.Size(179, 31);
             this.chkDustBox.TabIndex = 4;
             this.chkDustBox.Text = "使用回收站";
             this.toolTip1.SetToolTip(this.chkDustBox, "使用回收站的话，参考图将暂时储存在回收站里。\n可以根据情况需要从回收站中取出。");
             this.chkDustBox.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
             this.label14.AutoSize = true;
-            this.label14.Location = new Point(0x48, 0x2b);
+            this.label14.Location = new System.Drawing.Point(168, 97);
+            this.label14.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new Size(0x24, 12);
+            this.label14.Size = new System.Drawing.Size(120, 27);
             this.label14.TabIndex = 6;
             this.label14.Text = "张为上限";
-            this.numDustBox.Font = new Font("宋体", 9f, FontStyle.Regular, GraphicsUnit.Point, 0x80);
-            this.numDustBox.Location = new Point(0x25, 40);
-            int[] bits = new int[4];
-            bits[0] = 50;
-            this.numDustBox.Maximum = new decimal(bits);
-            int[] numArray2 = new int[4];
-            numArray2[0] = 1;
-            this.numDustBox.Minimum = new decimal(numArray2);
+            // 
+            // numDustBox
+            // 
+            this.numDustBox.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.numDustBox.Location = new System.Drawing.Point(86, 90);
+            this.numDustBox.Margin = new System.Windows.Forms.Padding(7);
+            this.numDustBox.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numDustBox.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numDustBox.Name = "numDustBox";
-            this.numDustBox.Size = new Size(0x23, 0x13);
+            this.numDustBox.Size = new System.Drawing.Size(82, 38);
             this.numDustBox.TabIndex = 5;
-            this.numDustBox.TextAlign = HorizontalAlignment.Right;
+            this.numDustBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip1.SetToolTip(this.numDustBox, "指定在回收站中放入的最大张数。\n超过限额将丢弃旧的参考图。");
-            int[] numArray3 = new int[4];
-            numArray3[0] = 5;
-            this.numDustBox.Value = new decimal(numArray3);
-            this.btnInitialize.Location = new Point(0xf9, 0xeb);
+            this.numDustBox.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // btnInitialize
+            // 
+            this.btnInitialize.Location = new System.Drawing.Point(581, 678);
+            this.btnInitialize.Margin = new System.Windows.Forms.Padding(7);
             this.btnInitialize.Name = "btnInitialize";
-            this.btnInitialize.Size = new Size(0xb6, 0x1b);
+            this.btnInitialize.Size = new System.Drawing.Size(425, 61);
             this.btnInitialize.TabIndex = 8;
             this.btnInitialize.Text = "设置全部恢复为默认状态";
             this.btnInitialize.UseVisualStyleBackColor = true;
-            this.btnInitialize.Click += new EventHandler(this.btnInitialize_Click);
+            this.btnInitialize.Click += new System.EventHandler(this.btnInitialize_Click);
+            // 
+            // groupBox6
+            // 
             this.groupBox6.Controls.Add(this.chkShowMainWindow);
             this.groupBox6.Controls.Add(this.rdoExeTypeResident);
             this.groupBox6.Controls.Add(this.rdoExeTypeApp);
-            this.groupBox6.Location = new Point(8, 8);
+            this.groupBox6.Location = new System.Drawing.Point(19, 18);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(7);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new Size(0x1a7, 0x58);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(7);
+            this.groupBox6.Size = new System.Drawing.Size(987, 198);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "操作类型";
+            // 
+            // chkShowMainWindow
+            // 
             this.chkShowMainWindow.AutoSize = true;
-            this.chkShowMainWindow.Location = new Point(0x22, 60);
+            this.chkShowMainWindow.Location = new System.Drawing.Point(79, 135);
+            this.chkShowMainWindow.Margin = new System.Windows.Forms.Padding(7);
             this.chkShowMainWindow.Name = "chkShowMainWindow";
-            this.chkShowMainWindow.Size = new Size(0x80, 0x10);
+            this.chkShowMainWindow.Size = new System.Drawing.Size(179, 31);
             this.chkShowMainWindow.TabIndex = 2;
             this.chkShowMainWindow.Text = "显示主窗口";
             this.chkShowMainWindow.UseVisualStyleBackColor = true;
+            // 
+            // rdoExeTypeResident
+            // 
             this.rdoExeTypeResident.AutoSize = true;
-            this.rdoExeTypeResident.Location = new Point(0x10, 0x27);
+            this.rdoExeTypeResident.Location = new System.Drawing.Point(37, 88);
+            this.rdoExeTypeResident.Margin = new System.Windows.Forms.Padding(7);
             this.rdoExeTypeResident.Name = "rdoExeTypeResident";
-            this.rdoExeTypeResident.Size = new Size(0x6b, 0x10);
+            this.rdoExeTypeResident.Size = new System.Drawing.Size(178, 31);
             this.rdoExeTypeResident.TabIndex = 1;
             this.rdoExeTypeResident.Text = "常驻任务栏";
             this.toolTip1.SetToolTip(this.rdoExeTypeResident, "在任务栏上显示图标。");
             this.rdoExeTypeResident.UseVisualStyleBackColor = true;
-            this.rdoExeTypeResident.CheckedChanged += new EventHandler(this.rdoExeTypeResident_CheckedChanged);
+            this.rdoExeTypeResident.CheckedChanged += new System.EventHandler(this.rdoExeTypeResident_CheckedChanged);
+            // 
+            // rdoExeTypeApp
+            // 
             this.rdoExeTypeApp.AutoSize = true;
             this.rdoExeTypeApp.Checked = true;
-            this.rdoExeTypeApp.Location = new Point(0x10, 0x13);
+            this.rdoExeTypeApp.Location = new System.Drawing.Point(37, 43);
+            this.rdoExeTypeApp.Margin = new System.Windows.Forms.Padding(7);
             this.rdoExeTypeApp.Name = "rdoExeTypeApp";
-            this.rdoExeTypeApp.Size = new Size(0x5c, 0x10);
+            this.rdoExeTypeApp.Size = new System.Drawing.Size(151, 31);
             this.rdoExeTypeApp.TabIndex = 0;
             this.rdoExeTypeApp.TabStop = true;
             this.rdoExeTypeApp.Text = "应用软件";
             this.toolTip1.SetToolTip(this.rdoExeTypeApp, "显示主窗口、最小化到任务栏上");
             this.rdoExeTypeApp.UseVisualStyleBackColor = true;
-            this.pageCapture.BackColor = SystemColors.Window;
+            // 
+            // pageCapture
+            // 
+            this.pageCapture.BackColor = System.Drawing.SystemColors.Window;
             this.pageCapture.Controls.Add(this.groupBox12);
             this.pageCapture.Controls.Add(this.groupBox3);
             this.pageCapture.Controls.Add(this.groupBox4);
             this.pageCapture.Controls.Add(this.groupBox2);
-            this.pageCapture.Location = new Point(4, 0x18);
-            this.pageCapture.Margin = new Padding(0);
+            this.pageCapture.Location = new System.Drawing.Point(4, 40);
+            this.pageCapture.Margin = new System.Windows.Forms.Padding(0);
             this.pageCapture.Name = "pageCapture";
-            this.pageCapture.Padding = new Padding(5);
-            this.pageCapture.Size = new Size(0x1b7, 0x148);
+            this.pageCapture.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
+            this.pageCapture.Size = new System.Drawing.Size(1035, 757);
             this.pageCapture.TabIndex = 4;
             this.pageCapture.Text = "截取设置";
             this.pageCapture.UseVisualStyleBackColor = true;
+            // 
+            // groupBox12
+            // 
             this.groupBox12.Controls.Add(this.label16);
             this.groupBox12.Controls.Add(this.chkCC6);
             this.groupBox12.Controls.Add(this.chkCC4);
@@ -653,99 +901,153 @@
             this.groupBox12.Controls.Add(this.chkCC1);
             this.groupBox12.Controls.Add(this.chkCC9);
             this.groupBox12.Controls.Add(this.chkCC7);
-            this.groupBox12.Location = new Point(0xf9, 0x4c);
+            this.groupBox12.Location = new System.Drawing.Point(581, 171);
+            this.groupBox12.Margin = new System.Windows.Forms.Padding(7);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new Size(0xb6, 0xd1);
+            this.groupBox12.Padding = new System.Windows.Forms.Padding(7);
+            this.groupBox12.Size = new System.Drawing.Size(425, 470);
             this.groupBox12.TabIndex = 4;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "单击截取";
-            this.label16.Location = new Point(5, 0xa9);
+            // 
+            // label16
+            // 
+            this.label16.Location = new System.Drawing.Point(12, 380);
+            this.label16.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new Size(0xad, 0x1f);
+            this.label16.Size = new System.Drawing.Size(404, 70);
             this.label16.TabIndex = 8;
             this.label16.Text = "当您点击一下指定的屏幕边缘，即开始截取。";
-            this.chkCC6.Appearance = Appearance.Button;
-            this.chkCC6.Location = new Point(130, 50);
+            // 
+            // chkCC6
+            // 
+            this.chkCC6.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkCC6.Location = new System.Drawing.Point(303, 112);
+            this.chkCC6.Margin = new System.Windows.Forms.Padding(7);
             this.chkCC6.Name = "chkCC6";
-            this.chkCC6.Size = new Size(0x1a, 0x4e);
+            this.chkCC6.Size = new System.Drawing.Size(61, 176);
             this.chkCC6.TabIndex = 7;
             this.chkCC6.UseVisualStyleBackColor = false;
-            this.chkCC6.CheckedChanged += new EventHandler(this.chkCC_CheckedChanged);
-            this.chkCC4.Appearance = Appearance.Button;
-            this.chkCC4.Location = new Point(0x1a, 50);
+            this.chkCC6.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
+            // 
+            // chkCC4
+            // 
+            this.chkCC4.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkCC4.Location = new System.Drawing.Point(61, 112);
+            this.chkCC4.Margin = new System.Windows.Forms.Padding(7);
             this.chkCC4.Name = "chkCC4";
-            this.chkCC4.Size = new Size(0x1a, 0x4e);
+            this.chkCC4.Size = new System.Drawing.Size(61, 176);
             this.chkCC4.TabIndex = 6;
             this.chkCC4.UseVisualStyleBackColor = false;
-            this.chkCC4.CheckedChanged += new EventHandler(this.chkCC_CheckedChanged);
-            this.chkCC2.Appearance = Appearance.Button;
-            this.chkCC2.Location = new Point(0x34, 0x80);
+            this.chkCC4.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
+            // 
+            // chkCC2
+            // 
+            this.chkCC2.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkCC2.Location = new System.Drawing.Point(121, 288);
+            this.chkCC2.Margin = new System.Windows.Forms.Padding(7);
             this.chkCC2.Name = "chkCC2";
-            this.chkCC2.Size = new Size(0x4e, 0x1a);
+            this.chkCC2.Size = new System.Drawing.Size(182, 58);
             this.chkCC2.TabIndex = 5;
             this.chkCC2.UseVisualStyleBackColor = false;
-            this.chkCC2.CheckedChanged += new EventHandler(this.chkCC_CheckedChanged);
-            this.chkCC8.Appearance = Appearance.Button;
-            this.chkCC8.Location = new Point(0x34, 0x18);
+            this.chkCC2.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
+            // 
+            // chkCC8
+            // 
+            this.chkCC8.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkCC8.Location = new System.Drawing.Point(121, 54);
+            this.chkCC8.Margin = new System.Windows.Forms.Padding(7);
             this.chkCC8.Name = "chkCC8";
-            this.chkCC8.Size = new Size(0x4e, 0x1a);
+            this.chkCC8.Size = new System.Drawing.Size(182, 58);
             this.chkCC8.TabIndex = 4;
             this.chkCC8.UseVisualStyleBackColor = false;
-            this.chkCC8.CheckedChanged += new EventHandler(this.chkCC_CheckedChanged);
-            this.chkCC3.Appearance = Appearance.Button;
-            this.chkCC3.Location = new Point(130, 0x80);
+            this.chkCC8.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
+            // 
+            // chkCC3
+            // 
+            this.chkCC3.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkCC3.Location = new System.Drawing.Point(303, 288);
+            this.chkCC3.Margin = new System.Windows.Forms.Padding(7);
             this.chkCC3.Name = "chkCC3";
-            this.chkCC3.Size = new Size(0x1a, 0x1a);
+            this.chkCC3.Size = new System.Drawing.Size(61, 58);
             this.chkCC3.TabIndex = 3;
             this.chkCC3.UseVisualStyleBackColor = false;
-            this.chkCC3.CheckedChanged += new EventHandler(this.chkCC_CheckedChanged);
-            this.chkCC1.Appearance = Appearance.Button;
-            this.chkCC1.Location = new Point(0x1a, 0x80);
+            this.chkCC3.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
+            // 
+            // chkCC1
+            // 
+            this.chkCC1.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkCC1.Location = new System.Drawing.Point(61, 288);
+            this.chkCC1.Margin = new System.Windows.Forms.Padding(7);
             this.chkCC1.Name = "chkCC1";
-            this.chkCC1.Size = new Size(0x1a, 0x1a);
+            this.chkCC1.Size = new System.Drawing.Size(61, 58);
             this.chkCC1.TabIndex = 2;
             this.chkCC1.UseVisualStyleBackColor = false;
-            this.chkCC1.CheckedChanged += new EventHandler(this.chkCC_CheckedChanged);
-            this.chkCC9.Appearance = Appearance.Button;
-            this.chkCC9.Location = new Point(130, 0x18);
+            this.chkCC1.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
+            // 
+            // chkCC9
+            // 
+            this.chkCC9.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkCC9.Location = new System.Drawing.Point(303, 54);
+            this.chkCC9.Margin = new System.Windows.Forms.Padding(7);
             this.chkCC9.Name = "chkCC9";
-            this.chkCC9.Size = new Size(0x1a, 0x1a);
+            this.chkCC9.Size = new System.Drawing.Size(61, 58);
             this.chkCC9.TabIndex = 1;
             this.chkCC9.UseVisualStyleBackColor = false;
-            this.chkCC9.CheckedChanged += new EventHandler(this.chkCC_CheckedChanged);
-            this.chkCC7.Appearance = Appearance.Button;
-            this.chkCC7.Location = new Point(0x1a, 0x18);
+            this.chkCC9.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
+            // 
+            // chkCC7
+            // 
+            this.chkCC7.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkCC7.Location = new System.Drawing.Point(61, 54);
+            this.chkCC7.Margin = new System.Windows.Forms.Padding(7);
             this.chkCC7.Name = "chkCC7";
-            this.chkCC7.Size = new Size(0x1a, 0x1a);
+            this.chkCC7.Size = new System.Drawing.Size(61, 58);
             this.chkCC7.TabIndex = 0;
             this.chkCC7.UseVisualStyleBackColor = false;
-            this.chkCC7.CheckedChanged += new EventHandler(this.chkCC_CheckedChanged);
+            this.chkCC7.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
+            // 
+            // groupBox3
+            // 
             this.groupBox3.Controls.Add(this.rdoDupCapture);
             this.groupBox3.Controls.Add(this.rdoDupNone);
-            this.groupBox3.Location = new Point(8, 0xd6);
+            this.groupBox3.Location = new System.Drawing.Point(19, 482);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(7);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new Size(0xeb, 0x47);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(7);
+            this.groupBox3.Size = new System.Drawing.Size(548, 160);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "防止双重启动的操作";
+            // 
+            // rdoDupCapture
+            // 
             this.rdoDupCapture.AutoSize = true;
-            this.rdoDupCapture.Location = new Point(0x10, 0x2a);
+            this.rdoDupCapture.Location = new System.Drawing.Point(37, 94);
+            this.rdoDupCapture.Margin = new System.Windows.Forms.Padding(7);
             this.rdoDupCapture.Name = "rdoDupCapture";
-            this.rdoDupCapture.Size = new Size(0x60, 0x10);
+            this.rdoDupCapture.Size = new System.Drawing.Size(178, 31);
             this.rdoDupCapture.TabIndex = 1;
             this.rdoDupCapture.Text = "截取参考图";
             this.toolTip1.SetToolTip(this.rdoDupCapture, "如果您尝试重复启动SETUNA，则开始截取。");
             this.rdoDupCapture.UseVisualStyleBackColor = true;
+            // 
+            // rdoDupNone
+            // 
             this.rdoDupNone.AutoSize = true;
             this.rdoDupNone.Checked = true;
-            this.rdoDupNone.Location = new Point(0x10, 0x16);
+            this.rdoDupNone.Location = new System.Drawing.Point(37, 50);
+            this.rdoDupNone.Margin = new System.Windows.Forms.Padding(7);
             this.rdoDupNone.Name = "rdoDupNone";
-            this.rdoDupNone.Size = new Size(0x49, 0x10);
+            this.rdoDupNone.Size = new System.Drawing.Size(178, 31);
             this.rdoDupNone.TabIndex = 0;
             this.rdoDupNone.TabStop = true;
             this.rdoDupNone.Text = "什么都不做";
             this.toolTip1.SetToolTip(this.rdoDupNone, "如果您尝试重复启动SETUNA，则什么都不做。");
             this.rdoDupNone.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
             this.groupBox4.Controls.Add(this.rdoSelLineTypeDotted);
             this.groupBox4.Controls.Add(this.rdoSelLineTypeSolid);
             this.groupBox4.Controls.Add(this.label12);
@@ -756,186 +1058,285 @@
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Location = new Point(8, 0x4c);
+            this.groupBox4.Location = new System.Drawing.Point(19, 171);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(7);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new Size(0xeb, 0x84);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(7);
+            this.groupBox4.Size = new System.Drawing.Size(548, 297);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "截取时的框选范围";
+            // 
+            // rdoSelLineTypeDotted
+            // 
             this.rdoSelLineTypeDotted.AutoSize = true;
-            this.rdoSelLineTypeDotted.Location = new Point(0xa7, 0x2e);
+            this.rdoSelLineTypeDotted.Location = new System.Drawing.Point(390, 104);
+            this.rdoSelLineTypeDotted.Margin = new System.Windows.Forms.Padding(7);
             this.rdoSelLineTypeDotted.Name = "rdoSelLineTypeDotted";
-            this.rdoSelLineTypeDotted.Size = new Size(0x2f, 0x10);
+            this.rdoSelLineTypeDotted.Size = new System.Drawing.Size(97, 31);
             this.rdoSelLineTypeDotted.TabIndex = 3;
             this.rdoSelLineTypeDotted.Text = "虚线";
             this.toolTip1.SetToolTip(this.rdoSelLineTypeDotted, "设置框选范围的边框线的类型。");
             this.rdoSelLineTypeDotted.UseVisualStyleBackColor = true;
+            // 
+            // rdoSelLineTypeSolid
+            // 
             this.rdoSelLineTypeSolid.AutoSize = true;
             this.rdoSelLineTypeSolid.Checked = true;
-            this.rdoSelLineTypeSolid.Location = new Point(0x76, 0x2f);
+            this.rdoSelLineTypeSolid.Location = new System.Drawing.Point(275, 106);
+            this.rdoSelLineTypeSolid.Margin = new System.Windows.Forms.Padding(7);
             this.rdoSelLineTypeSolid.Name = "rdoSelLineTypeSolid";
-            this.rdoSelLineTypeSolid.Size = new Size(0x2f, 0x10);
+            this.rdoSelLineTypeSolid.Size = new System.Drawing.Size(97, 31);
             this.rdoSelLineTypeSolid.TabIndex = 2;
             this.rdoSelLineTypeSolid.TabStop = true;
             this.rdoSelLineTypeSolid.Text = "实线";
             this.toolTip1.SetToolTip(this.rdoSelLineTypeSolid, "设置框选范围的边框线的类型。");
             this.rdoSelLineTypeSolid.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
             this.label12.AutoSize = true;
-            this.label12.Location = new Point(0xa5, 0x61);
+            this.label12.Location = new System.Drawing.Point(385, 218);
+            this.label12.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new Size(11, 12);
+            this.label12.Size = new System.Drawing.Size(26, 27);
             this.label12.TabIndex = 7;
             this.label12.Text = "%";
-            this.numSelectAreaTrans.Location = new Point(0x76, 0x5f);
+            // 
+            // numSelectAreaTrans
+            // 
+            this.numSelectAreaTrans.Location = new System.Drawing.Point(275, 214);
+            this.numSelectAreaTrans.Margin = new System.Windows.Forms.Padding(7);
             this.numSelectAreaTrans.Name = "numSelectAreaTrans";
-            this.numSelectAreaTrans.Size = new Size(0x29, 0x13);
+            this.numSelectAreaTrans.Size = new System.Drawing.Size(96, 38);
             this.numSelectAreaTrans.TabIndex = 6;
             this.toolTip1.SetToolTip(this.numSelectAreaTrans, "设置框选范围填充颜色的透明度。\n选择透明度100％时可提高响应速度。");
-            int[] numArray4 = new int[4];
-            numArray4[0] = 100;
-            this.numSelectAreaTrans.Value = new decimal(numArray4);
-            this.picSelectAreaBackColor.BackColor = Color.AliceBlue;
-            this.picSelectAreaBackColor.BorderStyle = BorderStyle.Fixed3D;
-            this.picSelectAreaBackColor.Cursor = Cursors.Hand;
-            this.picSelectAreaBackColor.Location = new Point(0x76, 70);
+            this.numSelectAreaTrans.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            // 
+            // picSelectAreaBackColor
+            // 
+            this.picSelectAreaBackColor.BackColor = System.Drawing.Color.AliceBlue;
+            this.picSelectAreaBackColor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picSelectAreaBackColor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picSelectAreaBackColor.Location = new System.Drawing.Point(275, 158);
+            this.picSelectAreaBackColor.Margin = new System.Windows.Forms.Padding(7);
             this.picSelectAreaBackColor.Name = "picSelectAreaBackColor";
-            this.picSelectAreaBackColor.Size = new Size(0x20, 0x12);
+            this.picSelectAreaBackColor.Size = new System.Drawing.Size(69, 36);
             this.picSelectAreaBackColor.TabIndex = 10;
             this.picSelectAreaBackColor.TabStop = false;
             this.toolTip1.SetToolTip(this.picSelectAreaBackColor, "设置全面填充框选范围的颜色。\n不全面涂抹的情况设置透明度为100％。");
-            this.picSelectAreaBackColor.Click += new EventHandler(this.pictureBox_Click);
-            this.picSelectAreaLineColor.BackColor = Color.Blue;
-            this.picSelectAreaLineColor.BorderStyle = BorderStyle.Fixed3D;
-            this.picSelectAreaLineColor.Cursor = Cursors.Hand;
-            this.picSelectAreaLineColor.Location = new Point(0x76, 0x16);
+            this.picSelectAreaBackColor.Click += new System.EventHandler(this.pictureBox_Click);
+            // 
+            // picSelectAreaLineColor
+            // 
+            this.picSelectAreaLineColor.BackColor = System.Drawing.Color.Blue;
+            this.picSelectAreaLineColor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picSelectAreaLineColor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picSelectAreaLineColor.Location = new System.Drawing.Point(275, 50);
+            this.picSelectAreaLineColor.Margin = new System.Windows.Forms.Padding(7);
             this.picSelectAreaLineColor.Name = "picSelectAreaLineColor";
-            this.picSelectAreaLineColor.Size = new Size(0x20, 0x12);
+            this.picSelectAreaLineColor.Size = new System.Drawing.Size(69, 36);
             this.picSelectAreaLineColor.TabIndex = 9;
             this.picSelectAreaLineColor.TabStop = false;
             this.toolTip1.SetToolTip(this.picSelectAreaLineColor, "指定框选范围的边框线的颜色。");
-            this.picSelectAreaLineColor.Click += new EventHandler(this.pictureBox_Click);
+            this.picSelectAreaLineColor.Click += new System.EventHandler(this.pictureBox_Click);
+            // 
+            // label10
+            // 
             this.label10.AutoSize = true;
-            this.label10.Location = new Point(0x10, 0x61);
+            this.label10.Location = new System.Drawing.Point(37, 218);
+            this.label10.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new Size(0x65, 12);
+            this.label10.Size = new System.Drawing.Size(255, 27);
             this.label10.TabIndex = 5;
             this.label10.Text = "框选范围的透明度：";
+            // 
+            // label9
+            // 
             this.label9.AutoSize = true;
-            this.label9.Location = new Point(0x10, 0x49);
+            this.label9.Location = new System.Drawing.Point(37, 164);
+            this.label9.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new Size(0x4d, 12);
+            this.label9.Size = new System.Drawing.Size(228, 27);
             this.label9.TabIndex = 4;
             this.label9.Text = "框选范围的颜色：";
+            // 
+            // label8
+            // 
             this.label8.AutoSize = true;
-            this.label8.Location = new Point(0x10, 0x18);
+            this.label8.Location = new System.Drawing.Point(37, 54);
+            this.label8.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new Size(0x4f, 12);
+            this.label8.Size = new System.Drawing.Size(201, 27);
             this.label8.TabIndex = 0;
             this.label8.Text = "框选线的颜色∶";
+            // 
+            // label7
+            // 
             this.label7.AutoSize = true;
-            this.label7.Location = new Point(0x10, 0x30);
+            this.label7.Location = new System.Drawing.Point(37, 108);
+            this.label7.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new Size(0x5b, 12);
+            this.label7.Size = new System.Drawing.Size(201, 27);
             this.label7.TabIndex = 1;
             this.label7.Text = "框选线的种类∶";
-            this.groupBox2.BackColor = Color.Transparent;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.Transparent;
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.hotkeyControl1);
-            this.groupBox2.Location = new Point(8, 8);
+            this.groupBox2.Location = new System.Drawing.Point(19, 18);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(7);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new Padding(10, 7, 3, 3);
-            this.groupBox2.Size = new Size(0x1a7, 0x3e);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(23, 16, 7, 7);
+            this.groupBox2.Size = new System.Drawing.Size(987, 140);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "快捷键设置";
+            // 
+            // checkBox1
+            // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new Point(0xf1, 0x1a);
+            this.checkBox1.Location = new System.Drawing.Point(562, 58);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(7);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new Size(130, 0x10);
+            this.checkBox1.Size = new System.Drawing.Size(179, 31);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "启用快捷键";
             this.toolTip1.SetToolTip(this.checkBox1, "要启用快捷键，请勾选。");
             this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
             this.label3.AutoSize = true;
-            this.label3.Location = new Point(0x10, 0x1b);
+            this.label3.Location = new System.Drawing.Point(37, 61);
+            this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new Size(0x34, 12);
+            this.label3.Size = new System.Drawing.Size(120, 27);
             this.label3.TabIndex = 1;
             this.label3.Text = "快捷键：";
-            this.hotkeyControl1.Hotkey = Keys.None;
-            this.hotkeyControl1.Location = new Point(0x4a, 0x18);
+            // 
+            // hotkeyControl1
+            // 
+            this.hotkeyControl1.Hotkey = System.Windows.Forms.Keys.None;
+            this.hotkeyControl1.Location = new System.Drawing.Point(173, 54);
+            this.hotkeyControl1.Margin = new System.Windows.Forms.Padding(7);
             this.hotkeyControl1.Name = "hotkeyControl1";
-            this.hotkeyControl1.Size = new Size(150, 0x13);
+            this.hotkeyControl1.Size = new System.Drawing.Size(350, 43);
             this.hotkeyControl1.TabIndex = 0;
             this.toolTip1.SetToolTip(this.hotkeyControl1, "Ctrl键，Shift键和Alt键，各个键的组合来设置截取的快捷键。\n不能使用其他程序设置的快捷键。");
-            this.pageScrap.BackColor = Color.White;
+            // 
+            // pageScrap
+            // 
+            this.pageScrap.BackColor = System.Drawing.Color.White;
             this.pageScrap.Controls.Add(this.flowLayoutPanel1);
-            this.pageScrap.Location = new Point(4, 0x18);
+            this.pageScrap.Location = new System.Drawing.Point(4, 40);
+            this.pageScrap.Margin = new System.Windows.Forms.Padding(7);
             this.pageScrap.Name = "pageScrap";
-            this.pageScrap.Padding = new Padding(3);
-            this.pageScrap.Size = new Size(0x1b7, 0x148);
+            this.pageScrap.Padding = new System.Windows.Forms.Padding(7);
+            this.pageScrap.Size = new System.Drawing.Size(1035, 757);
             this.pageScrap.TabIndex = 2;
             this.pageScrap.Text = "参考图设置";
             this.pageScrap.UseVisualStyleBackColor = true;
-            this.flowLayoutPanel1.BackColor = Color.White;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanel1.Controls.Add(this.pnlScrapStyle);
             this.flowLayoutPanel1.Controls.Add(this.panel4);
-            this.flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new Point(3, 3);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(7, 7);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(7);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new Size(0x1a8, 0x12e);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(989, 680);
             this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // pnlScrapStyle
+            // 
             this.pnlScrapStyle.Controls.Add(this.cmbWClickStyle);
             this.pnlScrapStyle.Controls.Add(this.label5);
             this.pnlScrapStyle.Controls.Add(this.cmbCreateStyle);
             this.pnlScrapStyle.Controls.Add(this.label4);
-            this.pnlScrapStyle.Location = new Point(3, 3);
+            this.pnlScrapStyle.Location = new System.Drawing.Point(7, 7);
+            this.pnlScrapStyle.Margin = new System.Windows.Forms.Padding(7);
             this.pnlScrapStyle.Name = "pnlScrapStyle";
-            this.pnlScrapStyle.Size = new Size(0x19c, 0x3e);
+            this.pnlScrapStyle.Size = new System.Drawing.Size(961, 140);
             this.pnlScrapStyle.TabIndex = 0;
-            this.cmbWClickStyle.DropDownStyle = ComboBoxStyle.DropDownList;
+            // 
+            // cmbWClickStyle
+            // 
+            this.cmbWClickStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWClickStyle.FormattingEnabled = true;
-            this.cmbWClickStyle.Location = new Point(0xa3, 0x26);
+            this.cmbWClickStyle.Location = new System.Drawing.Point(380, 86);
+            this.cmbWClickStyle.Margin = new System.Windows.Forms.Padding(7);
             this.cmbWClickStyle.Name = "cmbWClickStyle";
-            this.cmbWClickStyle.Size = new Size(0xba, 20);
+            this.cmbWClickStyle.Size = new System.Drawing.Size(429, 35);
             this.cmbWClickStyle.TabIndex = 3;
             this.toolTip1.SetToolTip(this.cmbWClickStyle, "指定双击参考图时使用的自动操作。");
-            this.cmbWClickStyle.SelectionChangeCommitted += new EventHandler(this.cmbWClickStyle_SelectionChangeCommitted);
+            this.cmbWClickStyle.SelectionChangeCommitted += new System.EventHandler(this.cmbWClickStyle_SelectionChangeCommitted);
+            // 
+            // label5
+            // 
             this.label5.AutoSize = true;
-            this.label5.Location = new Point(20, 0x26);
+            this.label5.Location = new System.Drawing.Point(47, 86);
+            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new Size(0x3a, 12);
+            this.label5.Size = new System.Drawing.Size(120, 27);
             this.label5.TabIndex = 2;
             this.label5.Text = "双击时∶";
-            this.cmbCreateStyle.DropDownStyle = ComboBoxStyle.DropDownList;
+            // 
+            // cmbCreateStyle
+            // 
+            this.cmbCreateStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCreateStyle.FormattingEnabled = true;
-            this.cmbCreateStyle.Location = new Point(0xa3, 11);
+            this.cmbCreateStyle.Location = new System.Drawing.Point(380, 25);
+            this.cmbCreateStyle.Margin = new System.Windows.Forms.Padding(7);
             this.cmbCreateStyle.Name = "cmbCreateStyle";
-            this.cmbCreateStyle.Size = new Size(0xba, 20);
+            this.cmbCreateStyle.Size = new System.Drawing.Size(429, 35);
             this.cmbCreateStyle.TabIndex = 1;
             this.toolTip1.SetToolTip(this.cmbCreateStyle, "您可以指定要创建参考图时使用的自动操作。");
-            this.cmbCreateStyle.SelectionChangeCommitted += new EventHandler(this.cmbCreateStyle_SelectionChangeCommitted);
+            this.cmbCreateStyle.SelectionChangeCommitted += new System.EventHandler(this.cmbCreateStyle_SelectionChangeCommitted);
+            // 
+            // label4
+            // 
             this.label4.AutoSize = true;
-            this.label4.Location = new Point(20, 14);
+            this.label4.Location = new System.Drawing.Point(47, 32);
+            this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new Size(0x43, 12);
+            this.label4.Size = new System.Drawing.Size(201, 27);
             this.label4.TabIndex = 0;
             this.label4.Text = "基本自动操作：";
+            // 
+            // panel4
+            // 
             this.panel4.Controls.Add(this.chkScrapImageDrag);
             this.panel4.Controls.Add(this.groupBox11);
-            this.panel4.Location = new Point(3, 0x47);
+            this.panel4.Location = new System.Drawing.Point(7, 161);
+            this.panel4.Margin = new System.Windows.Forms.Padding(7);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new Size(0x19c, 0xd5);
+            this.panel4.Size = new System.Drawing.Size(961, 479);
             this.panel4.TabIndex = 0;
+            // 
+            // chkScrapImageDrag
+            // 
             this.chkScrapImageDrag.AutoSize = true;
-            this.chkScrapImageDrag.Location = new Point(0x16, 3);
+            this.chkScrapImageDrag.Location = new System.Drawing.Point(51, 7);
+            this.chkScrapImageDrag.Margin = new System.Windows.Forms.Padding(7);
             this.chkScrapImageDrag.Name = "chkScrapImageDrag";
-            this.chkScrapImageDrag.Size = new Size(0xd1, 0x10);
+            this.chkScrapImageDrag.Size = new System.Drawing.Size(395, 31);
             this.chkScrapImageDrag.TabIndex = 0;
             this.chkScrapImageDrag.Text = "拖动图像文件创建一个参考图";
             this.toolTip1.SetToolTip(this.chkScrapImageDrag, "拖动图像文件到参考图可作为参考图查看。");
             this.chkScrapImageDrag.UseVisualStyleBackColor = true;
+            // 
+            // groupBox11
+            // 
             this.groupBox11.Controls.Add(this.label15);
             this.groupBox11.Controls.Add(this.label13);
             this.groupBox11.Controls.Add(this.numMouseOverAlpha);
@@ -944,82 +1345,130 @@
             this.groupBox11.Controls.Add(this.label6);
             this.groupBox11.Controls.Add(this.numInactiveAlpha);
             this.groupBox11.Controls.Add(this.chkInactiveAlphaChange);
-            this.groupBox11.Location = new Point(3, 0x1f);
+            this.groupBox11.Location = new System.Drawing.Point(7, 70);
+            this.groupBox11.Margin = new System.Windows.Forms.Padding(7);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new Size(0x196, 0x7b);
+            this.groupBox11.Padding = new System.Windows.Forms.Padding(7);
+            this.groupBox11.Size = new System.Drawing.Size(947, 277);
             this.groupBox11.TabIndex = 1;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "非选择时的效果";
+            // 
+            // label15
+            // 
             this.label15.AutoSize = true;
-            this.label15.Location = new Point(0xfd, 0x56);
+            this.label15.Location = new System.Drawing.Point(590, 194);
+            this.label15.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new Size(11, 12);
+            this.label15.Size = new System.Drawing.Size(26, 27);
             this.label15.TabIndex = 7;
             this.label15.Text = "%";
+            // 
+            // label13
+            // 
             this.label13.AutoSize = true;
-            this.label13.Location = new Point(0xfd, 0x26);
+            this.label13.Location = new System.Drawing.Point(590, 86);
+            this.label13.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new Size(11, 12);
+            this.label13.Size = new System.Drawing.Size(26, 27);
             this.label13.TabIndex = 3;
             this.label13.Text = "%";
-            this.numMouseOverAlpha.Location = new Point(0xd5, 0x52);
-            int[] numArray5 = new int[4];
-            numArray5[0] = 1;
-            this.numMouseOverAlpha.Minimum = new decimal(numArray5);
+            // 
+            // numMouseOverAlpha
+            // 
+            this.numMouseOverAlpha.Location = new System.Drawing.Point(497, 184);
+            this.numMouseOverAlpha.Margin = new System.Windows.Forms.Padding(7);
+            this.numMouseOverAlpha.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numMouseOverAlpha.Name = "numMouseOverAlpha";
-            this.numMouseOverAlpha.Size = new Size(0x27, 0x13);
+            this.numMouseOverAlpha.Size = new System.Drawing.Size(91, 38);
             this.numMouseOverAlpha.TabIndex = 6;
-            int[] numArray6 = new int[4];
-            numArray6[0] = 1;
-            this.numMouseOverAlpha.Value = new decimal(numArray6);
+            this.numMouseOverAlpha.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // chkMouseOverAlphaChange
+            // 
             this.chkMouseOverAlphaChange.AutoSize = true;
-            this.chkMouseOverAlphaChange.Location = new Point(0x31, 0x55);
+            this.chkMouseOverAlphaChange.Location = new System.Drawing.Point(114, 191);
+            this.chkMouseOverAlphaChange.Margin = new System.Windows.Forms.Padding(7);
             this.chkMouseOverAlphaChange.Name = "chkMouseOverAlphaChange";
-            this.chkMouseOverAlphaChange.Size = new Size(0xa2, 0x10);
+            this.chkMouseOverAlphaChange.Size = new System.Drawing.Size(314, 31);
             this.chkMouseOverAlphaChange.TabIndex = 5;
             this.chkMouseOverAlphaChange.Text = "改变参考图的不透明度";
             this.toolTip1.SetToolTip(this.chkMouseOverAlphaChange, "设置鼠标光标处于参考图上时参考图的透明度。\n如果响应速度很慢请关闭。");
             this.chkMouseOverAlphaChange.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
             this.label11.AutoSize = true;
-            this.label11.Location = new Point(0x15, 70);
+            this.label11.Location = new System.Drawing.Point(49, 158);
+            this.label11.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new Size(0x69, 12);
+            this.label11.Size = new System.Drawing.Size(147, 27);
             this.label11.TabIndex = 4;
             this.label11.Text = "鼠标触到时";
+            // 
+            // label6
+            // 
             this.label6.AutoSize = true;
-            this.label6.Location = new Point(0x15, 0x17);
+            this.label6.Location = new System.Drawing.Point(49, 52);
+            this.label6.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new Size(0x74, 12);
+            this.label6.Size = new System.Drawing.Size(174, 27);
             this.label6.TabIndex = 0;
             this.label6.Text = "鼠标没触到时";
-            this.numInactiveAlpha.Location = new Point(0xd5, 0x23);
-            int[] numArray7 = new int[4];
-            numArray7[0] = 1;
-            this.numInactiveAlpha.Minimum = new decimal(numArray7);
+            // 
+            // numInactiveAlpha
+            // 
+            this.numInactiveAlpha.Location = new System.Drawing.Point(497, 79);
+            this.numInactiveAlpha.Margin = new System.Windows.Forms.Padding(7);
+            this.numInactiveAlpha.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numInactiveAlpha.Name = "numInactiveAlpha";
-            this.numInactiveAlpha.Size = new Size(0x27, 0x13);
+            this.numInactiveAlpha.Size = new System.Drawing.Size(91, 38);
             this.numInactiveAlpha.TabIndex = 2;
-            int[] numArray8 = new int[4];
-            numArray8[0] = 1;
-            this.numInactiveAlpha.Value = new decimal(numArray8);
+            this.numInactiveAlpha.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // chkInactiveAlphaChange
+            // 
             this.chkInactiveAlphaChange.AutoSize = true;
-            this.chkInactiveAlphaChange.Location = new Point(0x31, 0x26);
+            this.chkInactiveAlphaChange.Location = new System.Drawing.Point(114, 86);
+            this.chkInactiveAlphaChange.Margin = new System.Windows.Forms.Padding(7);
             this.chkInactiveAlphaChange.Name = "chkInactiveAlphaChange";
-            this.chkInactiveAlphaChange.Size = new Size(0xa2, 0x10);
+            this.chkInactiveAlphaChange.Size = new System.Drawing.Size(314, 31);
             this.chkInactiveAlphaChange.TabIndex = 1;
             this.chkInactiveAlphaChange.Text = "改变参考图的不透明度";
             this.toolTip1.SetToolTip(this.chkInactiveAlphaChange, "设置鼠标光标离开参考图上后参考图的透明度。\n如果响应速度很慢请关闭。");
             this.chkInactiveAlphaChange.UseVisualStyleBackColor = true;
-            this.pageStyle.BackColor = Color.White;
+            // 
+            // pageStyle
+            // 
+            this.pageStyle.BackColor = System.Drawing.Color.White;
             this.pageStyle.Controls.Add(this.groupBox1);
-            this.pageStyle.Location = new Point(4, 0x18);
-            this.pageStyle.Margin = new Padding(0);
+            this.pageStyle.Location = new System.Drawing.Point(4, 40);
+            this.pageStyle.Margin = new System.Windows.Forms.Padding(0);
             this.pageStyle.Name = "pageStyle";
-            this.pageStyle.Padding = new Padding(5);
-            this.pageStyle.Size = new Size(0x1b7, 0x148);
+            this.pageStyle.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
+            this.pageStyle.Size = new System.Drawing.Size(1035, 757);
             this.pageStyle.TabIndex = 0;
             this.pageStyle.Text = "编辑自动操作";
             this.pageStyle.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.listStyles);
             this.groupBox1.Controls.Add(this.listKeyItems);
@@ -1029,272 +1478,286 @@
             this.groupBox1.Controls.Add(this.listStyleItems);
             this.groupBox1.Controls.Add(this.btnDeleteStyle);
             this.groupBox1.Controls.Add(this.btnNewStyle);
-            this.groupBox1.Location = new Point(8, 8);
+            this.groupBox1.Location = new System.Drawing.Point(19, 18);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new Size(0x1a7, 0x133);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(7);
+            this.groupBox1.Size = new System.Drawing.Size(987, 691);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "自动操作列表";
-            this.button1.Location = new Point(0xe3, 0x12);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(530, 40);
+            this.button1.Margin = new System.Windows.Forms.Padding(7);
             this.button1.Name = "button1";
-            this.button1.Size = new Size(0x3f, 0x1a);
+            this.button1.Size = new System.Drawing.Size(147, 58);
             this.button1.TabIndex = 8;
             this.button1.Text = "复制";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new EventHandler(this.btnCopy_Click_1);
-            this.listStyles.DrawMode = DrawMode.OwnerDrawFixed;
-            this.listStyles.Font = new Font("宋体", 9f);
+            this.button1.Click += new System.EventHandler(this.btnCopy_Click_1);
+            // 
+            // listStyles
+            // 
+            this.listStyles.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listStyles.Font = new System.Drawing.Font("宋体", 9F);
             this.listStyles.FormattingEnabled = true;
             this.listStyles.ItemDragMove = true;
-            this.listStyles.ItemHeight = 20;
+            this.listStyles.ItemHeight = 40;
             this.listStyles.ItemKeyDelete = true;
             this.listStyles.ItemLine = false;
-            this.listStyles.ItemLineColor = Color.Gray;
+            this.listStyles.ItemLineColor = System.Drawing.Color.Gray;
             this.listStyles.LeftSpace = 2;
-            this.listStyles.Location = new Point(20, 0x31);
+            this.listStyles.Location = new System.Drawing.Point(47, 110);
+            this.listStyles.Margin = new System.Windows.Forms.Padding(7);
             this.listStyles.Name = "listStyles";
-            this.listStyles.Size = new Size(0xc9, 0xf4);
+            this.listStyles.Size = new System.Drawing.Size(464, 524);
             this.listStyles.TabIndex = 3;
-            this.listStyles.SelectedIndexChanged += new EventHandler(this.listStyles_SelectedIndexChanged);
-            this.listStyles.DoubleClick += new EventHandler(this.listStyles_DoubleClick);
-            this.listKeyItems.BackColor = Color.White;
-            this.listKeyItems.ForeColor = SystemColors.WindowText;
+            this.listStyles.SelectedIndexChanged += new System.EventHandler(this.listStyles_SelectedIndexChanged);
+            this.listStyles.DoubleClick += new System.EventHandler(this.listStyles_DoubleClick);
+            // 
+            // listKeyItems
+            // 
+            this.listKeyItems.BackColor = System.Drawing.Color.White;
+            this.listKeyItems.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listKeyItems.FormattingEnabled = true;
-            this.listKeyItems.ItemHeight = 12;
-            this.listKeyItems.Location = new Point(0xed, 0xcc);
+            this.listKeyItems.ItemHeight = 27;
+            this.listKeyItems.Location = new System.Drawing.Point(553, 459);
+            this.listKeyItems.Margin = new System.Windows.Forms.Padding(7);
             this.listKeyItems.Name = "listKeyItems";
-            this.listKeyItems.Size = new Size(180, 0x58);
+            this.listKeyItems.Size = new System.Drawing.Size(415, 193);
             this.listKeyItems.TabIndex = 7;
+            // 
+            // label2
+            // 
             this.label2.AutoSize = true;
-            this.label2.Location = new Point(0xeb, 0xbc);
+            this.label2.Location = new System.Drawing.Point(548, 423);
+            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new Size(0x44, 12);
+            this.label2.Size = new System.Drawing.Size(174, 27);
             this.label2.TabIndex = 6;
             this.label2.Text = "快捷键分配：";
+            // 
+            // label1
+            // 
             this.label1.AutoSize = true;
-            this.label1.Location = new Point(0xeb, 0x3b);
+            this.label1.Location = new System.Drawing.Point(548, 133);
+            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new Size(80, 12);
+            this.label1.Size = new System.Drawing.Size(228, 27);
             this.label1.TabIndex = 4;
             this.label1.Text = "自动操作的构成：";
-            this.btnEditStyle.Location = new Point(0x59, 0x12);
+            // 
+            // btnEditStyle
+            // 
+            this.btnEditStyle.Location = new System.Drawing.Point(208, 40);
+            this.btnEditStyle.Margin = new System.Windows.Forms.Padding(7);
             this.btnEditStyle.Name = "btnEditStyle";
-            this.btnEditStyle.Size = new Size(0x3f, 0x1a);
+            this.btnEditStyle.Size = new System.Drawing.Size(147, 58);
             this.btnEditStyle.TabIndex = 1;
             this.btnEditStyle.Tag = " ";
             this.btnEditStyle.Text = "编辑";
             this.btnEditStyle.UseVisualStyleBackColor = true;
-            this.btnEditStyle.Click += new EventHandler(this.btnEditStyle_Click);
-            this.listStyleItems.BackColor = Color.White;
-            this.listStyleItems.ForeColor = SystemColors.WindowText;
+            this.btnEditStyle.Click += new System.EventHandler(this.btnEditStyle_Click);
+            // 
+            // listStyleItems
+            // 
+            this.listStyleItems.BackColor = System.Drawing.Color.White;
+            this.listStyleItems.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listStyleItems.FormattingEnabled = true;
-            this.listStyleItems.ItemHeight = 12;
-            this.listStyleItems.Location = new Point(0xed, 0x4c);
+            this.listStyleItems.ItemHeight = 27;
+            this.listStyleItems.Location = new System.Drawing.Point(553, 171);
+            this.listStyleItems.Margin = new System.Windows.Forms.Padding(7);
             this.listStyleItems.Name = "listStyleItems";
-            this.listStyleItems.Size = new Size(180, 100);
+            this.listStyleItems.Size = new System.Drawing.Size(415, 220);
             this.listStyleItems.TabIndex = 5;
-            this.btnDeleteStyle.Location = new Point(0x9e, 0x12);
+            // 
+            // btnDeleteStyle
+            // 
+            this.btnDeleteStyle.Location = new System.Drawing.Point(369, 40);
+            this.btnDeleteStyle.Margin = new System.Windows.Forms.Padding(7);
             this.btnDeleteStyle.Name = "btnDeleteStyle";
-            this.btnDeleteStyle.Size = new Size(0x3f, 0x1a);
+            this.btnDeleteStyle.Size = new System.Drawing.Size(147, 58);
             this.btnDeleteStyle.TabIndex = 2;
             this.btnDeleteStyle.Text = "删除";
             this.btnDeleteStyle.UseVisualStyleBackColor = true;
-            this.btnDeleteStyle.Click += new EventHandler(this.btnDeleteStyle_Click);
-            this.btnNewStyle.Location = new Point(20, 0x12);
+            this.btnDeleteStyle.Click += new System.EventHandler(this.btnDeleteStyle_Click);
+            // 
+            // btnNewStyle
+            // 
+            this.btnNewStyle.Location = new System.Drawing.Point(47, 40);
+            this.btnNewStyle.Margin = new System.Windows.Forms.Padding(7);
             this.btnNewStyle.Name = "btnNewStyle";
-            this.btnNewStyle.Size = new Size(0x3f, 0x1a);
+            this.btnNewStyle.Size = new System.Drawing.Size(147, 58);
             this.btnNewStyle.TabIndex = 0;
             this.btnNewStyle.Text = "新建";
             this.btnNewStyle.UseVisualStyleBackColor = true;
-            this.btnNewStyle.Click += new EventHandler(this.btnNewStyle_Click);
-            this.pageScrapMenu.BackColor = Color.White;
+            this.btnNewStyle.Click += new System.EventHandler(this.btnNewStyle_Click);
+            // 
+            // pageScrapMenu
+            // 
+            this.pageScrapMenu.BackColor = System.Drawing.Color.White;
             this.pageScrapMenu.Controls.Add(this.btnScrapMenuMove);
             this.pageScrapMenu.Controls.Add(this.groupBox10);
             this.pageScrapMenu.Controls.Add(this.groupBox9);
             this.pageScrapMenu.Controls.Add(this.groupBox8);
-            this.pageScrapMenu.Location = new Point(4, 0x18);
+            this.pageScrapMenu.Location = new System.Drawing.Point(4, 40);
+            this.pageScrapMenu.Margin = new System.Windows.Forms.Padding(7);
             this.pageScrapMenu.Name = "pageScrapMenu";
-            this.pageScrapMenu.Padding = new Padding(5);
-            this.pageScrapMenu.Size = new Size(0x1b7, 0x148);
+            this.pageScrapMenu.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
+            this.pageScrapMenu.Size = new System.Drawing.Size(1035, 757);
             this.pageScrapMenu.TabIndex = 3;
             this.pageScrapMenu.Text = "参考图菜单";
             this.pageScrapMenu.UseVisualStyleBackColor = true;
-            this.btnScrapMenuMove.Location = new Point(0xc4, 0x1a);
+            // 
+            // btnScrapMenuMove
+            // 
+            this.btnScrapMenuMove.Location = new System.Drawing.Point(457, 58);
+            this.btnScrapMenuMove.Margin = new System.Windows.Forms.Padding(7);
             this.btnScrapMenuMove.Name = "btnScrapMenuMove";
-            this.btnScrapMenuMove.Size = new Size(0x30, 0x117);
+            this.btnScrapMenuMove.Size = new System.Drawing.Size(112, 628);
             this.btnScrapMenuMove.TabIndex = 2;
             this.btnScrapMenuMove.Text = ">>";
             this.btnScrapMenuMove.UseVisualStyleBackColor = true;
-            this.btnScrapMenuMove.Click += new EventHandler(this.btnScrapMenuMove_Click);
+            this.btnScrapMenuMove.Click += new System.EventHandler(this.btnScrapMenuMove_Click);
+            // 
+            // groupBox10
+            // 
             this.groupBox10.Controls.Add(this.listScrapMenuList);
-            this.groupBox10.Location = new Point(250, 8);
+            this.groupBox10.Location = new System.Drawing.Point(583, 18);
+            this.groupBox10.Margin = new System.Windows.Forms.Padding(7);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Padding = new Padding(5, 3, 5, 3);
-            this.groupBox10.Size = new Size(0xb5, 0x131);
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(12, 7, 12, 7);
+            this.groupBox10.Size = new System.Drawing.Size(422, 686);
             this.groupBox10.TabIndex = 3;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "参考图菜单";
-            this.listScrapMenuList.DrawMode = DrawMode.OwnerDrawFixed;
-            this.listScrapMenuList.Font = new Font("宋体", 9f);
+            // 
+            // listScrapMenuList
+            // 
+            this.listScrapMenuList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listScrapMenuList.Font = new System.Drawing.Font("宋体", 9F);
             this.listScrapMenuList.FormattingEnabled = true;
             this.listScrapMenuList.IntegralHeight = false;
             this.listScrapMenuList.ItemDragMove = true;
-            this.listScrapMenuList.ItemHeight = 20;
+            this.listScrapMenuList.ItemHeight = 40;
             this.listScrapMenuList.ItemKeyDelete = true;
             this.listScrapMenuList.ItemLine = false;
-            this.listScrapMenuList.ItemLineColor = Color.Gray;
+            this.listScrapMenuList.ItemLineColor = System.Drawing.Color.Gray;
             this.listScrapMenuList.LeftSpace = 2;
-            this.listScrapMenuList.Location = new Point(8, 0x12);
+            this.listScrapMenuList.Location = new System.Drawing.Point(19, 40);
+            this.listScrapMenuList.Margin = new System.Windows.Forms.Padding(7);
             this.listScrapMenuList.Name = "listScrapMenuList";
-            this.listScrapMenuList.Size = new Size(0xa5, 0x117);
+            this.listScrapMenuList.Size = new System.Drawing.Size(380, 623);
             this.listScrapMenuList.TabIndex = 0;
             this.toolTip1.SetToolTip(this.listScrapMenuList, "右键单击参考图时显示的菜单结构。");
+            // 
+            // groupBox9
+            // 
             this.groupBox9.Controls.Add(this.listScrapMenuItems);
-            this.groupBox9.Location = new Point(8, 0xcb);
+            this.groupBox9.Location = new System.Drawing.Point(19, 457);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(7);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Padding = new Padding(5, 3, 5, 3);
-            this.groupBox9.Size = new Size(0xb6, 110);
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(12, 7, 12, 7);
+            this.groupBox9.Size = new System.Drawing.Size(425, 248);
             this.groupBox9.TabIndex = 1;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "其他";
-            this.listScrapMenuItems.DrawMode = DrawMode.OwnerDrawFixed;
-            this.listScrapMenuItems.Font = new Font("宋体", 9f);
+            // 
+            // listScrapMenuItems
+            // 
+            this.listScrapMenuItems.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listScrapMenuItems.Font = new System.Drawing.Font("宋体", 9F);
             this.listScrapMenuItems.FormattingEnabled = true;
             this.listScrapMenuItems.ItemDragMove = false;
-            this.listScrapMenuItems.ItemHeight = 20;
+            this.listScrapMenuItems.ItemHeight = 40;
             this.listScrapMenuItems.ItemKeyDelete = false;
             this.listScrapMenuItems.ItemLine = false;
-            this.listScrapMenuItems.ItemLineColor = Color.Gray;
+            this.listScrapMenuItems.ItemLineColor = System.Drawing.Color.Gray;
             this.listScrapMenuItems.LeftSpace = 2;
-            this.listScrapMenuItems.Location = new Point(8, 0x12);
+            this.listScrapMenuItems.Location = new System.Drawing.Point(19, 40);
+            this.listScrapMenuItems.Margin = new System.Windows.Forms.Padding(7);
             this.listScrapMenuItems.Name = "listScrapMenuItems";
-            this.listScrapMenuItems.Size = new Size(0xa6, 0x54);
+            this.listScrapMenuItems.Size = new System.Drawing.Size(382, 164);
             this.listScrapMenuItems.TabIndex = 0;
-            this.listScrapMenuItems.MouseDoubleClick += new MouseEventHandler(this.listScrapMenuItems_MouseDoubleClick);
-            this.listScrapMenuItems.Enter += new EventHandler(this.listScrapMenuItems_Enter);
+            this.listScrapMenuItems.Enter += new System.EventHandler(this.listScrapMenuItems_Enter);
+            this.listScrapMenuItems.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listScrapMenuItems_MouseDoubleClick);
+            // 
+            // groupBox8
+            // 
             this.groupBox8.Controls.Add(this.listScrapMenuStyles);
-            this.groupBox8.Location = new Point(8, 8);
+            this.groupBox8.Location = new System.Drawing.Point(19, 18);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(7);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Padding = new Padding(5, 3, 5, 3);
-            this.groupBox8.Size = new Size(0xb6, 0xbd);
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(12, 7, 12, 7);
+            this.groupBox8.Size = new System.Drawing.Size(425, 425);
             this.groupBox8.TabIndex = 0;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "自动操作列表";
-            this.listScrapMenuStyles.DrawMode = DrawMode.OwnerDrawFixed;
-            this.listScrapMenuStyles.Font = new Font("宋体", 9f);
+            // 
+            // listScrapMenuStyles
+            // 
+            this.listScrapMenuStyles.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listScrapMenuStyles.Font = new System.Drawing.Font("宋体", 9F);
             this.listScrapMenuStyles.FormattingEnabled = true;
             this.listScrapMenuStyles.ItemDragMove = false;
-            this.listScrapMenuStyles.ItemHeight = 20;
+            this.listScrapMenuStyles.ItemHeight = 40;
             this.listScrapMenuStyles.ItemKeyDelete = false;
             this.listScrapMenuStyles.ItemLine = false;
-            this.listScrapMenuStyles.ItemLineColor = Color.Gray;
+            this.listScrapMenuStyles.ItemLineColor = System.Drawing.Color.Gray;
             this.listScrapMenuStyles.LeftSpace = 2;
-            this.listScrapMenuStyles.Location = new Point(8, 0x12);
+            this.listScrapMenuStyles.Location = new System.Drawing.Point(19, 40);
+            this.listScrapMenuStyles.Margin = new System.Windows.Forms.Padding(7);
             this.listScrapMenuStyles.Name = "listScrapMenuStyles";
-            this.listScrapMenuStyles.Size = new Size(0xa6, 0xa4);
+            this.listScrapMenuStyles.Size = new System.Drawing.Size(382, 364);
             this.listScrapMenuStyles.TabIndex = 0;
-            this.listScrapMenuStyles.MouseDoubleClick += new MouseEventHandler(this.listScrapMenuStyles_MouseDoubleClick);
-            this.listScrapMenuStyles.Enter += new EventHandler(this.listScrapMenuStyles_Enter);
-            this.panel1.BackColor = Color.FromArgb(0x51, 0xa3, 0xec);
-            this.panel1.Controls.Add(this.lblMenuStyle);
-            this.panel1.Controls.Add(this.lblMenuCapture);
-            this.panel1.Controls.Add(this.lblMenuMenu);
-            this.panel1.Controls.Add(this.lblMenuScrap);
-            this.panel1.Controls.Add(this.lblMenuAll);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = DockStyle.Left;
-            this.panel1.Location = new Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new Size(0x81, 360);
-            this.panel1.TabIndex = 1;
-            this.lblMenuStyle.BackColor = Color.FromArgb(0x2e, 0x84, 0xd7);
-            this.lblMenuStyle.Cursor = Cursors.Hand;
-            this.lblMenuStyle.ForeColor = Color.White;
-            this.lblMenuStyle.Location = new Point(0x1b, 70);
-            this.lblMenuStyle.Name = "lblMenuStyle";
-            this.lblMenuStyle.Size = new Size(100, 14);
-            this.lblMenuStyle.TabIndex = 2;
-            this.lblMenuStyle.Text = "创建自动操作";
-            this.lblMenuStyle.MouseLeave += new EventHandler(this.lblMenu_Clear);
-            this.lblMenuStyle.Click += new EventHandler(this.lblMenuStyle_Click);
-            this.lblMenuStyle.MouseEnter += new EventHandler(this.lblMenuStyle_MouseEnter);
-            this.lblMenuCapture.BackColor = Color.FromArgb(0x2e, 0x84, 0xd7);
-            this.lblMenuCapture.Cursor = Cursors.Hand;
-            this.lblMenuCapture.ForeColor = Color.White;
-            this.lblMenuCapture.Location = new Point(12, 30);
-            this.lblMenuCapture.Name = "lblMenuCapture";
-            this.lblMenuCapture.Size = new Size(100, 14);
-            this.lblMenuCapture.TabIndex = 5;
-            this.lblMenuCapture.Text = "截取设置";
-            this.lblMenuCapture.MouseLeave += new EventHandler(this.lblMenu_Clear);
-            this.lblMenuCapture.Click += new EventHandler(this.lblMenuCapture_Click);
-            this.lblMenuCapture.MouseEnter += new EventHandler(this.lblMenuCapture_MouseEnter);
-            this.lblMenuMenu.BackColor = Color.FromArgb(0x2e, 0x84, 0xd7);
-            this.lblMenuMenu.Cursor = Cursors.Hand;
-            this.lblMenuMenu.ForeColor = Color.White;
-            this.lblMenuMenu.Location = new Point(0x1b, 90);
-            this.lblMenuMenu.Name = "lblMenuMenu";
-            this.lblMenuMenu.Size = new Size(100, 14);
-            this.lblMenuMenu.TabIndex = 3;
-            this.lblMenuMenu.Text = "参考图菜单";
-            this.lblMenuMenu.MouseLeave += new EventHandler(this.lblMenu_Clear);
-            this.lblMenuMenu.Click += new EventHandler(this.lblMenuMenu_Click);
-            this.lblMenuMenu.MouseEnter += new EventHandler(this.lblMenuMenu_MouseEnter);
-            this.lblMenuScrap.BackColor = Color.FromArgb(0x2e, 0x84, 0xd7);
-            this.lblMenuScrap.Cursor = Cursors.Hand;
-            this.lblMenuScrap.ForeColor = Color.White;
-            this.lblMenuScrap.Location = new Point(12, 50);
-            this.lblMenuScrap.Name = "lblMenuScrap";
-            this.lblMenuScrap.Size = new Size(100, 14);
-            this.lblMenuScrap.TabIndex = 1;
-            this.lblMenuScrap.Text = "参考图设置";
-            this.lblMenuScrap.MouseLeave += new EventHandler(this.lblMenu_Clear);
-            this.lblMenuScrap.Click += new EventHandler(this.lblMenuScrap_Click);
-            this.lblMenuScrap.MouseEnter += new EventHandler(this.lblMenuScrap_MouseEnter);
-            this.lblMenuAll.BackColor = Color.FromArgb(0x2e, 0x84, 0xd7);
-            this.lblMenuAll.Cursor = Cursors.Hand;
-            this.lblMenuAll.Font = new Font("宋体", 9f, FontStyle.Bold, GraphicsUnit.Point, 0x80);
-            this.lblMenuAll.ForeColor = Color.White;
-            this.lblMenuAll.Location = new Point(12, 10);
-            this.lblMenuAll.Name = "lblMenuAll";
-            this.lblMenuAll.Size = new Size(100, 15);
-            this.lblMenuAll.TabIndex = 0;
-            this.lblMenuAll.Text = "常规";
-            this.lblMenuAll.MouseLeave += new EventHandler(this.lblMenu_Clear);
-            this.lblMenuAll.Click += new EventHandler(this.lblMenuAll_Click);
-            this.lblMenuAll.MouseEnter += new EventHandler(this.lblMenuAll_MouseEnter);
-            this.pictureBox1.Image = Resources.OptionBG;
-            this.pictureBox1.Location = new Point(1, 1);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new Size(170, 370);
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            this.toolTip1.IsBalloon = true;
-            base.AutoScaleDimensions = new SizeF(6f, 12f);
-            base.AutoScaleMode = AutoScaleMode.Font;
-            base.CancelButton = this.btnCancel;
-            base.ClientSize = new Size(580, 400);
-            base.Controls.Add(this.panel3);
-            base.Controls.Add(this.panel2);
-            base.FormBorderStyle = FormBorderStyle.FixedDialog;
-            base.MaximizeBox = false;
-            base.MinimizeBox = false;
-            base.Name = "OptionForm";
-            base.ShowIcon = false;
-            base.ShowInTaskbar = false;
-            base.StartPosition = FormStartPosition.CenterParent;
+            this.listScrapMenuStyles.Enter += new System.EventHandler(this.listScrapMenuStyles_Enter);
+            this.listScrapMenuStyles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listScrapMenuStyles_MouseDoubleClick);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(388, 50);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(7);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(152, 31);
+            this.checkBox2.TabIndex = 8;
+            this.checkBox2.Text = "开机启动";
+            this.toolTip1.SetToolTip(this.checkBox2, "将在启动SETUNA时的几秒钟内显示标志。");
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // OptionForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(216F, 216F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(1353, 900);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(7);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "OptionForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "选项";
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.detailPanel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.pageAll.ResumeLayout(false);
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.numDustBox.EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDustBox)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.pageCapture.ResumeLayout(false);
@@ -1303,9 +1766,9 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.numSelectAreaTrans.EndInit();
-            ((ISupportInitialize) this.picSelectAreaBackColor).EndInit();
-            ((ISupportInitialize) this.picSelectAreaLineColor).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSelectAreaTrans)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSelectAreaBackColor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSelectAreaLineColor)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.pageScrap.ResumeLayout(false);
@@ -1316,8 +1779,8 @@
             this.panel4.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
-            this.numMouseOverAlpha.EndInit();
-            this.numInactiveAlpha.EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numMouseOverAlpha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numInactiveAlpha)).EndInit();
             this.pageStyle.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1325,10 +1788,8 @@
             this.groupBox10.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((ISupportInitialize) this.pictureBox1).EndInit();
-            base.ResumeLayout(false);
+            this.ResumeLayout(false);
+
         }
 
         private void lblMenu_Clear(object sender, EventArgs e)
@@ -1410,7 +1871,7 @@
 
         private void listStyles_DoubleClick(object sender, EventArgs e)
         {
-            ListBox box = (ListBox) sender;
+            ListBox box = (ListBox)sender;
             if (box.SelectedItem != null)
             {
                 this.EditStyle_ScrapStyle();
@@ -1460,7 +1921,7 @@
             ColorDialog dialog = new ColorDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                PictureBox box = (PictureBox) sender;
+                PictureBox box = (PictureBox)sender;
                 box.BackColor = dialog.Color;
             }
         }
@@ -1477,8 +1938,9 @@
 
         private void Prepare_SetunaAll()
         {
-            this.hotkeyControl1.Hotkey = (Keys) this._so.ScrapHotKey;
+            this.hotkeyControl1.Hotkey = (Keys)this._so.ScrapHotKey;
             this.checkBox1.Checked = this._so.ScrapHotKeyEnable;
+            this.checkBox2.Checked = AutoStartup.Check();
             this.rdoSelLineTypeSolid.Checked = this._so.Setuna.SelectLineSolid;
             this.rdoSelLineTypeDotted.Checked = !this._so.Setuna.SelectLineSolid;
             this.picSelectAreaLineColor.BackColor = this._so.Setuna.SelectLineColor;
@@ -1580,7 +2042,7 @@
             this.listKeyItems.Items.Clear();
             if (this.listStyles.SelectedItem != null)
             {
-                CStyle selectedItem = (CStyle) this.listStyles.SelectedItem;
+                CStyle selectedItem = (CStyle)this.listStyles.SelectedItem;
                 for (int i = 0; i < selectedItem.Items.Length; i++)
                 {
                     this.listStyleItems.Items.Add(selectedItem.Items[i]);
@@ -1594,7 +2056,8 @@
 
         private void SetStyleList_Menu(ListBox list)
         {
-            CStyle style = new CStyle {
+            CStyle style = new CStyle
+            {
                 StyleID = 0,
                 StyleName = ""
             };
@@ -1602,7 +2065,7 @@
             list.Items.Clear();
             for (int i = 0; i < this.listStyles.Items.Count; i++)
             {
-                CStyle item = (CStyle) this.listStyles.Items[i];
+                CStyle item = (CStyle)this.listStyles.Items[i];
                 list.Items.Add(item);
             }
             list.EndUpdate();
@@ -1610,7 +2073,8 @@
 
         private void SetStyleList_Scrap(ComboBox combo, int defaultid)
         {
-            CStyle item = new CStyle {
+            CStyle item = new CStyle
+            {
                 StyleID = 0,
                 StyleName = ""
             };
@@ -1619,7 +2083,7 @@
             combo.Items.Add(item);
             for (int i = 0; i < this.listStyles.Items.Count; i++)
             {
-                CStyle style2 = (CStyle) this.listStyles.Items[i];
+                CStyle style2 = (CStyle)this.listStyles.Items[i];
                 combo.Items.Add(style2);
                 if (style2.StyleID == defaultid)
                 {
@@ -1665,7 +2129,7 @@
             try
             {
                 base.SuspendLayout();
-                TabPage tag = (TabPage) e.Node.Tag;
+                TabPage tag = (TabPage)e.Node.Tag;
                 this.tabControl1.SelectedTab = tag;
                 this.tabControl1.Update();
                 base.ResumeLayout();
@@ -1677,8 +2141,9 @@
 
         private void WriteSetunaOption()
         {
-            this._so.ScrapHotKey = (int) this.hotkeyControl1.Hotkey;
+            this._so.ScrapHotKey = (int)this.hotkeyControl1.Hotkey;
             this._so.ScrapHotKeyEnable = this.checkBox1.Checked;
+            AutoStartup.Set(this.checkBox2.Checked);
             if (this.rdoExeTypeApp.Checked)
             {
                 this._so.Setuna.AppType = SetunaOption.SetunaOptionData.ApplicationType.ApplicationMode;
@@ -1704,16 +2169,16 @@
             this._so.Setuna.SelectBackColorR = this.picSelectAreaBackColor.BackColor.R;
             this._so.Setuna.SelectBackColorG = this.picSelectAreaBackColor.BackColor.G;
             this._so.Setuna.SelectBackColorB = this.picSelectAreaBackColor.BackColor.B;
-            this._so.Setuna.SelectAreaTransparent = (int) this.numSelectAreaTrans.Value;
+            this._so.Setuna.SelectAreaTransparent = (int)this.numSelectAreaTrans.Value;
             this._so.Setuna.DustBoxEnable = this.chkDustBox.Checked;
-            this._so.Setuna.DustBoxCapacity = (ushort) this.numDustBox.Value;
+            this._so.Setuna.DustBoxCapacity = (ushort)this.numDustBox.Value;
             this._so.Scrap.CreateStyleID = this._createStyleId;
             this._so.Scrap.WClickStyleID = this._wclickStyleId;
             this._so.Scrap.ImageDrag = this.chkScrapImageDrag.Checked;
             this._so.Scrap.InactiveAlphaChange = this.chkInactiveAlphaChange.Checked;
-            this._so.Scrap.InactiveAlphaValue = (sbyte) this.numInactiveAlpha.Value;
+            this._so.Scrap.InactiveAlphaValue = (sbyte)this.numInactiveAlpha.Value;
             this._so.Scrap.MouseOverAlphaChange = this.chkMouseOverAlphaChange.Checked;
-            this._so.Scrap.MouseOverAlphaValue = (sbyte) this.numMouseOverAlpha.Value;
+            this._so.Scrap.MouseOverAlphaValue = (sbyte)this.numMouseOverAlpha.Value;
             this._so.Setuna.ClickCapture7 = this.chkCC7.Checked;
             this._so.Setuna.ClickCapture8 = this.chkCC8.Checked;
             this._so.Setuna.ClickCapture9 = this.chkCC9.Checked;
@@ -1725,7 +2190,7 @@
             this._so.Styles.Clear();
             for (int i = 0; i < this.listStyles.Items.Count; i++)
             {
-                this._so.Styles.Add((CStyle) this.listStyles.Items[i]);
+                this._so.Styles.Add((CStyle)this.listStyles.Items[i]);
             }
             List<int> list = new List<int>();
             foreach (CStyle style in this.listScrapMenuList.Items)
@@ -1737,6 +2202,18 @@
 
         public SetunaOption Option =>
             this._so;
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            e.Link.Visited = true;
+            System.Diagnostics.Process.Start("http://www.clearunit.com/clearup/setuna2");
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            e.Link.Visited = true;
+            System.Diagnostics.Process.Start("https://github.com/tylearymf/SETUNA2");
+        }
     }
 }
 

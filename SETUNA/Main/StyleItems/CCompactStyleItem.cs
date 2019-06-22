@@ -1,7 +1,7 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using Properties;
     using SETUNA.Main;
-    using SETUNA.Properties;
     using System;
     using System.Drawing;
 

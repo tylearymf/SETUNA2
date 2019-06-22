@@ -100,7 +100,7 @@
             option.Setuna.SelectLineColorB = 0;
             option.Setuna.ShowSplashWindow = true;
             option.Setuna.SelectLineSolid = false;
-            option.ScrapHotKeyData = Keys.Control | Keys.D1;
+            option.ScrapHotKeyData = Keys.Control | Keys.Alt | Keys.A;
             option.ScrapHotKeyEnable = true;
             option.Scrap.InactiveAlphaChange = true;
             option.Scrap.InactiveAlphaValue = 10;

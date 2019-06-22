@@ -1,10 +1,11 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
     using SETUNA.Main;
-    using SETUNA.Properties;
+    using Properties;
     using System;
     using System.Drawing;
     using System.Windows.Forms;
+    using Image = System.Drawing.Image;
 
     public class CCopyStyleItem : CStyleItem
     {

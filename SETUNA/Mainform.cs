@@ -11,6 +11,7 @@
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.IO;
+    using System.Resources;
     using System.Runtime.CompilerServices;
     using System.Windows.Forms;
     using System.Xml.Serialization;
@@ -21,8 +22,6 @@
         private bool _iscapture = false;
         private bool _isoption = false;
         private bool _isstart = false;
-        private Button button1;
-        private Button button4;
         private static CaptureForm cap_form;
         private IContainer components;
         public Queue<ScrapBase> dustbox;
@@ -32,10 +31,12 @@
         public SetunaOption optSetuna;
         public ScrapBook scrapBook;
         private NotifyIcon setunaIcon;
-        private ContextStyleMenuStrip setunaIconMenu;
-        private ContextStyleMenuStrip subMenu;
+        private SETUNA.Main.ContextStyleMenuStrip setunaIconMenu;
+        private SETUNA.Main.ContextStyleMenuStrip subMenu;
         private ToolStripMenuItem testToolStripMenuItem;
         private Timer timPool;
+        private Button button4;
+        private Button button1;
         private ToolTip toolTip1;
 
         public Mainform()
@@ -85,7 +86,8 @@
 
                     }
                 }
-            }catch { }
+            }
+            catch { }
         }
 
         public void AddImageList(ScrapSource src)
@@ -333,60 +335,109 @@
 
         private void InitializeComponent()
         {
-            this.components = new Container();
-            ComponentResourceManager manager = new ComponentResourceManager(typeof(Mainform));
-            this.button1 = new Button();
-            this.button4 = new Button();
-            this.timPool = new Timer(this.components);
-            this.setunaIcon = new NotifyIcon(this.components);
-            this.setunaIconMenu = new ContextStyleMenuStrip(this.components);
-            this.subMenu = new ContextStyleMenuStrip(this.components);
-            this.testToolStripMenuItem = new ToolStripMenuItem();
-            this.toolTip1 = new ToolTip(this.components);
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mainform));
+            this.timPool = new System.Windows.Forms.Timer(this.components);
+            this.setunaIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.setunaIconMenu = new SETUNA.Main.ContextStyleMenuStrip(this.components);
+            this.subMenu = new SETUNA.Main.ContextStyleMenuStrip(this.components);
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button4 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.subMenu.SuspendLayout();
-            base.SuspendLayout();
-            manager.ApplyResources(this.button1, "button1");
-            this.button1.ForeColor = Color.Gray;
-            this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new EventHandler(this.button1_Click);
-            manager.ApplyResources(this.button4, "button4");
-            this.button4.ForeColor = Color.Gray;
-            this.button4.Name = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new EventHandler(this.button4_Click);
-            this.timPool.Tick += new EventHandler(this.timPool_Tick);
+            this.SuspendLayout();
+            // 
+            // timPool
+            // 
+            this.timPool.Tick += new System.EventHandler(this.timPool_Tick);
+            // 
+            // setunaIcon
+            // 
             this.setunaIcon.ContextMenuStrip = this.setunaIconMenu;
-            manager.ApplyResources(this.setunaIcon, "setunaIcon");
-            this.setunaIcon.MouseClick += new MouseEventHandler(this.setunaIcon_MouseClick);
+            this.setunaIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("setunaIcon.Icon")));
+            this.setunaIcon.Text = "SETUNA2";
+            this.setunaIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.setunaIcon_MouseClick);
+            // 
+            // setunaIconMenu
+            // 
+            this.setunaIconMenu.ImageScalingSize = new System.Drawing.Size(36, 36);
             this.setunaIconMenu.Name = "setunaIconMenu";
             this.setunaIconMenu.Scrap = null;
-            manager.ApplyResources(this.setunaIconMenu, "setunaIconMenu");
-            this.setunaIconMenu.Opening += new CancelEventHandler(this.setunaIconMenu_Opening);
-            this.subMenu.Items.AddRange(new ToolStripItem[] { this.testToolStripMenuItem });
+            this.setunaIconMenu.Size = new System.Drawing.Size(61, 4);
+            this.setunaIconMenu.Opening += new System.ComponentModel.CancelEventHandler(this.setunaIconMenu_Opening);
+            // 
+            // subMenu
+            // 
+            this.subMenu.ImageScalingSize = new System.Drawing.Size(36, 36);
+            this.subMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.testToolStripMenuItem});
             this.subMenu.Name = "subMenu";
             this.subMenu.Scrap = null;
-            manager.ApplyResources(this.subMenu, "subMenu");
+            this.subMenu.Size = new System.Drawing.Size(139, 44);
+            // 
+            // testToolStripMenuItem
+            // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            manager.ApplyResources(this.testToolStripMenuItem, "testToolStripMenuItem");
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(138, 40);
+            this.testToolStripMenuItem.Text = "test";
+            // 
+            // toolTip1
+            // 
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ShowAlways = true;
             this.toolTip1.StripAmpersands = true;
-            this.toolTip1.ToolTipIcon = ToolTipIcon.Info;
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "asfdadsf";
-            base.AutoScaleMode = AutoScaleMode.None;
-            manager.ApplyResources(this, "$this");
+            // 
+            // button4
+            // 
+            this.button4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button4.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.button4.ForeColor = System.Drawing.Color.Gray;
+            this.button4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button4.Location = new System.Drawing.Point(368, 0);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(154, 121);
+            this.button4.TabIndex = 1;
+            this.button4.Text = "选项";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Font = new System.Drawing.Font("微软雅黑", 14F);
+            this.button1.ForeColor = System.Drawing.Color.Gray;
+            this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(368, 121);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "截取";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // Mainform
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(522, 121);
             this.ContextMenuStrip = this.setunaIconMenu;
-            base.Controls.Add(this.button4);
-            base.Controls.Add(this.button1);
-            base.MaximizeBox = false;
-            base.Name = "Mainform";
-            base.TopMost = true;
-            base.Load += new EventHandler(this.Mainform_Load);
-            base.Shown += new EventHandler(this.Mainform_Shown);
-            base.FormClosing += new FormClosingEventHandler(this.Mainform_FormClosing);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(550, 200);
+            this.Name = "Mainform";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SETUNA2";
+            this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Mainform_FormClosing);
+            this.Load += new System.EventHandler(this.Mainform_Load);
+            this.Shown += new System.EventHandler(this.Mainform_Shown);
             this.subMenu.ResumeLayout(false);
-            base.ResumeLayout(false);
+            this.ResumeLayout(false);
+
         }
 
         private void LoadOption()

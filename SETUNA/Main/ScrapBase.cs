@@ -245,7 +245,7 @@
         private void InitializeComponent()
         {
             this.components = new Container();
-            ComponentResourceManager manager = new ComponentResourceManager(typeof(ScrapBase));
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(ScrapBase));
             this.timOpacity = new Timer(this.components);
             base.SuspendLayout();
             this.timOpacity.Interval = 15;
@@ -258,7 +258,7 @@
             this.DoubleBuffered = true;
             this.ForeColor = SystemColors.ControlText;
             base.FormBorderStyle = FormBorderStyle.None;
-            base.Icon = (Icon)manager.GetObject("$this.Icon");
+            base.Icon = (Icon)resources.GetObject("$this.Icon");
             base.MaximizeBox = false;
             this.MinimumSize = new Size(1, 1);
             this.Name = "ScrapBase";

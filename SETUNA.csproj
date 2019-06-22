@@ -9,6 +9,23 @@
     <AssemblyName>SETUNA</AssemblyName>
     <OutputType>WinExe</OutputType>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -30,203 +47,133 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>SETUNA\Resources\SETUNA2.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\ExeIcon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup />
   <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Program</StartupObject>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Runtime.Remoting" />
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Global.cs" />
-    <Compile Include="SETUNA\Main\Cache.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\ToolBoxForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Properties\Image.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Image.resx</DependentUpon>
     </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\MarginStyleItemPanel.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\CMarginStyleItem.cs" />
-    <Compile Include="SETUNA\Resources\Image.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\CStyleItem.cs" />
-    <Compile Include="SETUNA\Main\ScrapBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Properties\Resources.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\IScrapStyle.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\NothingStyleItemPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\ImagePngPreviewPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\CImagePngStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\CImageStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\ImagePngStyleItemPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\CopyStyleItemPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\CCopyStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\ILayer.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\ToolCommand.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintLayer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintLayerItem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\LayerCommand.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\AddLayerCommand.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\RenameLayerCommand.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\DeleteLayerCommand.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\ScrapDrawForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\PaintTool.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintToolBar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\LayerRenameWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="com\clearunit\DesCrypto.cs" />
-    <Compile Include="SETUNA\Main\ScrapEventArgs.cs" />
-    <Compile Include="SETUNA\Main\ScrapMenuArgs.cs" />
-    <Compile Include="SETUNA\Main\ScrapBook.cs" />
-    <Compile Include="SETUNA\Main\IScrapStyleListener.cs" />
-    <Compile Include="SETUNA\Main\IScrapMenuListener.cs" />
-    <Compile Include="SETUNA\Main\ScrapKeyPressEventArgs.cs" />
-    <Compile Include="SETUNA\Mainform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\IScrapKeyPressEventListener.cs" />
-    <Compile Include="SETUNA\Main\IScrapAddedListener.cs" />
-    <Compile Include="SETUNA\Main\IScrapRemovedListener.cs" />
-    <Compile Include="SETUNA\Main\Style\CStyle.cs" />
-    <Compile Include="SETUNA\Main\Option\SetunaOption.cs" />
-    <Compile Include="SETUNA\Main\ScrapSourcePath.cs" />
-    <Compile Include="SETUNA\Main\ScrapSource.cs" />
-    <Compile Include="com\clearunit\ISingletonForm.cs" />
-    <Compile Include="SETUNA\Main\ContextStyleMenuStrip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\SplashForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\KeyItems\KeyItemBook.cs" />
     <Compile Include="SETUNA\ClickCapture.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SETUNA\Mainform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\Cache.cs" />
     <Compile Include="SETUNA\Main\CaptureForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\Style\CScrapListStyle.cs" />
-    <Compile Include="SETUNA\Main\Style\CDustBoxStyle.cs" />
-    <Compile Include="SETUNA\Main\Style\CDustEraseStyle.cs" />
-    <Compile Include="SETUNA\Main\Style\CCaptureStyle.cs" />
-    <Compile Include="SETUNA\Main\Style\CShowVersionStyle.cs" />
-    <Compile Include="SETUNA\Main\Style\COptionStyle.cs" />
-    <Compile Include="SETUNA\Main\Style\CShutDownStyle.cs" />
-    <Compile Include="SETUNA\Main\Option\OptionForm.cs">
+    <Compile Include="SETUNA\Main\CaptureInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\HotkeyMsg.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\Style\CPreStyles.cs" />
-    <Compile Include="SETUNA\Main\KeyItems\KeyItem.cs" />
-    <Compile Include="SETUNA\Main\ScrapSourceImage.cs" />
-    <Compile Include="SETUNA\Main\KeyItems\IKeyItemListener.cs" />
-    <Compile Include="SETUNA\Main\Style\IStyleMenu.cs" />
-    <Compile Include="SETUNA\Main\ToolStripStyleButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\RGBColor.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\CPasteStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\CImageJpegStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\CRotateStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\CScaleStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\COpacityStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\CMoveStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\CCloseStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\CCompactStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\CTrimStyleItem.cs" />
-    <Compile Include="SETUNA\Main\Style\CSeparatorStyle.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\StyleItemDictionary.cs" />
-    <Compile Include="SETUNA\Main\ScrapMenuItem.cs" />
     <Compile Include="SETUNA\Main\CaptureSelLine.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\SelLineType.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\TrimWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\PicasaBar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="com\clearunit\PicasaAccessor.cs" />
-    <Compile Include="com\clearunit\PicasaLoginError.cs" />
-    <Compile Include="com\clearunit\PicasaUploadError.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\LoginInput.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\CompactStyleItemPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\CompactScrap.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\WindowStyleItemPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\CWindowStyleItem.cs" />
-    <Compile Include="com\clearunit\WithoutTabControl.cs">
+    <Compile Include="SETUNA\Main\ContextStyleMenuStrip.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SETUNA\Main\HotkeyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="SETUNA\Main\HotkeyMsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\IScrapAddedListener.cs" />
+    <Compile Include="SETUNA\Main\IScrapKeyPressEventListener.cs" />
+    <Compile Include="SETUNA\Main\IScrapMenuListener.cs" />
+    <Compile Include="SETUNA\Main\IScrapRemovedListener.cs" />
+    <Compile Include="SETUNA\Main\IScrapStyleListener.cs" />
+    <Compile Include="SETUNA\Main\KeyItems\IKeyItemListener.cs" />
+    <Compile Include="SETUNA\Main\KeyItems\KeyItem.cs" />
+    <Compile Include="SETUNA\Main\KeyItems\KeyItemBook.cs" />
+    <Compile Include="SETUNA\Main\Option\OptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\Option\SetunaOption.cs" />
+    <Compile Include="SETUNA\Main\Option\StyleEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\Other\AutoStartup.cs" />
+    <Compile Include="SETUNA\Main\RGBColor.cs" />
+    <Compile Include="SETUNA\Main\ScrapBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\ScrapBook.cs" />
+    <Compile Include="SETUNA\Main\ScrapEventArgs.cs" />
+    <Compile Include="SETUNA\Main\ScrapKeyPressEventArgs.cs" />
+    <Compile Include="SETUNA\Main\ScrapMenuArgs.cs" />
+    <Compile Include="SETUNA\Main\ScrapMenuItem.cs" />
+    <Compile Include="SETUNA\Main\ScrapSource.cs" />
+    <Compile Include="SETUNA\Main\ScrapSourceImage.cs" />
+    <Compile Include="SETUNA\Main\ScrapSourcePath.cs" />
+    <Compile Include="SETUNA\Main\SelLineType.cs" />
     <Compile Include="SETUNA\Main\SetunaListBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\Option\StyleEditForm.cs">
+    <Compile Include="SETUNA\Main\SplashForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItemEditListBox.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="SETUNA\Main\StyleItemListBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\Style\CCloseStyle.cs" />
-    <Compile Include="SETUNA\Program.cs" />
-    <Compile Include="com\clearunit\SingletonApplication.cs" />
-    <Compile Include="com\clearunit\SingletonAppRemoteObject.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\ImageBmpStyleItemPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\AddLayerCommand.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\AddTextLayerCommand.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CCloseStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CCompactStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CCopyStyleItem.cs" />
     <Compile Include="SETUNA\Main\StyleItems\CImageBmpStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CImageJpegStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CImagePngStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CImageStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CMarginStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CMoveStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CompactScrap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\CompactStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\COpacityStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CopyStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\CPaintStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CPasteStyleItem.cs" />
     <Compile Include="SETUNA\Main\StyleItems\CPicasaUploaderStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\MoveStyleItemPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\ScaleStyleItemPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\OpacityStyleItemPanel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\RotateStyleItemPanel.cs">
+    <Compile Include="SETUNA\Main\StyleItems\CRotateStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CScaleStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CTimerStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CToneReverseStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CTrimStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\CWindowStyleItem.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\DeleteLayerCommand.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\ILayer.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\ImageBmpStyleItemPanel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SETUNA\Main\StyleItems\ImageJpegPreviewPanel.cs">
@@ -235,108 +182,293 @@
     <Compile Include="SETUNA\Main\StyleItems\ImageJpegStyleItemPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\PicasaStyleItemPanel.cs">
+    <Compile Include="SETUNA\Main\StyleItems\ImagePngPreviewPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\CTimerStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\TimerStyleItemPanel.cs">
+    <Compile Include="SETUNA\Main\StyleItems\ImagePngStyleItemPanel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\CToneReverseStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\CPaintStyleItem.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintTextTool.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\TextTool.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\AddTextLayerCommand.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\TextToolCommand.cs" />
-    <Compile Include="SETUNA\Main\Style\CPreStyle.cs" />
-    <Compile Include="SETUNA\Main\ToolStripScrapList.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\ToolStripDustboxList.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\ToolStripAbstractList.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\PenTool.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\PenToolCommand.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintPenTool.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Main\CaptureInfo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SETUNA\Properties\Settings.cs" />
     <Compile Include="SETUNA\Main\StyleItems\IPaintToolWindow.cs" />
-    <Compile Include="SETUNA\Main\StyleItemEditListBox.cs">
-      <SubType>Component</SubType>
+    <Compile Include="SETUNA\Main\StyleItems\IScrapStyle.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\IStyleItemPanel.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\LayerCommand.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\LayerRenameWindow.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\PenButton.cs">
-      <SubType>Component</SubType>
+    <Compile Include="SETUNA\Main\StyleItems\LoginInput.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintTextLayerItem.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="SETUNA\Main\StyleItems\MarginStyleItemPanel.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\Style\CAllHideStyle.cs" />
-    <Compile Include="SETUNA\Main\Style\CAllShowStyle.cs" />
-    <Compile Include="SETUNA\Main\StyleItems\SaveImageStyleItemPanel.cs">
+    <Compile Include="SETUNA\Main\StyleItems\MoveStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\NothingStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\OpacityStyleItemPanel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SETUNA\Main\StyleItems\PaintForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\StyleItems\IStyleItemPanel.cs" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.SaveImageStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.PicasaBar.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.MoveStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ImageJpegPreviewPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.CaptureForm.resources" />
-    <EmbeddedResource Include="SETUNA.Properties.Resources.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.PaintForm.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.MarginStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.LoginInput.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ScrapPaintTextTool.resources" />
-    <EmbeddedResource Include="SETUNA.Main.Option.StyleEditForm.resources" />
-    <EmbeddedResource Include="SETUNA.Mainform.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ToolBoxForm.resources" />
-    <EmbeddedResource Include="SETUNA.Main.HotkeyControl.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ScrapDrawForm.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ScrapPaintWindow.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.OpacityStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.CompactStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.ScrapBase.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.PicasaStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ScrapPaintLayerItem.resources" />
-    <EmbeddedResource Include="SETUNA.Resources.Image.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.CompactScrap.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ScrapPaintLayer.resources" />
-    <EmbeddedResource Include="SETUNA.ClickCapture.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.WindowStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.HotkeyMsg.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ScrapPaintToolBar.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ScaleStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.RotateStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ImageBmpStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.CaptureSelLine.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ImagePngStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ScrapPaintPenTool.resources" />
-    <EmbeddedResource Include="SETUNA.Main.Option.OptionForm.resources" />
-    <EmbeddedResource Include="SETUNA.Main.SplashForm.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.TrimWindow.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.TimerStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.ImageJpegStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.CaptureInfo.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.NothingStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.CopyStyleItemPanel.resources" />
-    <EmbeddedResource Include="SETUNA.Main.StyleItems.LayerRenameWindow.resources" />
+    <Compile Include="SETUNA\Main\StyleItems\PaintTool.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\PenButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\PenTool.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\PenToolCommand.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\PicasaBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\PicasaStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\RenameLayerCommand.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\RotateStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\SaveImageStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\ScaleStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\ScrapDrawForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintLayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintLayerItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintPenTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintTextLayerItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintTextTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintToolBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\ScrapPaintWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\StyleItemDictionary.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\TextTool.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\TextToolCommand.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\TimerStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\ToolBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\ToolCommand.cs" />
+    <Compile Include="SETUNA\Main\StyleItems\TrimWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\StyleItems\WindowStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\Style\CAllHideStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\CAllShowStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\CCaptureStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\CCloseStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\CDustBoxStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\CDustEraseStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\COptionStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\CPreStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\CPreStyles.cs" />
+    <Compile Include="SETUNA\Main\Style\CScrapListStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\CSeparatorStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\CShowVersionStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\CShutDownStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\CStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\IStyleMenu.cs" />
+    <Compile Include="SETUNA\Main\ToolStripAbstractList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\ToolStripDustboxList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\ToolStripScrapList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SETUNA\Main\ToolStripStyleButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="SETUNA\com\clearunit\DesCrypto.cs" />
+    <Compile Include="SETUNA\com\clearunit\ISingletonForm.cs" />
+    <Compile Include="SETUNA\com\clearunit\PicasaAccessor.cs" />
+    <Compile Include="SETUNA\com\clearunit\PicasaLoginError.cs" />
+    <Compile Include="SETUNA\com\clearunit\PicasaUploadError.cs" />
+    <Compile Include="SETUNA\com\clearunit\WithoutTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SETUNA\com\clearunit\SingletonApplication.cs" />
+    <Compile Include="SETUNA\com\clearunit\SingletonAppRemoteObject.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ExeIcon.bmp" />
+    <None Include="Resources\ExeIcon.ico" />
     <Content Include="SETUNA2.ico" />
-    <Content Include="SETUNA\Resources\SETUNA2.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="app.manifest" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Image.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Image.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\ClickCapture.resx">
+      <DependentUpon>ClickCapture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Mainform.resx">
+      <DependentUpon>Mainform.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\CaptureForm.resx">
+      <DependentUpon>CaptureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\CaptureInfo.resx">
+      <DependentUpon>CaptureInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\CaptureSelLine.resx">
+      <DependentUpon>CaptureSelLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\HotkeyControl.resx">
+      <DependentUpon>HotkeyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\HotkeyMsg.resx">
+      <DependentUpon>HotkeyMsg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\Option\OptionForm.resx">
+      <DependentUpon>OptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\Option\StyleEditForm.resx">
+      <DependentUpon>StyleEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\ScrapBase.resx">
+      <DependentUpon>ScrapBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\SplashForm.resx">
+      <DependentUpon>SplashForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\CompactScrap.resx">
+      <DependentUpon>CompactScrap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\CompactStyleItemPanel.resx">
+      <DependentUpon>CompactStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\CopyStyleItemPanel.resx">
+      <DependentUpon>CopyStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ImageBmpStyleItemPanel.resx">
+      <DependentUpon>ImageBmpStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ImageJpegPreviewPanel.resx">
+      <DependentUpon>ImageJpegPreviewPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ImageJpegStyleItemPanel.resx">
+      <DependentUpon>ImageJpegStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ImagePngStyleItemPanel.resx">
+      <DependentUpon>ImagePngStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\LayerRenameWindow.resx">
+      <DependentUpon>LayerRenameWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\LoginInput.resx">
+      <DependentUpon>LoginInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\MarginStyleItemPanel.resx">
+      <DependentUpon>MarginStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\MoveStyleItemPanel.resx">
+      <DependentUpon>MoveStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\NothingStyleItemPanel.resx">
+      <DependentUpon>NothingStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\OpacityStyleItemPanel.resx">
+      <DependentUpon>OpacityStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\PaintForm.resx">
+      <DependentUpon>PaintForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\PicasaBar.resx">
+      <DependentUpon>PicasaBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\PicasaStyleItemPanel.resx">
+      <DependentUpon>PicasaStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\RotateStyleItemPanel.resx">
+      <DependentUpon>RotateStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\SaveImageStyleItemPanel.resx">
+      <DependentUpon>SaveImageStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ScaleStyleItemPanel.resx">
+      <DependentUpon>ScaleStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ScrapDrawForm.resx">
+      <DependentUpon>ScrapDrawForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ScrapPaintLayer.resx">
+      <DependentUpon>ScrapPaintLayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ScrapPaintLayerItem.resx">
+      <DependentUpon>ScrapPaintLayerItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ScrapPaintPenTool.resx">
+      <DependentUpon>ScrapPaintPenTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ScrapPaintTextTool.resx">
+      <DependentUpon>ScrapPaintTextTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ScrapPaintToolBar.resx">
+      <DependentUpon>ScrapPaintToolBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ScrapPaintWindow.resx">
+      <DependentUpon>ScrapPaintWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\TimerStyleItemPanel.resx">
+      <DependentUpon>TimerStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\ToolBoxForm.resx">
+      <DependentUpon>ToolBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\TrimWindow.resx">
+      <DependentUpon>TrimWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SETUNA\Main\StyleItems\WindowStyleItemPanel.resx">
+      <DependentUpon>WindowStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
 </Project>

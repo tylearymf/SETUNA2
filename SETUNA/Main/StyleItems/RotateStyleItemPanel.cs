@@ -1,6 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
-    using SETUNA.Resources;
+    using Properties;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -215,7 +215,7 @@
             {
                 this.imgScrap.Dispose();
             }
-            this.imgScrap = (System.Drawing.Image) SETUNA.Resources.Image.SampleImage.Clone();
+            this.imgScrap = (System.Drawing.Image) Properties.Image.SampleImage.Clone();
             if (this.rdoRight90.Checked)
             {
                 this.imgScrap.RotateFlip(RotateFlipType.Rotate90FlipNone);
@@ -281,7 +281,7 @@
             {
                 graphics.CopyFromScreen(new Point(0, 0), new Point(0, 0), this.imgBackground.Size);
             }
-            this.imgScrap = (System.Drawing.Image) SETUNA.Resources.Image.SampleImage.Clone();
+            this.imgScrap = (System.Drawing.Image) Properties.Image.SampleImage.Clone();
             this.RotateSample();
         }
     }

@@ -1,6 +1,5 @@
 ﻿namespace SETUNA.Main
 {
-    using SETUNA.Properties;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -45,76 +44,105 @@
 
         private void InitializeComponent()
         {
-            this.label1 = new Label();
-            this.label2 = new Label();
-            this.label3 = new Label();
-            this.btnClose = new Button();
-            this.lblKey = new Label();
-            this.pictureBox1 = new PictureBox();
-            ((ISupportInitialize) this.pictureBox1).BeginInit();
-            base.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.lblKey = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
             this.label1.AutoSize = true;
-            this.label1.Font = new Font("宋体", 10f, FontStyle.Bold, GraphicsUnit.Point, 0x80);
-            this.label1.ForeColor = Color.FromArgb(0, 0, 0xc0);
-            this.label1.Location = new Point(0x3f, 13);
+            this.label1.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label1.Location = new System.Drawing.Point(147, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new Size(0xcd, 14);
+            this.label1.Size = new System.Drawing.Size(230, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "禁用快捷键设置";
+            // 
+            // label2
+            // 
             this.label2.AutoSize = true;
-            this.label2.Location = new Point(0x4b, 0x3d);
+            this.label2.Location = new System.Drawing.Point(175, 137);
+            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new Size(0x175, 12);
+            this.label2.Size = new System.Drawing.Size(609, 27);
             this.label2.TabIndex = 1;
             this.label2.Text = "因为被其他软件使用，禁用SETUNA的快捷键设置。";
+            // 
+            // label3
+            // 
             this.label3.AutoSize = true;
-            this.label3.Location = new Point(0x4b, 0x4c);
+            this.label3.Location = new System.Drawing.Point(175, 171);
+            this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new Size(0x181, 12);
+            this.label3.Size = new System.Drawing.Size(606, 27);
             this.label3.TabIndex = 2;
             this.label3.Text = "您可以重新指定启用另一个键，请打开选项设置。";
-            this.btnClose.DialogResult = DialogResult.Cancel;
-            this.btnClose.Location = new Point(0x197, 0x68);
+            // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(950, 234);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new Size(0x62, 0x17);
+            this.btnClose.Size = new System.Drawing.Size(229, 52);
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "关闭";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // lblKey
+            // 
             this.lblKey.AutoSize = true;
-            this.lblKey.Font = new Font("宋体", 9f, FontStyle.Bold, GraphicsUnit.Point, 0x80);
-            this.lblKey.Location = new Point(0x58, 40);
+            this.lblKey.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblKey.Location = new System.Drawing.Point(205, 90);
+            this.lblKey.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.lblKey.Name = "lblKey";
-            this.lblKey.Size = new Size(0x3d, 12);
+            this.lblKey.Size = new System.Drawing.Size(222, 27);
             this.lblKey.TabIndex = 4;
-            this.lblKey.Text = "Ctrl + D1";
-            this.pictureBox1.Image = Resources.icon;
-            this.pictureBox1.Location = new Point(9, 9);
+            this.lblKey.Text = "Ctrl + Alt + A";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Properties.Resources.icon;
+            this.pictureBox1.Location = new System.Drawing.Point(21, 20);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new Size(0x30, 0x30);
-            this.pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.Size = new System.Drawing.Size(48, 48);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
-            base.AutoScaleDimensions = new SizeF(6f, 12f);
-            base.AutoScaleMode = AutoScaleMode.Font;
-            this.BackColor = Color.White;
-            base.CancelButton = this.btnClose;
-            base.ClientSize = new Size(0x205, 0x8b);
-            base.Controls.Add(this.pictureBox1);
-            base.Controls.Add(this.lblKey);
-            base.Controls.Add(this.btnClose);
-            base.Controls.Add(this.label3);
-            base.Controls.Add(this.label2);
-            base.Controls.Add(this.label1);
-            base.FormBorderStyle = FormBorderStyle.FixedDialog;
-            base.MaximizeBox = false;
-            base.MinimizeBox = false;
-            base.Name = "HotkeyMsg";
-            base.StartPosition = FormStartPosition.CenterScreen;
+            // 
+            // HotkeyMsg
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 27F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
+            this.CancelButton = this.btnClose;
+            this.ClientSize = new System.Drawing.Size(1206, 313);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.lblKey);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "HotkeyMsg";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SETUNA快捷键设置";
-            ((ISupportInitialize) this.pictureBox1).EndInit();
-            base.ResumeLayout(false);
-            base.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         public Keys HotKey
