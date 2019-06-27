@@ -49,26 +49,41 @@
             }
         }
 
-        public void AddScrap(Image img, int x, int y, int width, int height, string pGuid = null)
-        {
-            this.AddScrap(img, x, y, width, height, "", pGuid);
-        }
-
-        public void AddScrap(Image img, int x, int y, int width, int height, string scrapname, string pGuid = null)
+        public void AddScrap(ScrapBaseInfo pInfo, bool pIsFirstInit = false)
         {
             ScrapBase newScrap = new ScrapBase();
             newScrap.addScrapStyleEvent(this._mainform);
             newScrap.addScrapMenuEvent(this._mainform);
-            if (scrapname != "")
+            if (!string.IsNullOrEmpty(pInfo.name))
             {
-                newScrap.Name = scrapname;
+                newScrap.Name = pInfo.name;
             }
-            newScrap.Image = img;
-            newScrap.SaveImg(img, pGuid);
-            newScrap.SetBounds(x, y, img.Width, img.Height, BoundsSpecified.All);
+            newScrap.Image = pInfo.image;
+            newScrap.cacheInfo = pInfo;
+            newScrap.SetBounds(0, 0, pInfo.imageWidth, pInfo.imageHeight, BoundsSpecified.All);
+            var style = this._mainform.optSetuna.FindStyle(pInfo.styleID);
+            if (style != null)
+            {
+                newScrap.isFirstInitCompactScrap = pIsFirstInit;
+                style.Apply(ref newScrap, pInfo.stylePoint);
+            }
+            newScrap.Left = pInfo.posX;
+            newScrap.Top = pInfo.posY;
+
             newScrap.Refresh();
             newScrap.Show();
+
+            if (!pIsFirstInit)
+            {
+                newScrap.ApplyCache();
+            }
+
             this.AddScrap(newScrap);
+        }
+
+        public void AddScrap(Image img, int x, int y, int width, int height)
+        {
+            AddScrap(new ScrapBaseInfo(img, x, y, width, height, System.DateTime.Now.Ticks.ToString()));
         }
 
         public void addScrapAddedListener(IScrapAddedListener listener)
@@ -158,7 +173,6 @@
                 }
                 this._dustbox.Enqueue(base2);
                 base2.Hide();
-                Cache.DestroyImage(base2.instanceId);
             }
             else
             {

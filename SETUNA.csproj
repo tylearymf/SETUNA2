@@ -80,7 +80,7 @@
     <Compile Include="SETUNA\Mainform.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SETUNA\Main\Cache.cs" />
+    <Compile Include="SETUNA\Main\CacheManager.cs" />
     <Compile Include="SETUNA\Main\CaptureForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +115,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SETUNA\Main\Other\AutoStartup.cs" />
+    <Compile Include="SETUNA\Main\Other\DPIUtils.cs" />
+    <Compile Include="SETUNA\Main\Other\MyConsole.cs" />
     <Compile Include="SETUNA\Main\RGBColor.cs" />
     <Compile Include="SETUNA\Main\ScrapBase.cs">
       <SubType>Form</SubType>
@@ -280,6 +282,7 @@
     <Compile Include="SETUNA\Main\Style\CCaptureStyle.cs" />
     <Compile Include="SETUNA\Main\Style\CCloseStyle.cs" />
     <Compile Include="SETUNA\Main\Style\CDustBoxStyle.cs" />
+    <Compile Include="SETUNA\Main\Style\CCleanCacheStyle.cs" />
     <Compile Include="SETUNA\Main\Style\CDustEraseStyle.cs" />
     <Compile Include="SETUNA\Main\Style\COptionStyle.cs" />
     <Compile Include="SETUNA\Main\Style\CPreStyle.cs" />
@@ -321,7 +324,6 @@
     <Compile Include="SETUNA\com\clearunit\SingletonAppRemoteObject.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ExeIcon.bmp" />
     <None Include="Resources\ExeIcon.ico" />
   </ItemGroup>
   <ItemGroup>

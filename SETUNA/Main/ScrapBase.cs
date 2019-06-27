@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main
 {
+    using SETUNA.Main.Style;
     using SETUNA.Main.StyleItems;
     using System;
     using System.ComponentModel;
@@ -78,14 +79,6 @@
             this._interpolationmode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
         }
 
-        void DestroyImg()
-        {
-            //imgView.Dispose();
-            //imgView = null;
-            Cache.DestroyImage(mInstanceId);
-            Console.WriteLine("删除缓存图片");
-        }
-
         public void addScrapMenuEvent(IScrapMenuListener listener)
         {
             this.ScrapSubMenuOpening = (ScrapSubMenuHandler)Delegate.Combine(this.ScrapSubMenuOpening, new ScrapSubMenuHandler(listener.ScrapMenuOpening));
@@ -103,7 +96,7 @@
         public void ApplyStyleItem(object sender, EventArgs e)
         {
             this.StyleApplyTimer.Enabled = false;
-            if (this.StyleAppliIndex < this.StyleItems.Length)
+            if (this.StyleItems != null && this.StyleAppliIndex < this.StyleItems.Length)
             {
                 int waitinterval = 1;
                 ScrapBase scrap = this;
@@ -138,14 +131,21 @@
             }
         }
 
-        public void ApplyStyles(CStyleItem[] items, Point clickpoint)
+        public void ApplyStyles(CStyle style, Point clickpoint)
         {
             if (!this.IsStyleApply)
             {
+                if ((style != null && cacheInfo.styleID != style.StyleID) || cacheInfo.stylePoint != clickpoint)
+                {
+                    cacheInfo.styleID = style == null ? 0 : style.StyleID;
+                    cacheInfo.stylePoint = clickpoint;
+                    ApplyCache();
+                }
+
                 this.StyleClickPoint = clickpoint;
                 this.IsStyleApply = true;
                 this.StyleAppliIndex = 0;
-                this.StyleItems = items;
+                this.StyleItems = style == null ? null : style.Items;
                 if (this.StyleApplyTimer == null)
                 {
                     this.StyleApplyTimer = new Timer();
@@ -163,6 +163,13 @@
             base.SuspendLayout();
             this.Opacity = this._saveopacity;
             base.ResumeLayout();
+
+            if (this.cacheInfo.posX != base.Left || this.cacheInfo.posY != base.Top)
+            {
+                this.cacheInfo.posX = base.Left;
+                this.cacheInfo.posY = base.Top;
+                ApplyCache();
+            }
         }
 
         private void DragMove(Point pt)
@@ -244,40 +251,47 @@
 
         private void InitializeComponent()
         {
-            this.components = new Container();
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(ScrapBase));
-            this.timOpacity = new Timer(this.components);
-            base.SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScrapBase));
+            this.timOpacity = new System.Windows.Forms.Timer(this.components);
+            this.SuspendLayout();
+            // 
+            // timOpacity
+            // 
             this.timOpacity.Interval = 15;
-            this.timOpacity.Tick += new EventHandler(this.timOpacity_Tick);
+            this.timOpacity.Tick += new System.EventHandler(this.timOpacity_Tick);
+            // 
+            // ScrapBase
+            // 
             this.AllowDrop = true;
             this.AutoSize = true;
-            this.BackColor = Color.Gray;
-            this.BackgroundImageLayout = ImageLayout.None;
-            base.ClientSize = new Size(0x124, 0x10a);
+            this.BackColor = System.Drawing.Color.Gray;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(292, 266);
             this.DoubleBuffered = true;
-            this.ForeColor = SystemColors.ControlText;
-            base.FormBorderStyle = FormBorderStyle.None;
-            base.Icon = (Icon)resources.GetObject("$this.Icon");
-            base.MaximizeBox = false;
-            this.MinimumSize = new Size(1, 1);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1, 1);
             this.Name = "ScrapBase";
-            base.ShowInTaskbar = false;
-            base.StartPosition = FormStartPosition.Manual;
-            base.TopMost = true;
-            base.Deactivate += new EventHandler(this.ScrapBase_Deactivate);
-            base.MouseUp += new MouseEventHandler(this.pnlImg_MouseUp);
-            base.MouseDoubleClick += new MouseEventHandler(this.ScrapBase_MouseDoubleClick);
-            base.MouseClick += new MouseEventHandler(this.ScrapBase_MouseClick);
-            base.MouseEnter += new EventHandler(this.ScrapBase_MouseEnter);
-            base.Activated += new EventHandler(this.ScrapBase_Activated);
-            base.DragDrop += new DragEventHandler(this.ScrapBase_DragDrop);
-            base.MouseDown += new MouseEventHandler(this.pnlImg_MouseDown);
-            base.DragEnter += new DragEventHandler(this.ScrapBase_DragEnter);
-            base.KeyPress += new KeyPressEventHandler(this.ScrapBase_KeyPress);
-            base.MouseLeave += new EventHandler(this.ScrapBase_MouseLeave);
-            base.MouseMove += new MouseEventHandler(this.pnlImg_MouseMove);
-            base.ResumeLayout(false);
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.TopMost = true;
+            this.Activated += new System.EventHandler(this.ScrapBase_Activated);
+            this.Deactivate += new System.EventHandler(this.ScrapBase_Deactivate);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ScrapBase_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ScrapBase_DragEnter);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ScrapBase_KeyPress);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ScrapBase_MouseClick);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ScrapBase_MouseDoubleClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlImg_MouseDown);
+            this.MouseEnter += new System.EventHandler(this.ScrapBase_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.ScrapBase_MouseLeave);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlImg_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlImg_MouseUp);
+            this.ResumeLayout(false);
+
         }
 
         protected override void OnClosed(EventArgs e)
@@ -323,6 +337,9 @@
             {
                 this.ScrapCloseEvent(this, e);
             }
+
+            CacheManager.DeleteCacheInfo(mInfo);
+            mInfo = null;
         }
 
         public void OnScrapCreated()
@@ -399,7 +416,6 @@
             if (e.KeyChar == Convert.ToChar(Keys.Escape))
             {
                 base.Close();
-                DestroyImg();
             }
         }
 
@@ -616,11 +632,17 @@
             }
         }
 
-        public string instanceId
+        public ScrapBaseInfo cacheInfo
         {
-            get { return mInstanceId; }
+            set
+            {
+                mInfo = value;
+            }
+            get { return mInfo; }
         }
-        string mInstanceId;
+        ScrapBaseInfo mInfo;
+
+        public bool isFirstInitCompactScrap { set; get; } = false;
 
         public System.Drawing.Image Image
         {
@@ -645,13 +667,6 @@
                 this.Scale = this.Scale;
                 this.Refresh();
             }
-        }
-
-        public void SaveImg(Image pImg, string pGuid = null)
-        {
-            if (string.IsNullOrEmpty(pGuid)) mInstanceId = System.DateTime.Now.Ticks.ToString();
-            else mInstanceId = pGuid;
-            Cache.SaveImage(mInstanceId, pImg);
         }
 
         public int InactiveMargin
@@ -899,6 +914,11 @@
         public delegate void ScrapEventHandler(object sender, ScrapEventArgs e);
 
         public delegate void ScrapSubMenuHandler(object sender, ScrapMenuArgs e);
+
+        public void ApplyCache()
+        {
+            CacheManager.SaveCacheInfo(mInfo);
+        }
     }
 }
 

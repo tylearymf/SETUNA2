@@ -4,6 +4,7 @@
     using SETUNA.Main;
     using SETUNA.Main.KeyItems;
     using SETUNA.Main.Option;
+    using SETUNA.Main.Other;
     using SETUNA.Main.Style;
     using System;
     using System.Collections.Generic;
@@ -55,39 +56,6 @@
             this.SetSubMenu();
             this.Width = 300;
             this.Height = 100;
-
-            InitImage();
-        }
-
-        void InitImage()
-        {
-            try
-            {
-                var tPath = Cache.path;
-                DirectoryInfo tInfo = new DirectoryInfo(tPath);
-                var tFiles = tInfo.GetFiles("*.jpeg");
-                if (tFiles != null && tFiles.Length > 0)
-                {
-                    foreach (var tFileInfo in tFiles)
-                    {
-                        try
-                        {
-                            Image tImg = Image.FromFile(tFileInfo.FullName);
-                            var tGuid = tFileInfo.Name.Replace(tFileInfo.Extension, string.Empty);
-                            if (tImg != null)
-                            {
-                                this.scrapBook.AddScrap(tImg, 0, 0, tImg.Width, tImg.Height, tGuid);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("加载图片失败：" + ex.ToString());
-                        }
-
-                    }
-                }
-            }
-            catch { }
         }
 
         public void AddImageList(ScrapSource src)
@@ -480,6 +448,7 @@
             this.LoadOption();
             this.OptionApply();
             this.SaveOption();
+            this.InitData();
             if (this.optSetuna.Setuna.ShowSplashWindow)
             {
                 this.frmSplash = new SplashForm();
@@ -490,6 +459,16 @@
             this.timPool.Start();
             cap_form = new CaptureForm(this.optSetuna.Setuna);
             this.IsStart = true;
+        }
+
+        public void InitData()
+        {
+            CacheManager.Init(info =>
+            {
+                this.scrapBook.AddScrap(info, true);
+            });
+
+            DPIUtils.Init(this);
         }
 
         private void Mainform_Shown(object sender, EventArgs e)
@@ -548,7 +527,7 @@
                     }
                     OptionForm form = new OptionForm(opt)
                     {
-                        StartPosition = FormStartPosition.CenterScreen
+                        StartPosition = FormStartPosition.CenterScreen,
                     };
                     form.ShowDialog();
                     if (form.DialogResult == DialogResult.OK)
@@ -789,6 +768,7 @@
         {
             this.setunaIconMenu.Scrap = this.scrapBook.GetDummyScrap();
             this.setunaIconMenu.Items.Clear();
+            this.setunaIconMenu.Items.Add(new CCleanCacheStyle().GetToolStrip(this.scrapBook));
             this.setunaIconMenu.Items.Add(new CScrapListStyle().GetToolStrip(this.scrapBook));
             this.setunaIconMenu.Items.Add(new CDustBoxStyle().GetToolStrip(this.scrapBook));
             this.setunaIconMenu.Items.Add(new CDustEraseStyle().GetToolStrip());

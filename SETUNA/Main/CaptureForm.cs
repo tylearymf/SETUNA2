@@ -1,6 +1,7 @@
 ﻿namespace SETUNA.Main
 {
     using SETUNA.Main.Option;
+    using SETUNA.Main.Other;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -36,41 +37,33 @@
         private static CaptureSelLine selLineVer1;
         private static CaptureSelLine selLineVer2;
         private const int SRCCOPY = 0xcc0020;
-        private Screen targetScreen;
         private System.Windows.Forms.Timer timer1;
         private Thread trd;
 
-        [DllImport("gdi32.dll")]
-        static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
-        const int DESKTOPVERTRES = 117;
-        const int DESKTOPHORZRES = 118;
-        public Size ScreenNewSize { set; get; }
-        void InitScreenNewSize()
+        private Screen targetScreen
         {
-            IntPtr primary = GetDC(IntPtr.Zero);
-            int actualPixelsX = GetDeviceCaps(primary, DESKTOPHORZRES);
-            int actualPixelsY = GetDeviceCaps(primary, DESKTOPVERTRES);
-            ReleaseDC(IntPtr.Zero, primary);
-            ScreenNewSize = new Size(actualPixelsX, actualPixelsY);
+            get
+            {
+                var tCurrentScreen = Screen.FromPoint(Cursor.Position);
+                return tCurrentScreen ?? Screen.PrimaryScreen;
+            }
+        }
+
+        public Size screenNewSize
+        {
+            get
+            {
+                var tTarget = targetScreen;
+                var tScale = DPIUtils.GetPrimaryDpi() / DPIUtils.GetDpiByScreen(tTarget);
+                var tSize = new Size((int)(tTarget.Bounds.Width / tScale), (int)(tTarget.Bounds.Height / tScale));
+                return tSize;
+            }
         }
 
         public CaptureForm(SetunaOption.SetunaOptionData opt)
         {
             this.InitializeComponent();
-            this.targetScreen = this.GetCurrentScreen();
-            InitScreenNewSize();
-            var tBitmap = new Bitmap(this.ScreenNewSize.Width, this.ScreenNewSize.Height, PixelFormat.Format24bppRgb);
-            var tXDpi = (float)this.ScreenNewSize.Width / this.targetScreen.Bounds.Width;
-            var tYDpi = (float)this.ScreenNewSize.Height / this.targetScreen.Bounds.Height;
-            if (tXDpi != 1 || tYDpi != 1)
-            {
-                tXDpi = tXDpi - .1F;
-                tYDpi = tYDpi - .1F;
-                tBitmap.SetResolution(tXDpi * 100, tYDpi * 100);
-            }
-
-            Console.WriteLine(string.Format("XDpi:{0},YDpi:{1}", tXDpi, tYDpi));
-            imgSnap = tBitmap;
+            imgSnap = new Bitmap(this.screenNewSize.Width, this.screenNewSize.Height, PixelFormat.Format24bppRgb);
             selArea = new Form();
             selArea.AutoScaleMode = AutoScaleMode.None;
             selArea.BackColor = Color.Blue;
@@ -385,19 +378,6 @@
         {
         }
 
-        private Screen GetCurrentScreen()
-        {
-            Rectangle rectangle = new Rectangle(Cursor.Position, new Size(1, 1));
-            foreach (Screen screen in Screen.AllScreens)
-            {
-                if (rectangle.IntersectsWith(screen.Bounds))
-                {
-                    return screen;
-                }
-            }
-            return Screen.PrimaryScreen;
-        }
-
         [DllImport("user32.dll")]
         private static extern IntPtr GetDC(IntPtr hwnd);
         [DllImport("User32.Dll")]
@@ -434,42 +414,47 @@
             selLineVer1.Hide();
             selLineVer2.Hide();
             selArea.SetBounds(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y, 1, 1);
-            selLineHor1.SetBounds(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y - 10, this.ScreenNewSize.Width, 1);
-            selLineHor2.SetBounds(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y - 10, this.ScreenNewSize.Width, 1);
-            selLineVer1.SetBounds(this.targetScreen.Bounds.X - 10, this.targetScreen.Bounds.Y, 1, this.ScreenNewSize.Height);
-            selLineVer2.SetBounds(this.targetScreen.Bounds.X - 10, this.targetScreen.Bounds.Y, 1, selLineVer2.Height = this.ScreenNewSize.Height);
+            selLineHor1.SetBounds(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y - 10, this.screenNewSize.Width, 1);
+            selLineHor2.SetBounds(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y - 10, this.screenNewSize.Width, 1);
+            selLineVer1.SetBounds(this.targetScreen.Bounds.X - 10, this.targetScreen.Bounds.Y, 1, this.screenNewSize.Height);
+            selLineVer2.SetBounds(this.targetScreen.Bounds.X - 10, this.targetScreen.Bounds.Y, 1, selLineVer2.Height = this.screenNewSize.Height);
             base.Hide();
             Console.WriteLine("Hide end---");
         }
 
         private void InitializeComponent()
         {
-            this.components = new Container();
+            this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            base.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // timer1
+            // 
             this.timer1.Interval = 250;
-            this.timer1.Tick += new EventHandler(this.timer1_Tick);
-            base.AutoScaleDimensions = new SizeF(6f, 12f);
-            base.AutoScaleMode = AutoScaleMode.Font;
-            base.ClientSize = new Size(0x124, 0x10a);
-            base.ControlBox = false;
-            this.Cursor = Cursors.Cross;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // CaptureForm
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(681, 598);
+            this.Cursor = System.Windows.Forms.Cursors.Cross;
             this.DoubleBuffered = true;
-            base.FormBorderStyle = FormBorderStyle.None;
-            base.KeyPreview = true;
-            base.Name = "CaptureForm";
-            base.ShowIcon = false;
-            base.ShowInTaskbar = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(7);
+            this.Name = "CaptureForm";
+            this.ShowInTaskbar = false;
             this.Text = "CaptureForm";
-            base.TopMost = true;
-            base.MouseUp += new MouseEventHandler(this.CaptureForm_MouseUp);
-            base.Paint += new PaintEventHandler(this.CaptureForm_Paint);
-            base.MouseDown += new MouseEventHandler(this.CaptureForm_MouseDown);
-            base.KeyPress += new KeyPressEventHandler(this.CaptureForm_KeyPress);
-            base.KeyUp += new KeyEventHandler(this.CaptureForm_KeyUp);
-            base.FormClosing += new FormClosingEventHandler(this.CaptureForm_FormClosing);
-            base.MouseMove += new MouseEventHandler(this.CaptureForm_MouseMove);
-            base.ResumeLayout(false);
+            this.TopMost = true;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CaptureForm_FormClosing);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.CaptureForm_Paint);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CaptureForm_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CaptureForm_KeyUp);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CaptureForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CaptureForm_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CaptureForm_MouseUp);
+            this.ResumeLayout(false);
+
         }
 
         [DllImport("user32.dll")]
@@ -520,11 +505,10 @@
             if (imgSnap != null)
             {
                 Cursor.Current = Cursors.Cross;
-                this.targetScreen = this.GetCurrentScreen();
                 Cursor.Clip = this.targetScreen.Bounds;
-                if ((this.ScreenNewSize.Width != imgSnap.Width) || (this.ScreenNewSize.Height != imgSnap.Height))
+                if ((this.screenNewSize.Width != imgSnap.Width) || (this.screenNewSize.Height != imgSnap.Height))
                 {
-                    imgSnap = new Bitmap(this.ScreenNewSize.Width, this.ScreenNewSize.Height, PixelFormat.Format24bppRgb);
+                    imgSnap = new Bitmap(this.screenNewSize.Width, this.screenNewSize.Height, PixelFormat.Format24bppRgb);
                 }
                 this.trd = new Thread(new ThreadStart(this.ThreadTask));
                 this.trd.IsBackground = true;
@@ -539,28 +523,28 @@
                     selArea.Show(this);
                 }
                 Console.WriteLine(string.Concat(new object[] { "12 - ", DateTime.Now.ToString(), " ", DateTime.Now.Millisecond }));
-                this.SetBoundsCore(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y, this.ScreenNewSize.Width, this.ScreenNewSize.Height, BoundsSpecified.All);
+                this.SetBoundsCore(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y, this.screenNewSize.Width, this.screenNewSize.Height, BoundsSpecified.All);
                 Console.WriteLine(string.Concat(new object[] { "13 - ", DateTime.Now.ToString(), " ", DateTime.Now.Millisecond }));
                 selLineHor1.SetPen(opt.SelectLineSolid, opt.SelectLineColor);
-                selLineHor1.SetBounds(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y - 10, this.ScreenNewSize.Width, 1);
+                selLineHor1.SetBounds(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y - 10, this.screenNewSize.Width, 1);
                 if (!selLineHor1.Visible)
                 {
                     selLineHor1.Show(this);
                 }
                 selLineHor2.SetPen(opt.SelectLineSolid, opt.SelectLineColor);
-                selLineHor2.SetBounds(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y - 10, this.ScreenNewSize.Width, 1);
+                selLineHor2.SetBounds(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y - 10, this.screenNewSize.Width, 1);
                 if (!selLineHor2.Visible)
                 {
                     selLineHor2.Show(this);
                 }
                 selLineVer1.SetPen(opt.SelectLineSolid, opt.SelectLineColor);
-                selLineVer1.SetBounds(this.targetScreen.Bounds.X - 10, this.targetScreen.Bounds.Y, 1, this.ScreenNewSize.Height);
+                selLineVer1.SetBounds(this.targetScreen.Bounds.X - 10, this.targetScreen.Bounds.Y, 1, this.screenNewSize.Height);
                 if (!selLineVer1.Visible)
                 {
                     selLineVer1.Show(this);
                 }
                 selLineVer2.SetPen(opt.SelectLineSolid, opt.SelectLineColor);
-                selLineVer2.SetBounds(this.targetScreen.Bounds.X - 10, this.targetScreen.Bounds.Y, 1, selLineVer2.Height = this.ScreenNewSize.Height);
+                selLineVer2.SetBounds(this.targetScreen.Bounds.X - 10, this.targetScreen.Bounds.Y, 1, selLineVer2.Height = this.screenNewSize.Height);
                 if (!selLineVer2.Visible)
                 {
                     selLineVer2.Show(this);
@@ -581,7 +565,14 @@
 
         private void ThreadTask()
         {
-            imgSnap = new Bitmap(imgSnap, imgSnap.Width, imgSnap.Height);
+            var tScreen = targetScreen;
+            var tScreenSize = screenNewSize;
+            var tDpi = DPIUtils.GetDpiByScreen(tScreen);
+
+            var tBitmap = new Bitmap(tScreenSize.Width, tScreenSize.Height, PixelFormat.Format24bppRgb);
+            tBitmap.SetResolution(tDpi * 96, tDpi * 96);
+            imgSnap = tBitmap;
+
             if (CopyFromScreen(imgSnap, new Point(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y)))
             {
                 base.Invoke(new ShowFormDelegate(this.ShowForm));

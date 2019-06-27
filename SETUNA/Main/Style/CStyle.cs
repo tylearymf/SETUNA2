@@ -37,7 +37,7 @@
         {
             try
             {
-                scrap.ApplyStyles(this.Items, Point.Empty);
+                scrap.ApplyStyles(this, Point.Empty);
             }
             catch (Exception exception)
             {
@@ -49,7 +49,7 @@
         {
             try
             {
-                scrap.ApplyStyles(this.Items, clickpoint);
+                scrap.ApplyStyles(this, clickpoint);
             }
             catch (Exception exception)
             {

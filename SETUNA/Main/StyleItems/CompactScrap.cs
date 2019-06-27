@@ -46,11 +46,12 @@
                 this.BackColor = Color.Magenta;
                 base.TransparencyKey = Color.Magenta;
             }
-            base.Opacity = ((double) item.Opacity) / 100.0;
+            base.Opacity = ((double)item.Opacity) / 100.0;
         }
 
         private void CompactScrap_DoubleClick(object sender, EventArgs e)
         {
+            _scrap.ApplyStyles(null, Point.Empty);
             this._thumbnail.Dispose();
             base.Close();
         }
@@ -91,8 +92,21 @@
                 {
                     this._scrap.Visible = false;
                 }
-                int num = (this._scrap.Left + this._clickpoint.X) - (base.Width / 2);
-                int num2 = (this._scrap.Top + this._clickpoint.Y) - (base.Height / 2);
+
+                int num = 0;
+                int num2 = 0;
+                if (_scrap.isFirstInitCompactScrap && _scrap.cacheInfo != null)
+                {
+                    _scrap.isFirstInitCompactScrap = false;
+                    num = _scrap.cacheInfo.posX;
+                    num2 = _scrap.cacheInfo.posY;
+                }
+                else
+                {
+                    num = (this._scrap.Left + this._clickpoint.X) - (base.Width / 2);
+                    num2 = (this._scrap.Top + this._clickpoint.Y) - (base.Height / 2);
+                }
+
                 base.Left = num;
                 base.Top = num2;
             }
@@ -125,6 +139,13 @@
         private void DragEnd()
         {
             this._dragmode = false;
+
+            if (_scrap.cacheInfo.posX != base.Left || _scrap.cacheInfo.posY != base.Top)
+            {
+                _scrap.cacheInfo.posX = base.Left;
+                _scrap.cacheInfo.posY = base.Top;
+                _scrap.ApplyCache();
+            }
         }
 
         private void DragMove(Point pt)

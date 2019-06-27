@@ -2,6 +2,7 @@
 {
     using SETUNA.Main;
     using SETUNA.Main.KeyItems;
+    using SETUNA.Main.Other;
     using SETUNA.Main.Style;
     using SETUNA.Main.StyleItems;
     using System;
@@ -27,6 +28,10 @@
         public SetunaOptionData Setuna = new SetunaOptionData();
         public List<CStyle> Styles = new List<CStyle>();
         public const int WM_HOTKEY = 0x312;
+        private float mDpi1;
+        private float mDpi2;
+        private float mDpi3;
+        private float mDpi4;
 
         public object Clone()
         {
@@ -37,7 +42,11 @@
                 blHotKey = this.blHotKey,
                 ipParentHandle = this.ipParentHandle,
                 Setuna = this.Setuna,
-                Scrap = this.Scrap
+                Scrap = this.Scrap,
+                dpi1 = this.dpi1,
+                dpi2 = this.dpi2,
+                dpi3 = this.dpi3,
+                dpi4 = this.dpi4,
             };
             for (int i = 0; i < this.Styles.Count; i++)
             {
@@ -106,6 +115,12 @@
             option.Scrap.InactiveAlphaValue = 10;
             option.Scrap.MouseOverAlphaChange = true;
             option.Scrap.MouseOverAlphaValue = 90;
+
+            option.mDpi1 = DPIUtils.defaultDpi1;
+            option.mDpi2 = 1.0F;
+            option.mDpi3 = 1.0F;
+            option.mDpi4 = 1.0F;
+
             CStyle style = new CStyle
             {
                 StyleID = num++,
@@ -805,6 +820,58 @@
             set
             {
                 this.blHotKey = value;
+            }
+        }
+
+        public float dpi1
+        {
+            set { mDpi1 = value; }
+            get
+            {
+                if (mDpi1 == 0)
+                {
+                    mDpi1 = DPIUtils.defaultDpi1;
+                }
+                return mDpi1;
+            }
+        }
+
+        public float dpi2
+        {
+            set { mDpi2 = value; }
+            get
+            {
+                if (mDpi2 == 0)
+                {
+                    mDpi2 = DPIUtils.defaultDpi2;
+                }
+                return mDpi2;
+            }
+        }
+
+        public float dpi3
+        {
+            set { mDpi3 = value; }
+            get
+            {
+                if (mDpi3 == 0)
+                {
+                    mDpi3 = DPIUtils.defaultDpi3;
+                }
+                return mDpi3;
+            }
+        }
+
+        public float dpi4
+        {
+            set { mDpi4 = value; }
+            get
+            {
+                if (mDpi4 == 0)
+                {
+                    mDpi4 = DPIUtils.defaultDpi4;
+                }
+                return mDpi4;
             }
         }
 

@@ -22,103 +22,118 @@
         private SetunaOption _so;
         private int _wclickStyleId;
         private Button btnCancel;
-        private Button btnDeleteStyle;
-        private Button btnEditStyle;
-        private Button btnInitialize;
-        private Button btnNewStyle;
         private Button btnOK;
-        private Button btnScrapMenuMove;
-        private Button button1;
-        private CheckBox checkBox1;
-        private CheckBox chkCC1;
-        private CheckBox chkCC2;
-        private CheckBox chkCC3;
-        private CheckBox chkCC4;
-        private CheckBox chkCC6;
-        private CheckBox chkCC7;
-        private CheckBox chkCC8;
-        private CheckBox chkCC9;
-        private CheckBox chkDustBox;
-        private CheckBox chkInactiveAlphaChange;
-        private CheckBox chkMouseOverAlphaChange;
-        private CheckBox chkScrapImageDrag;
-        private CheckBox chkShowMainWindow;
-        private CheckBox chkSplash;
-        private ComboBox cmbCreateStyle;
-        private ComboBox cmbWClickStyle;
         private IContainer components;
         private Panel detailPanel;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private GroupBox groupBox1;
-        private GroupBox groupBox10;
-        private GroupBox groupBox11;
-        private GroupBox groupBox12;
-        private GroupBox groupBox2;
-        private GroupBox groupBox3;
-        private GroupBox groupBox4;
-        private GroupBox groupBox5;
-        private GroupBox groupBox6;
-        private GroupBox groupBox7;
-        private GroupBox groupBox8;
-        private GroupBox groupBox9;
-        private HotkeyControl hotkeyControl1;
-        private Label label1;
-        private Label label10;
-        private Label label11;
-        private Label label12;
-        private Label label13;
-        private Label label14;
-        private Label label15;
-        private Label label16;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
-        private Label label7;
-        private Label label8;
-        private Label label9;
         private Label lblComment;
         private Label lblMenuAll;
         private Label lblMenuCapture;
         private Label lblMenuMenu;
         private Label lblMenuScrap;
         private Label lblMenuStyle;
-        private ListBox listKeyItems;
-        private SetunaListBox listScrapMenuItems;
-        private SetunaListBox listScrapMenuList;
-        private SetunaListBox listScrapMenuStyles;
-        private ListBox listStyleItems;
-        private SetunaListBox listStyles;
-        private NumericUpDown numDustBox;
-        private NumericUpDown numInactiveAlpha;
-        private NumericUpDown numMouseOverAlpha;
-        private NumericUpDown numSelectAreaTrans;
-        private TabPage pageAll;
-        private TabPage pageCapture;
-        private TabPage pageScrap;
-        private TabPage pageScrapMenu;
-        private TabPage pageStyle;
+        private Label lblMenuDPI;
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
-        private Panel panel4;
-        private PictureBox picSelectAreaBackColor;
-        private PictureBox picSelectAreaLineColor;
         private PictureBox pictureBox1;
-        private Panel pnlScrapStyle;
+        private WithoutTabControl tabControl1;
+        private TabPage pageAll;
+        private GroupBox groupBox13;
+        private LinkLabel linkLabel2;
+        private LinkLabel linkLabel1;
+        private GroupBox groupBox7;
+        private CheckBox checkBox2;
+        private CheckBox chkSplash;
+        private GroupBox groupBox5;
+        private CheckBox chkDustBox;
+        private Label label14;
+        private NumericUpDown numDustBox;
+        private Button btnInitialize;
+        private GroupBox groupBox6;
+        private CheckBox chkShowMainWindow;
+        private RadioButton rdoExeTypeResident;
+        private RadioButton rdoExeTypeApp;
+        private TabPage pageCapture;
+        private GroupBox groupBox12;
+        private Label label16;
+        private CheckBox chkCC6;
+        private CheckBox chkCC4;
+        private CheckBox chkCC2;
+        private CheckBox chkCC8;
+        private CheckBox chkCC3;
+        private CheckBox chkCC1;
+        private CheckBox chkCC9;
+        private CheckBox chkCC7;
+        private GroupBox groupBox3;
         private RadioButton rdoDupCapture;
         private RadioButton rdoDupNone;
-        private RadioButton rdoExeTypeApp;
-        private RadioButton rdoExeTypeResident;
+        private GroupBox groupBox4;
         private RadioButton rdoSelLineTypeDotted;
         private RadioButton rdoSelLineTypeSolid;
-        private WithoutTabControl tabControl1;
-        private GroupBox groupBox13;
-        private LinkLabel linkLabel1;
-        private LinkLabel linkLabel2;
-        private CheckBox checkBox2;
+        private Label label12;
+        private NumericUpDown numSelectAreaTrans;
+        private PictureBox picSelectAreaBackColor;
+        private PictureBox picSelectAreaLineColor;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private Label label7;
+        private GroupBox groupBox2;
+        private CheckBox checkBox1;
+        private Label label3;
+        private HotkeyControl hotkeyControl1;
+        private TabPage pageScrap;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Panel pnlScrapStyle;
+        private ComboBox cmbWClickStyle;
+        private Label label5;
+        private ComboBox cmbCreateStyle;
+        private Label label4;
+        private Panel panel4;
+        private CheckBox chkScrapImageDrag;
+        private GroupBox groupBox11;
+        private Label label15;
+        private Label label13;
+        private NumericUpDown numMouseOverAlpha;
+        private CheckBox chkMouseOverAlphaChange;
+        private Label label11;
+        private Label label6;
+        private NumericUpDown numInactiveAlpha;
+        private CheckBox chkInactiveAlphaChange;
+        private TabPage pageStyle;
+        private GroupBox groupBox1;
+        private Button button1;
+        private SetunaListBox listStyles;
+        private ListBox listKeyItems;
+        private Label label2;
+        private Label label1;
+        private Button btnEditStyle;
+        private ListBox listStyleItems;
+        private Button btnDeleteStyle;
+        private Button btnNewStyle;
+        private TabPage pageScrapMenu;
+        private Button btnScrapMenuMove;
+        private GroupBox groupBox10;
+        private SetunaListBox listScrapMenuList;
+        private GroupBox groupBox9;
+        private SetunaListBox listScrapMenuItems;
+        private GroupBox groupBox8;
+        private SetunaListBox listScrapMenuStyles;
         private ToolTip toolTip1;
+        private GroupBox groupBox14;
+        private Label label17;
+        private GroupBox groupBox15;
+        private Label label18;
+        private Label label19;
+        private TextBox Dpi1Txt;
+        private TextBox Dpi4Txt;
+        private Label label22;
+        private TextBox Dpi3Txt;
+        private Label label21;
+        private TextBox Dpi2Txt;
+        private Label label20;
+        private TabPage pageDPISetting;
+
 
         public OptionForm(SetunaOption opt)
         {
@@ -187,6 +202,7 @@
         {
             if (MessageBox.Show("进行设置内容的初始化。", Application.ProductName, MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.OK)
             {
+                AutoStartup.Set(false);
                 this._so = SetunaOption.GetDefaultOption();
                 this.LoadSetunaOption();
             }
@@ -356,6 +372,7 @@
             this.lblMenuCapture = new System.Windows.Forms.Label();
             this.lblMenuMenu = new System.Windows.Forms.Label();
             this.lblMenuScrap = new System.Windows.Forms.Label();
+            this.lblMenuDPI = new System.Windows.Forms.Label();
             this.lblMenuAll = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -365,6 +382,7 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.chkSplash = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.chkDustBox = new System.Windows.Forms.CheckBox();
@@ -441,7 +459,19 @@
             this.listScrapMenuItems = new SETUNA.Main.SetunaListBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.listScrapMenuStyles = new SETUNA.Main.SetunaListBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.pageDPISetting = new System.Windows.Forms.TabPage();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.Dpi1Txt = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.Dpi2Txt = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.Dpi3Txt = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.Dpi4Txt = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.detailPanel.SuspendLayout();
@@ -475,6 +505,9 @@
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.pageDPISetting.SuspendLayout();
+            this.groupBox14.SuspendLayout();
+            this.groupBox15.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -551,6 +584,7 @@
             this.panel1.Controls.Add(this.lblMenuCapture);
             this.panel1.Controls.Add(this.lblMenuMenu);
             this.panel1.Controls.Add(this.lblMenuScrap);
+            this.panel1.Controls.Add(this.lblMenuDPI);
             this.panel1.Controls.Add(this.lblMenuAll);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -620,6 +654,21 @@
             this.lblMenuScrap.MouseEnter += new System.EventHandler(this.lblMenuScrap_MouseEnter);
             this.lblMenuScrap.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
             // 
+            // lblMenuDPI
+            // 
+            this.lblMenuDPI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuDPI.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuDPI.ForeColor = System.Drawing.Color.White;
+            this.lblMenuDPI.Location = new System.Drawing.Point(28, 246);
+            this.lblMenuDPI.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblMenuDPI.Name = "lblMenuDPI";
+            this.lblMenuDPI.Size = new System.Drawing.Size(233, 32);
+            this.lblMenuDPI.TabIndex = 4;
+            this.lblMenuDPI.Text = "显示器DPI设置";
+            this.lblMenuDPI.Click += new System.EventHandler(this.lblMenuDPI_Click);
+            this.lblMenuDPI.MouseEnter += new System.EventHandler(this.lblMenuDPI_MouseEnter);
+            this.lblMenuDPI.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
+            // 
             // lblMenuAll
             // 
             this.lblMenuAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
@@ -660,6 +709,7 @@
             this.tabControl1.Controls.Add(this.pageScrap);
             this.tabControl1.Controls.Add(this.pageStyle);
             this.tabControl1.Controls.Add(this.pageScrapMenu);
+            this.tabControl1.Controls.Add(this.pageDPISetting);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
@@ -736,6 +786,18 @@
             this.groupBox7.TabIndex = 10;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "其他";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(388, 50);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(7);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(152, 31);
+            this.checkBox2.TabIndex = 8;
+            this.checkBox2.Text = "开机启动";
+            this.toolTip1.SetToolTip(this.checkBox2, "将在启动SETUNA时的几秒钟内显示标志。");
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // chkSplash
             // 
@@ -1715,17 +1777,148 @@
             this.listScrapMenuStyles.Enter += new System.EventHandler(this.listScrapMenuStyles_Enter);
             this.listScrapMenuStyles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listScrapMenuStyles_MouseDoubleClick);
             // 
-            // checkBox2
+            // pageDPISetting
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(388, 50);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(7);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(152, 31);
-            this.checkBox2.TabIndex = 8;
-            this.checkBox2.Text = "开机启动";
-            this.toolTip1.SetToolTip(this.checkBox2, "将在启动SETUNA时的几秒钟内显示标志。");
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.pageDPISetting.BackColor = System.Drawing.Color.White;
+            this.pageDPISetting.Controls.Add(this.groupBox15);
+            this.pageDPISetting.Controls.Add(this.groupBox14);
+            this.pageDPISetting.Location = new System.Drawing.Point(4, 40);
+            this.pageDPISetting.Margin = new System.Windows.Forms.Padding(7);
+            this.pageDPISetting.Name = "pageDPISetting";
+            this.pageDPISetting.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
+            this.pageDPISetting.Size = new System.Drawing.Size(1035, 757);
+            this.pageDPISetting.TabIndex = 3;
+            this.pageDPISetting.Text = "显示器DPI设置";
+            this.pageDPISetting.UseVisualStyleBackColor = true;
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.label17);
+            this.groupBox14.Location = new System.Drawing.Point(19, 18);
+            this.groupBox14.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Padding = new System.Windows.Forms.Padding(7);
+            this.groupBox14.Size = new System.Drawing.Size(987, 197);
+            this.groupBox14.TabIndex = 11;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "说明";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label17.Location = new System.Drawing.Point(36, 47);
+            this.label17.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(702, 135);
+            this.label17.TabIndex = 12;
+            this.label17.Text = "由于获取其他显示器（不是主显示器）DPI需要以下条件：\r\n    1、Win10周年更新以上\r\n    2、.Net Framework 4.7以上\r\n\r\n所以直" +
+    "接改成手动配置DPI\r\n";
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.Dpi4Txt);
+            this.groupBox15.Controls.Add(this.label22);
+            this.groupBox15.Controls.Add(this.Dpi3Txt);
+            this.groupBox15.Controls.Add(this.label21);
+            this.groupBox15.Controls.Add(this.Dpi2Txt);
+            this.groupBox15.Controls.Add(this.label20);
+            this.groupBox15.Controls.Add(this.label19);
+            this.groupBox15.Controls.Add(this.Dpi1Txt);
+            this.groupBox15.Controls.Add(this.label18);
+            this.groupBox15.Location = new System.Drawing.Point(19, 229);
+            this.groupBox15.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Padding = new System.Windows.Forms.Padding(7);
+            this.groupBox15.Size = new System.Drawing.Size(987, 374);
+            this.groupBox15.TabIndex = 12;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "DPI配置";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.Location = new System.Drawing.Point(35, 123);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(231, 33);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "主显示器DPI：";
+            // 
+            // Dpi1Txt
+            // 
+            this.Dpi1Txt.Location = new System.Drawing.Point(324, 118);
+            this.Dpi1Txt.Name = "Dpi1Txt";
+            this.Dpi1Txt.Size = new System.Drawing.Size(173, 38);
+            this.Dpi1Txt.TabIndex = 1;
+            this.Dpi1Txt.Text = "1.0";
+            this.Dpi1Txt.Validated += new System.EventHandler(this.Dpi1Txt_Validated);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(36, 38);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(807, 54);
+            this.label19.TabIndex = 2;
+            this.label19.Text = "填写说明：1.0 <= DPI数值 <= 5.0（例如缩放250%，则填写2.5）\r\n如果分不清是哪台显示器，打开Windows设置->系统->显示";
+            // 
+            // Dpi2Txt
+            // 
+            this.Dpi2Txt.Location = new System.Drawing.Point(324, 178);
+            this.Dpi2Txt.Name = "Dpi2Txt";
+            this.Dpi2Txt.Size = new System.Drawing.Size(173, 38);
+            this.Dpi2Txt.TabIndex = 4;
+            this.Dpi2Txt.Text = "1.0";
+            this.Dpi2Txt.Validated += new System.EventHandler(this.Dpi2Txt_Validated);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label20.Location = new System.Drawing.Point(35, 183);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(264, 33);
+            this.label20.TabIndex = 3;
+            this.label20.Text = "第二显示器DPI：";
+            // 
+            // Dpi3Txt
+            // 
+            this.Dpi3Txt.Location = new System.Drawing.Point(324, 237);
+            this.Dpi3Txt.Name = "Dpi3Txt";
+            this.Dpi3Txt.Size = new System.Drawing.Size(173, 38);
+            this.Dpi3Txt.TabIndex = 6;
+            this.Dpi3Txt.Text = "1.0";
+            this.Dpi3Txt.Validated += new System.EventHandler(this.Dpi3Txt_Validated);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label21.Location = new System.Drawing.Point(35, 242);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(264, 33);
+            this.label21.TabIndex = 5;
+            this.label21.Text = "第三显示器DPI：";
+            // 
+            // Dpi4Txt
+            // 
+            this.Dpi4Txt.Location = new System.Drawing.Point(324, 302);
+            this.Dpi4Txt.Name = "Dpi4Txt";
+            this.Dpi4Txt.Size = new System.Drawing.Size(173, 38);
+            this.Dpi4Txt.TabIndex = 8;
+            this.Dpi4Txt.Text = "1.0";
+            this.Dpi4Txt.Validated += new System.EventHandler(this.Dpi4Txt_Validated);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label22.Location = new System.Drawing.Point(35, 307);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(264, 33);
+            this.label22.TabIndex = 7;
+            this.label22.Text = "第四显示器DPI：";
             // 
             // OptionForm
             // 
@@ -1788,6 +1981,11 @@
             this.groupBox10.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
+            this.pageDPISetting.ResumeLayout(false);
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1820,6 +2018,16 @@
         private void lblMenuMenu_Click(object sender, EventArgs e)
         {
             this.tabControl1.SelectedTab = this.pageScrapMenu;
+        }
+
+        private void lblMenuDPI_Click(object sender, EventArgs e)
+        {
+            this.tabControl1.SelectedTab = this.pageDPISetting;
+        }
+
+        private void lblMenuDPI_MouseEnter(object sender, EventArgs e)
+        {
+            this.lblComment.Text = "设置多台不同DPI的显示器的参数值。";
         }
 
         private void lblMenuMenu_MouseEnter(object sender, EventArgs e)
@@ -1966,6 +2174,8 @@
                 this.rdoDupCapture.Checked = true;
             }
             this.chkSplash.Checked = this._so.Setuna.ShowSplashWindow;
+
+            InitDpiValue();
         }
 
         private void PrepareStyle()
@@ -2100,6 +2310,7 @@
             this.lblMenuScrap.Font = new Font(this.lblMenuScrap.Font, FontStyle.Regular);
             this.lblMenuStyle.Font = new Font(this.lblMenuStyle.Font, FontStyle.Regular);
             this.lblMenuMenu.Font = new Font(this.lblMenuMenu.Font, FontStyle.Regular);
+            this.lblMenuDPI.Font = new Font(this.lblMenuDPI.Font, FontStyle.Regular);
             if (this.tabControl1.SelectedTab == this.pageAll)
             {
                 this.lblMenuAll.Font = new Font(this.lblMenuAll.Font, FontStyle.Bold);
@@ -2121,6 +2332,10 @@
                 this.lblMenuMenu.Font = new Font(this.lblMenuMenu.Font, FontStyle.Bold);
                 this.RefreshScrapMenuStyleList_Menu();
                 this.RefreshScrapMenuList_Menu(this.GetStyleIDList_Menu());
+            }
+            if (this.tabControl1.SelectedTab == this.pageDPISetting)
+            {
+                this.lblMenuDPI.Font = new Font(this.lblMenuDPI.Font, FontStyle.Bold);
             }
         }
 
@@ -2198,6 +2413,18 @@
                 list.Add(style.StyleID);
             }
             this._so.Scrap.SubMenuStyles = list;
+
+            try
+            {
+                _so.dpi1 = float.Parse(Dpi1Txt.Text);
+                _so.dpi2 = float.Parse(Dpi2Txt.Text);
+                _so.dpi3 = float.Parse(Dpi3Txt.Text);
+                _so.dpi4 = float.Parse(Dpi4Txt.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("保存DPI配置失败：\n" + ex.ToString());
+            }
         }
 
         public SetunaOption Option =>
@@ -2213,6 +2440,59 @@
         {
             e.Link.Visited = true;
             System.Diagnostics.Process.Start("https://github.com/tylearymf/SETUNA2");
+        }
+
+        private void Dpi1Txt_Validated(object sender, EventArgs e)
+        {
+            ValidateDPIText(Dpi1Txt, _so.dpi1);
+        }
+
+        private void Dpi2Txt_Validated(object sender, EventArgs e)
+        {
+            ValidateDPIText(Dpi2Txt, _so.dpi2);
+        }
+
+        private void Dpi3Txt_Validated(object sender, EventArgs e)
+        {
+            ValidateDPIText(Dpi3Txt, _so.dpi3);
+        }
+
+        private void Dpi4Txt_Validated(object sender, EventArgs e)
+        {
+            ValidateDPIText(Dpi4Txt, _so.dpi4);
+        }
+
+        void ValidateDPIText(TextBox pTextBox, float pDefaultValue)
+        {
+            var tDpi = pDefaultValue;
+            if (!float.TryParse(pTextBox.Text, out tDpi))
+            {
+                tDpi = pDefaultValue;
+                MessageBox.Show("参数类型错误！");
+            }
+
+            if (tDpi < 1.0 || tDpi > 5.0)
+            {
+                MessageBox.Show("参数超出范围");
+            }
+
+            pTextBox.Text = tDpi.ToString("F2");
+        }
+
+        void InitDpiValue()
+        {
+            var tDpiTxts = new TextBox[] { Dpi1Txt, Dpi2Txt, Dpi3Txt, Dpi4Txt };
+            var tDpiValues = new float[] { _so.dpi1, _so.dpi2, _so.dpi3, _so.dpi4 };
+            for (int i = 0; i < tDpiTxts.Length; i++)
+            {
+                tDpiTxts[i].Text = tDpiValues[i].ToString("F2");
+            }
+
+            var tIndex = Screen.AllScreens.Length;
+            for (; tIndex < tDpiTxts.Length; tIndex++)
+            {
+                tDpiTxts[tIndex].ReadOnly = true;
+            }
         }
     }
 }
