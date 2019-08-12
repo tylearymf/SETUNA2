@@ -25,7 +25,11 @@ namespace SETUNA.Main.Other
                 }
                 else
                 {
-                    tRegistryKey.DeleteValue(sKey);
+                    var tValue = tRegistryKey.GetValue(sKey, null);
+                    if (tValue != null)
+                    {
+                        tRegistryKey.DeleteValue(sKey);
+                    }
                 }
                 return true;
             }
