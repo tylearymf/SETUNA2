@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main
 {
+    using SETUNA.Main.Other;
     using SETUNA.Main.Style;
     using SETUNA.Main.StyleItems;
     using System;
@@ -9,7 +10,9 @@
     using System.Drawing.Imaging;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using System.Threading;
     using System.Windows.Forms;
+    using Timer = System.Windows.Forms.Timer;
 
     public sealed class ScrapBase : Form
     {
@@ -59,6 +62,8 @@
         public event ScrapEventHandler ScrapInactiveOutEvent;
 
         public event ScrapSubMenuHandler ScrapSubMenuOpening;
+
+        public CStyleItem[] styleItems => StyleItems;
 
         public ScrapBase()
         {
@@ -291,11 +296,18 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlImg_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlImg_MouseUp);
             this.ResumeLayout(false);
+        }
 
+        public LayerInfo layerInfo { private set; get; }
+        protected override void OnLoad(EventArgs e)
+        {
+            layerInfo = new LayerInfo(this);
         }
 
         protected override void OnClosed(EventArgs e)
         {
+            layerInfo.Dispose();
+
             this.ImageAllDispose();
             base.OnClosed(e);
         }
@@ -338,8 +350,8 @@
                 this.ScrapCloseEvent(this, e);
             }
 
-            CacheManager.DeleteCacheInfo(mInfo);
-            mInfo = null;
+            CacheManager.DeleteCacheInfo(cacheInfo);
+            cacheInfo = null;
         }
 
         public void OnScrapCreated()
@@ -421,6 +433,7 @@
 
         private void ScrapBase_MouseClick(object sender, MouseEventArgs e)
         {
+            layerInfo.Update();
             if ((e.Button == MouseButtons.Right) && (this.ScrapSubMenuOpening != null))
             {
                 this.ScrapSubMenuOpening(sender, new ScrapMenuArgs(this, null));
@@ -638,7 +651,10 @@
             {
                 mInfo = value;
             }
-            get { return mInfo; }
+            get
+            {
+                return mInfo;
+            }
         }
         ScrapBaseInfo mInfo;
 
@@ -917,7 +933,7 @@
 
         public void ApplyCache()
         {
-            CacheManager.SaveCacheInfo(mInfo);
+            CacheManager.SaveCacheInfo(cacheInfo);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace SETUNA.Main
 {
     using Properties;
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -105,6 +106,17 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        LayerInfo mLayerInfo;
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

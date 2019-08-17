@@ -454,7 +454,17 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.CaptureForm_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.CaptureForm_MouseUp);
             this.ResumeLayout(false);
+        }
 
+        LayerInfo mLayerInfo;
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         [DllImport("user32.dll")]

@@ -1,6 +1,7 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
     using SETUNA.Main;
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -16,6 +17,7 @@
         private ScrapBase _scrap;
         private Image _thumbnail;
         private IContainer components;
+        private LayerInfo mLayerInfo;
 
         public CompactScrap(ScrapBase scrap, CCompactStyleItem item, Point clickpoint)
         {
@@ -68,6 +70,8 @@
                 {
                     this._scrap.Visible = true;
                 }
+
+                mLayerInfo.Dispose();
             }
         }
 
@@ -98,8 +102,8 @@
                 if (_scrap.isFirstInitCompactScrap && _scrap.cacheInfo != null)
                 {
                     _scrap.isFirstInitCompactScrap = false;
-                    num = _scrap.cacheInfo.posX;
-                    num2 = _scrap.cacheInfo.posY;
+                    num = (_scrap.cacheInfo.posX + this._clickpoint.X) - (base.Width / 2);
+                    num2 = (_scrap.cacheInfo.posY + this._clickpoint.Y) - (base.Height / 2);
                 }
                 else
                 {
@@ -109,6 +113,8 @@
 
                 base.Left = num;
                 base.Top = num2;
+
+                mLayerInfo = new LayerInfo(this);
             }
         }
 

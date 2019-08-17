@@ -116,7 +116,9 @@
     </Compile>
     <Compile Include="SETUNA\Main\Other\AutoStartup.cs" />
     <Compile Include="SETUNA\Main\Other\DPIUtils.cs" />
+    <Compile Include="SETUNA\Main\Other\LayerManager.cs" />
     <Compile Include="SETUNA\Main\Other\MyConsole.cs" />
+    <Compile Include="SETUNA\Main\Other\WindowsAPI.cs" />
     <Compile Include="SETUNA\Main\RGBColor.cs" />
     <Compile Include="SETUNA\Main\ScrapBase.cs">
       <SubType>Form</SubType>

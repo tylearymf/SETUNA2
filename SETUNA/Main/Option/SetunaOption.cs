@@ -32,6 +32,7 @@
         private float mDpi2;
         private float mDpi3;
         private float mDpi4;
+        private bool mAlwaysTopmost = false;
 
         public object Clone()
         {
@@ -47,6 +48,7 @@
                 dpi2 = this.dpi2,
                 dpi3 = this.dpi3,
                 dpi4 = this.dpi4,
+                alwaysTopMost = this.alwaysTopMost,
             };
             for (int i = 0; i < this.Styles.Count; i++)
             {
@@ -120,6 +122,7 @@
             option.mDpi2 = 1.0F;
             option.mDpi3 = 1.0F;
             option.mDpi4 = 1.0F;
+            option.mAlwaysTopmost = false;
 
             CStyle style = new CStyle
             {
@@ -874,6 +877,19 @@
                 return mDpi4;
             }
         }
+
+        public bool alwaysTopMost
+        {
+            get
+            {
+                return this.mAlwaysTopmost;
+            }
+            set
+            {
+                this.mAlwaysTopmost = value;
+            }
+        }
+
 
         public class ScrapOptionData
         {

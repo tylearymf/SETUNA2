@@ -1,6 +1,7 @@
 ﻿namespace SETUNA.Main
 {
     using SETUNA;
+    using SETUNA.Main.Other;
     using SETUNA.Main.Style;
     using System;
     using System.Collections;
@@ -8,6 +9,7 @@
     using System.Diagnostics;
     using System.Drawing;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
     using System.Windows.Forms;
 
     public class ScrapBook
@@ -15,7 +17,7 @@
         protected Queue<ScrapBase> _dustbox = null;
         protected short _dustcap = 0;
         private Mainform _mainform;
-        protected ArrayList _scraps = new ArrayList();
+        protected List<ScrapBase> _scraps = new List<ScrapBase>();
 
         public event KeyPressHandler KeyPress;
 
@@ -38,8 +40,9 @@
             this.KeyPress = (KeyPressHandler)Delegate.Combine(this.KeyPress, new KeyPressHandler(listener.ScrapKeyPress));
         }
 
-        public void AddScrap(ScrapBase newScrap)
+        public void AddScrap(ScrapBase newScrap, ScrapBaseInfo pInfo = null)
         {
+            newScrap.cacheInfo = pInfo ?? new ScrapBaseInfo(newScrap.Image, newScrap.Left, newScrap.Top, newScrap.Width, newScrap.Height, System.DateTime.Now.Ticks.ToString());
             newScrap.Manager = this;
             this._scraps.Add(newScrap);
             newScrap.OnScrapCreated();
@@ -78,7 +81,7 @@
                 newScrap.ApplyCache();
             }
 
-            this.AddScrap(newScrap);
+            this.AddScrap(newScrap, pInfo);
         }
 
         public void AddScrap(Image img, int x, int y, int width, int height)
@@ -250,6 +253,7 @@
         public int ScrapCount =>
             (int)this._scraps?.Count;
 
+        public List<ScrapBase> scrapBases => _scraps;
 
         public delegate void KeyPressHandler(object sender, ScrapKeyPressEventArgs e);
 

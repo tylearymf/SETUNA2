@@ -32,7 +32,7 @@ internal static class Program
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Mainform implement = new Mainform();
+            Mainform implement = Mainform.instance;
             instance.AddSingletonFormListener(implement);
             implement.CommandRun(args);
             Application.Run(implement);

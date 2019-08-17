@@ -133,6 +133,8 @@
         private TextBox Dpi2Txt;
         private Label label20;
         private TabPage pageDPISetting;
+        private CheckBox checkBox3;
+        private LayerInfo mLayerInfo;
 
 
         public OptionForm(SetunaOption opt)
@@ -141,7 +143,18 @@
             this._pageStyle = this.pageStyle;
             this._pageScrapMenu = this.pageScrapMenu;
             this._so = opt;
+            this.TopMost = true;
             this.LoadSetunaOption();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -367,15 +380,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.detailPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblMenuStyle = new System.Windows.Forms.Label();
-            this.lblMenuCapture = new System.Windows.Forms.Label();
-            this.lblMenuMenu = new System.Windows.Forms.Label();
-            this.lblMenuScrap = new System.Windows.Forms.Label();
-            this.lblMenuDPI = new System.Windows.Forms.Label();
-            this.lblMenuAll = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1 = new com.clearunit.WithoutTabControl();
             this.pageAll = new System.Windows.Forms.TabPage();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
@@ -460,23 +464,31 @@
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.listScrapMenuStyles = new SETUNA.Main.SetunaListBox();
             this.pageDPISetting = new System.Windows.Forms.TabPage();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.Dpi1Txt = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.Dpi2Txt = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.Dpi3Txt = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
             this.Dpi4Txt = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
+            this.Dpi3Txt = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.Dpi2Txt = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.Dpi1Txt = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblMenuStyle = new System.Windows.Forms.Label();
+            this.lblMenuCapture = new System.Windows.Forms.Label();
+            this.lblMenuMenu = new System.Windows.Forms.Label();
+            this.lblMenuScrap = new System.Windows.Forms.Label();
+            this.lblMenuDPI = new System.Windows.Forms.Label();
+            this.lblMenuAll = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.detailPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.pageAll.SuspendLayout();
             this.groupBox13.SuspendLayout();
@@ -506,8 +518,10 @@
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.pageDPISetting.SuspendLayout();
-            this.groupBox14.SuspendLayout();
             this.groupBox15.SuspendLayout();
+            this.groupBox14.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -516,28 +530,28 @@
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.btnOK);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 810);
-            this.panel2.Margin = new System.Windows.Forms.Padding(7);
+            this.panel2.Location = new System.Drawing.Point(0, 630);
+            this.panel2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1353, 90);
+            this.panel2.Size = new System.Drawing.Size(1052, 70);
             this.panel2.TabIndex = 1;
             // 
             // lblComment
             // 
-            this.lblComment.Location = new System.Drawing.Point(28, 14);
-            this.lblComment.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.lblComment.Location = new System.Drawing.Point(22, 11);
+            this.lblComment.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblComment.Name = "lblComment";
-            this.lblComment.Size = new System.Drawing.Size(835, 52);
+            this.lblComment.Size = new System.Drawing.Size(649, 40);
             this.lblComment.TabIndex = 2;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(1111, 14);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(7);
+            this.btnCancel.Location = new System.Drawing.Point(864, 11);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(219, 61);
+            this.btnCancel.Size = new System.Drawing.Size(170, 47);
             this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -546,10 +560,10 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(877, 14);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(7);
+            this.btnOK.Location = new System.Drawing.Point(682, 11);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(219, 61);
+            this.btnOK.Size = new System.Drawing.Size(170, 47);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "确定";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -561,9 +575,9 @@
             this.panel3.Controls.Add(this.panel1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(7);
+            this.panel3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1353, 810);
+            this.panel3.Size = new System.Drawing.Size(1052, 630);
             this.panel3.TabIndex = 2;
             // 
             // detailPanel
@@ -571,135 +585,11 @@
             this.detailPanel.BackColor = System.Drawing.Color.White;
             this.detailPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.detailPanel.Controls.Add(this.tabControl1);
-            this.detailPanel.Location = new System.Drawing.Point(301, 0);
+            this.detailPanel.Location = new System.Drawing.Point(234, 0);
             this.detailPanel.Margin = new System.Windows.Forms.Padding(0);
             this.detailPanel.Name = "detailPanel";
-            this.detailPanel.Size = new System.Drawing.Size(1047, 805);
+            this.detailPanel.Size = new System.Drawing.Size(815, 627);
             this.detailPanel.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(163)))), ((int)(((byte)(236)))));
-            this.panel1.Controls.Add(this.lblMenuStyle);
-            this.panel1.Controls.Add(this.lblMenuCapture);
-            this.panel1.Controls.Add(this.lblMenuMenu);
-            this.panel1.Controls.Add(this.lblMenuScrap);
-            this.panel1.Controls.Add(this.lblMenuDPI);
-            this.panel1.Controls.Add(this.lblMenuAll);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(7);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(301, 810);
-            this.panel1.TabIndex = 1;
-            // 
-            // lblMenuStyle
-            // 
-            this.lblMenuStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
-            this.lblMenuStyle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblMenuStyle.ForeColor = System.Drawing.Color.White;
-            this.lblMenuStyle.Location = new System.Drawing.Point(63, 158);
-            this.lblMenuStyle.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblMenuStyle.Name = "lblMenuStyle";
-            this.lblMenuStyle.Size = new System.Drawing.Size(233, 32);
-            this.lblMenuStyle.TabIndex = 2;
-            this.lblMenuStyle.Text = "创建自动操作";
-            this.lblMenuStyle.Click += new System.EventHandler(this.lblMenuStyle_Click);
-            this.lblMenuStyle.MouseEnter += new System.EventHandler(this.lblMenuStyle_MouseEnter);
-            this.lblMenuStyle.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
-            // 
-            // lblMenuCapture
-            // 
-            this.lblMenuCapture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
-            this.lblMenuCapture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblMenuCapture.ForeColor = System.Drawing.Color.White;
-            this.lblMenuCapture.Location = new System.Drawing.Point(28, 68);
-            this.lblMenuCapture.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblMenuCapture.Name = "lblMenuCapture";
-            this.lblMenuCapture.Size = new System.Drawing.Size(233, 32);
-            this.lblMenuCapture.TabIndex = 5;
-            this.lblMenuCapture.Text = "截取设置";
-            this.lblMenuCapture.Click += new System.EventHandler(this.lblMenuCapture_Click);
-            this.lblMenuCapture.MouseEnter += new System.EventHandler(this.lblMenuCapture_MouseEnter);
-            this.lblMenuCapture.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
-            // 
-            // lblMenuMenu
-            // 
-            this.lblMenuMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
-            this.lblMenuMenu.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblMenuMenu.ForeColor = System.Drawing.Color.White;
-            this.lblMenuMenu.Location = new System.Drawing.Point(63, 202);
-            this.lblMenuMenu.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblMenuMenu.Name = "lblMenuMenu";
-            this.lblMenuMenu.Size = new System.Drawing.Size(233, 32);
-            this.lblMenuMenu.TabIndex = 3;
-            this.lblMenuMenu.Text = "参考图菜单";
-            this.lblMenuMenu.Click += new System.EventHandler(this.lblMenuMenu_Click);
-            this.lblMenuMenu.MouseEnter += new System.EventHandler(this.lblMenuMenu_MouseEnter);
-            this.lblMenuMenu.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
-            // 
-            // lblMenuScrap
-            // 
-            this.lblMenuScrap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
-            this.lblMenuScrap.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblMenuScrap.ForeColor = System.Drawing.Color.White;
-            this.lblMenuScrap.Location = new System.Drawing.Point(28, 112);
-            this.lblMenuScrap.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblMenuScrap.Name = "lblMenuScrap";
-            this.lblMenuScrap.Size = new System.Drawing.Size(233, 32);
-            this.lblMenuScrap.TabIndex = 1;
-            this.lblMenuScrap.Text = "参考图设置";
-            this.lblMenuScrap.Click += new System.EventHandler(this.lblMenuScrap_Click);
-            this.lblMenuScrap.MouseEnter += new System.EventHandler(this.lblMenuScrap_MouseEnter);
-            this.lblMenuScrap.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
-            // 
-            // lblMenuDPI
-            // 
-            this.lblMenuDPI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
-            this.lblMenuDPI.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblMenuDPI.ForeColor = System.Drawing.Color.White;
-            this.lblMenuDPI.Location = new System.Drawing.Point(28, 246);
-            this.lblMenuDPI.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblMenuDPI.Name = "lblMenuDPI";
-            this.lblMenuDPI.Size = new System.Drawing.Size(233, 32);
-            this.lblMenuDPI.TabIndex = 4;
-            this.lblMenuDPI.Text = "显示器DPI设置";
-            this.lblMenuDPI.Click += new System.EventHandler(this.lblMenuDPI_Click);
-            this.lblMenuDPI.MouseEnter += new System.EventHandler(this.lblMenuDPI_MouseEnter);
-            this.lblMenuDPI.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
-            // 
-            // lblMenuAll
-            // 
-            this.lblMenuAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
-            this.lblMenuAll.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblMenuAll.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblMenuAll.ForeColor = System.Drawing.Color.White;
-            this.lblMenuAll.Location = new System.Drawing.Point(28, 22);
-            this.lblMenuAll.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.lblMenuAll.Name = "lblMenuAll";
-            this.lblMenuAll.Size = new System.Drawing.Size(233, 34);
-            this.lblMenuAll.TabIndex = 0;
-            this.lblMenuAll.Text = "常规";
-            this.lblMenuAll.Click += new System.EventHandler(this.lblMenuAll_Click);
-            this.lblMenuAll.MouseEnter += new System.EventHandler(this.lblMenuAll_MouseEnter);
-            this.lblMenuAll.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(301, 810);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.IsBalloon = true;
             // 
             // tabControl1
             // 
@@ -715,7 +605,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1043, 801);
+            this.tabControl1.Size = new System.Drawing.Size(811, 623);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_TabIndexChanged);
@@ -728,11 +618,11 @@
             this.pageAll.Controls.Add(this.groupBox5);
             this.pageAll.Controls.Add(this.btnInitialize);
             this.pageAll.Controls.Add(this.groupBox6);
-            this.pageAll.Location = new System.Drawing.Point(4, 40);
-            this.pageAll.Margin = new System.Windows.Forms.Padding(7);
+            this.pageAll.Location = new System.Drawing.Point(4, 34);
+            this.pageAll.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pageAll.Name = "pageAll";
-            this.pageAll.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.pageAll.Size = new System.Drawing.Size(1035, 757);
+            this.pageAll.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.pageAll.Size = new System.Drawing.Size(803, 585);
             this.pageAll.TabIndex = 1;
             this.pageAll.Text = "常规";
             this.pageAll.UseVisualStyleBackColor = true;
@@ -741,11 +631,11 @@
             // 
             this.groupBox13.Controls.Add(this.linkLabel2);
             this.groupBox13.Controls.Add(this.linkLabel1);
-            this.groupBox13.Location = new System.Drawing.Point(19, 529);
-            this.groupBox13.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox13.Location = new System.Drawing.Point(15, 411);
+            this.groupBox13.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Padding = new System.Windows.Forms.Padding(7);
-            this.groupBox13.Size = new System.Drawing.Size(987, 115);
+            this.groupBox13.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox13.Size = new System.Drawing.Size(768, 89);
             this.groupBox13.TabIndex = 11;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "信息";
@@ -753,9 +643,10 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(32, 38);
+            this.linkLabel2.Location = new System.Drawing.Point(25, 30);
+            this.linkLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(282, 27);
+            this.linkLabel2.Size = new System.Drawing.Size(220, 21);
             this.linkLabel2.TabIndex = 2;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "官方版本（地址已挂）";
@@ -765,9 +656,10 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(32, 81);
+            this.linkLabel1.Location = new System.Drawing.Point(25, 63);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(302, 27);
+            this.linkLabel1.Size = new System.Drawing.Size(237, 21);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "优化版本 by tylearymf";
@@ -776,13 +668,14 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.checkBox3);
             this.groupBox7.Controls.Add(this.checkBox2);
             this.groupBox7.Controls.Add(this.chkSplash);
-            this.groupBox7.Location = new System.Drawing.Point(19, 400);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox7.Location = new System.Drawing.Point(15, 311);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(7);
-            this.groupBox7.Size = new System.Drawing.Size(987, 115);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox7.Size = new System.Drawing.Size(768, 89);
             this.groupBox7.TabIndex = 10;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "其他";
@@ -790,22 +683,22 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(388, 50);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(7);
+            this.checkBox2.Location = new System.Drawing.Point(302, 39);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(152, 31);
+            this.checkBox2.Size = new System.Drawing.Size(120, 25);
             this.checkBox2.TabIndex = 8;
             this.checkBox2.Text = "开机启动";
-            this.toolTip1.SetToolTip(this.checkBox2, "将在启动SETUNA时的几秒钟内显示标志。");
+            this.toolTip1.SetToolTip(this.checkBox2, "开机时自动启动该软件");
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // chkSplash
             // 
             this.chkSplash.AutoSize = true;
-            this.chkSplash.Location = new System.Drawing.Point(37, 50);
-            this.chkSplash.Margin = new System.Windows.Forms.Padding(7);
+            this.chkSplash.Location = new System.Drawing.Point(29, 39);
+            this.chkSplash.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkSplash.Name = "chkSplash";
-            this.chkSplash.Size = new System.Drawing.Size(206, 31);
+            this.chkSplash.Size = new System.Drawing.Size(162, 25);
             this.chkSplash.TabIndex = 7;
             this.chkSplash.Text = "显示启动界面";
             this.toolTip1.SetToolTip(this.chkSplash, "将在启动SETUNA时的几秒钟内显示标志。");
@@ -816,11 +709,11 @@
             this.groupBox5.Controls.Add(this.chkDustBox);
             this.groupBox5.Controls.Add(this.label14);
             this.groupBox5.Controls.Add(this.numDustBox);
-            this.groupBox5.Location = new System.Drawing.Point(19, 230);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox5.Location = new System.Drawing.Point(15, 179);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(7);
-            this.groupBox5.Size = new System.Drawing.Size(987, 158);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox5.Size = new System.Drawing.Size(768, 123);
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "回收站的设置";
@@ -828,10 +721,10 @@
             // chkDustBox
             // 
             this.chkDustBox.AutoSize = true;
-            this.chkDustBox.Location = new System.Drawing.Point(37, 50);
-            this.chkDustBox.Margin = new System.Windows.Forms.Padding(7);
+            this.chkDustBox.Location = new System.Drawing.Point(29, 39);
+            this.chkDustBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkDustBox.Name = "chkDustBox";
-            this.chkDustBox.Size = new System.Drawing.Size(179, 31);
+            this.chkDustBox.Size = new System.Drawing.Size(141, 25);
             this.chkDustBox.TabIndex = 4;
             this.chkDustBox.Text = "使用回收站";
             this.toolTip1.SetToolTip(this.chkDustBox, "使用回收站的话，参考图将暂时储存在回收站里。\n可以根据情况需要从回收站中取出。");
@@ -840,18 +733,18 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(168, 97);
-            this.label14.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label14.Location = new System.Drawing.Point(131, 75);
+            this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(120, 27);
+            this.label14.Size = new System.Drawing.Size(94, 21);
             this.label14.TabIndex = 6;
             this.label14.Text = "张为上限";
             // 
             // numDustBox
             // 
             this.numDustBox.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.numDustBox.Location = new System.Drawing.Point(86, 90);
-            this.numDustBox.Margin = new System.Windows.Forms.Padding(7);
+            this.numDustBox.Location = new System.Drawing.Point(67, 70);
+            this.numDustBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.numDustBox.Maximum = new decimal(new int[] {
             50,
             0,
@@ -863,7 +756,7 @@
             0,
             0});
             this.numDustBox.Name = "numDustBox";
-            this.numDustBox.Size = new System.Drawing.Size(82, 38);
+            this.numDustBox.Size = new System.Drawing.Size(64, 31);
             this.numDustBox.TabIndex = 5;
             this.numDustBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.toolTip1.SetToolTip(this.numDustBox, "指定在回收站中放入的最大张数。\n超过限额将丢弃旧的参考图。");
@@ -875,10 +768,10 @@
             // 
             // btnInitialize
             // 
-            this.btnInitialize.Location = new System.Drawing.Point(581, 678);
-            this.btnInitialize.Margin = new System.Windows.Forms.Padding(7);
+            this.btnInitialize.Location = new System.Drawing.Point(452, 527);
+            this.btnInitialize.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnInitialize.Name = "btnInitialize";
-            this.btnInitialize.Size = new System.Drawing.Size(425, 61);
+            this.btnInitialize.Size = new System.Drawing.Size(331, 47);
             this.btnInitialize.TabIndex = 8;
             this.btnInitialize.Text = "设置全部恢复为默认状态";
             this.btnInitialize.UseVisualStyleBackColor = true;
@@ -889,11 +782,11 @@
             this.groupBox6.Controls.Add(this.chkShowMainWindow);
             this.groupBox6.Controls.Add(this.rdoExeTypeResident);
             this.groupBox6.Controls.Add(this.rdoExeTypeApp);
-            this.groupBox6.Location = new System.Drawing.Point(19, 18);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox6.Location = new System.Drawing.Point(15, 14);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(7);
-            this.groupBox6.Size = new System.Drawing.Size(987, 198);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox6.Size = new System.Drawing.Size(768, 154);
             this.groupBox6.TabIndex = 2;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "操作类型";
@@ -901,10 +794,10 @@
             // chkShowMainWindow
             // 
             this.chkShowMainWindow.AutoSize = true;
-            this.chkShowMainWindow.Location = new System.Drawing.Point(79, 135);
-            this.chkShowMainWindow.Margin = new System.Windows.Forms.Padding(7);
+            this.chkShowMainWindow.Location = new System.Drawing.Point(61, 105);
+            this.chkShowMainWindow.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkShowMainWindow.Name = "chkShowMainWindow";
-            this.chkShowMainWindow.Size = new System.Drawing.Size(179, 31);
+            this.chkShowMainWindow.Size = new System.Drawing.Size(141, 25);
             this.chkShowMainWindow.TabIndex = 2;
             this.chkShowMainWindow.Text = "显示主窗口";
             this.chkShowMainWindow.UseVisualStyleBackColor = true;
@@ -912,10 +805,10 @@
             // rdoExeTypeResident
             // 
             this.rdoExeTypeResident.AutoSize = true;
-            this.rdoExeTypeResident.Location = new System.Drawing.Point(37, 88);
-            this.rdoExeTypeResident.Margin = new System.Windows.Forms.Padding(7);
+            this.rdoExeTypeResident.Location = new System.Drawing.Point(29, 68);
+            this.rdoExeTypeResident.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rdoExeTypeResident.Name = "rdoExeTypeResident";
-            this.rdoExeTypeResident.Size = new System.Drawing.Size(178, 31);
+            this.rdoExeTypeResident.Size = new System.Drawing.Size(140, 25);
             this.rdoExeTypeResident.TabIndex = 1;
             this.rdoExeTypeResident.Text = "常驻任务栏";
             this.toolTip1.SetToolTip(this.rdoExeTypeResident, "在任务栏上显示图标。");
@@ -926,10 +819,10 @@
             // 
             this.rdoExeTypeApp.AutoSize = true;
             this.rdoExeTypeApp.Checked = true;
-            this.rdoExeTypeApp.Location = new System.Drawing.Point(37, 43);
-            this.rdoExeTypeApp.Margin = new System.Windows.Forms.Padding(7);
+            this.rdoExeTypeApp.Location = new System.Drawing.Point(29, 33);
+            this.rdoExeTypeApp.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rdoExeTypeApp.Name = "rdoExeTypeApp";
-            this.rdoExeTypeApp.Size = new System.Drawing.Size(151, 31);
+            this.rdoExeTypeApp.Size = new System.Drawing.Size(119, 25);
             this.rdoExeTypeApp.TabIndex = 0;
             this.rdoExeTypeApp.TabStop = true;
             this.rdoExeTypeApp.Text = "应用软件";
@@ -943,11 +836,11 @@
             this.pageCapture.Controls.Add(this.groupBox3);
             this.pageCapture.Controls.Add(this.groupBox4);
             this.pageCapture.Controls.Add(this.groupBox2);
-            this.pageCapture.Location = new System.Drawing.Point(4, 40);
+            this.pageCapture.Location = new System.Drawing.Point(4, 34);
             this.pageCapture.Margin = new System.Windows.Forms.Padding(0);
             this.pageCapture.Name = "pageCapture";
-            this.pageCapture.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.pageCapture.Size = new System.Drawing.Size(1035, 757);
+            this.pageCapture.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.pageCapture.Size = new System.Drawing.Size(803, 585);
             this.pageCapture.TabIndex = 4;
             this.pageCapture.Text = "截取设置";
             this.pageCapture.UseVisualStyleBackColor = true;
@@ -963,31 +856,31 @@
             this.groupBox12.Controls.Add(this.chkCC1);
             this.groupBox12.Controls.Add(this.chkCC9);
             this.groupBox12.Controls.Add(this.chkCC7);
-            this.groupBox12.Location = new System.Drawing.Point(581, 171);
-            this.groupBox12.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox12.Location = new System.Drawing.Point(452, 133);
+            this.groupBox12.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Padding = new System.Windows.Forms.Padding(7);
-            this.groupBox12.Size = new System.Drawing.Size(425, 470);
+            this.groupBox12.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox12.Size = new System.Drawing.Size(331, 366);
             this.groupBox12.TabIndex = 4;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "单击截取";
             // 
             // label16
             // 
-            this.label16.Location = new System.Drawing.Point(12, 380);
-            this.label16.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label16.Location = new System.Drawing.Point(9, 296);
+            this.label16.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(404, 70);
+            this.label16.Size = new System.Drawing.Size(314, 54);
             this.label16.TabIndex = 8;
             this.label16.Text = "当您点击一下指定的屏幕边缘，即开始截取。";
             // 
             // chkCC6
             // 
             this.chkCC6.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkCC6.Location = new System.Drawing.Point(303, 112);
-            this.chkCC6.Margin = new System.Windows.Forms.Padding(7);
+            this.chkCC6.Location = new System.Drawing.Point(236, 87);
+            this.chkCC6.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkCC6.Name = "chkCC6";
-            this.chkCC6.Size = new System.Drawing.Size(61, 176);
+            this.chkCC6.Size = new System.Drawing.Size(47, 137);
             this.chkCC6.TabIndex = 7;
             this.chkCC6.UseVisualStyleBackColor = false;
             this.chkCC6.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
@@ -995,10 +888,10 @@
             // chkCC4
             // 
             this.chkCC4.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkCC4.Location = new System.Drawing.Point(61, 112);
-            this.chkCC4.Margin = new System.Windows.Forms.Padding(7);
+            this.chkCC4.Location = new System.Drawing.Point(47, 87);
+            this.chkCC4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkCC4.Name = "chkCC4";
-            this.chkCC4.Size = new System.Drawing.Size(61, 176);
+            this.chkCC4.Size = new System.Drawing.Size(47, 137);
             this.chkCC4.TabIndex = 6;
             this.chkCC4.UseVisualStyleBackColor = false;
             this.chkCC4.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
@@ -1006,10 +899,10 @@
             // chkCC2
             // 
             this.chkCC2.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkCC2.Location = new System.Drawing.Point(121, 288);
-            this.chkCC2.Margin = new System.Windows.Forms.Padding(7);
+            this.chkCC2.Location = new System.Drawing.Point(94, 224);
+            this.chkCC2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkCC2.Name = "chkCC2";
-            this.chkCC2.Size = new System.Drawing.Size(182, 58);
+            this.chkCC2.Size = new System.Drawing.Size(142, 45);
             this.chkCC2.TabIndex = 5;
             this.chkCC2.UseVisualStyleBackColor = false;
             this.chkCC2.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
@@ -1017,10 +910,10 @@
             // chkCC8
             // 
             this.chkCC8.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkCC8.Location = new System.Drawing.Point(121, 54);
-            this.chkCC8.Margin = new System.Windows.Forms.Padding(7);
+            this.chkCC8.Location = new System.Drawing.Point(94, 42);
+            this.chkCC8.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkCC8.Name = "chkCC8";
-            this.chkCC8.Size = new System.Drawing.Size(182, 58);
+            this.chkCC8.Size = new System.Drawing.Size(142, 45);
             this.chkCC8.TabIndex = 4;
             this.chkCC8.UseVisualStyleBackColor = false;
             this.chkCC8.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
@@ -1028,10 +921,10 @@
             // chkCC3
             // 
             this.chkCC3.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkCC3.Location = new System.Drawing.Point(303, 288);
-            this.chkCC3.Margin = new System.Windows.Forms.Padding(7);
+            this.chkCC3.Location = new System.Drawing.Point(236, 224);
+            this.chkCC3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkCC3.Name = "chkCC3";
-            this.chkCC3.Size = new System.Drawing.Size(61, 58);
+            this.chkCC3.Size = new System.Drawing.Size(47, 45);
             this.chkCC3.TabIndex = 3;
             this.chkCC3.UseVisualStyleBackColor = false;
             this.chkCC3.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
@@ -1039,10 +932,10 @@
             // chkCC1
             // 
             this.chkCC1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkCC1.Location = new System.Drawing.Point(61, 288);
-            this.chkCC1.Margin = new System.Windows.Forms.Padding(7);
+            this.chkCC1.Location = new System.Drawing.Point(47, 224);
+            this.chkCC1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkCC1.Name = "chkCC1";
-            this.chkCC1.Size = new System.Drawing.Size(61, 58);
+            this.chkCC1.Size = new System.Drawing.Size(47, 45);
             this.chkCC1.TabIndex = 2;
             this.chkCC1.UseVisualStyleBackColor = false;
             this.chkCC1.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
@@ -1050,10 +943,10 @@
             // chkCC9
             // 
             this.chkCC9.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkCC9.Location = new System.Drawing.Point(303, 54);
-            this.chkCC9.Margin = new System.Windows.Forms.Padding(7);
+            this.chkCC9.Location = new System.Drawing.Point(236, 42);
+            this.chkCC9.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkCC9.Name = "chkCC9";
-            this.chkCC9.Size = new System.Drawing.Size(61, 58);
+            this.chkCC9.Size = new System.Drawing.Size(47, 45);
             this.chkCC9.TabIndex = 1;
             this.chkCC9.UseVisualStyleBackColor = false;
             this.chkCC9.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
@@ -1061,10 +954,10 @@
             // chkCC7
             // 
             this.chkCC7.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkCC7.Location = new System.Drawing.Point(61, 54);
-            this.chkCC7.Margin = new System.Windows.Forms.Padding(7);
+            this.chkCC7.Location = new System.Drawing.Point(47, 42);
+            this.chkCC7.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkCC7.Name = "chkCC7";
-            this.chkCC7.Size = new System.Drawing.Size(61, 58);
+            this.chkCC7.Size = new System.Drawing.Size(47, 45);
             this.chkCC7.TabIndex = 0;
             this.chkCC7.UseVisualStyleBackColor = false;
             this.chkCC7.CheckedChanged += new System.EventHandler(this.chkCC_CheckedChanged);
@@ -1073,11 +966,11 @@
             // 
             this.groupBox3.Controls.Add(this.rdoDupCapture);
             this.groupBox3.Controls.Add(this.rdoDupNone);
-            this.groupBox3.Location = new System.Drawing.Point(19, 482);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox3.Location = new System.Drawing.Point(15, 375);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(7);
-            this.groupBox3.Size = new System.Drawing.Size(548, 160);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox3.Size = new System.Drawing.Size(426, 124);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "防止双重启动的操作";
@@ -1085,10 +978,10 @@
             // rdoDupCapture
             // 
             this.rdoDupCapture.AutoSize = true;
-            this.rdoDupCapture.Location = new System.Drawing.Point(37, 94);
-            this.rdoDupCapture.Margin = new System.Windows.Forms.Padding(7);
+            this.rdoDupCapture.Location = new System.Drawing.Point(29, 73);
+            this.rdoDupCapture.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rdoDupCapture.Name = "rdoDupCapture";
-            this.rdoDupCapture.Size = new System.Drawing.Size(178, 31);
+            this.rdoDupCapture.Size = new System.Drawing.Size(140, 25);
             this.rdoDupCapture.TabIndex = 1;
             this.rdoDupCapture.Text = "截取参考图";
             this.toolTip1.SetToolTip(this.rdoDupCapture, "如果您尝试重复启动SETUNA，则开始截取。");
@@ -1098,10 +991,10 @@
             // 
             this.rdoDupNone.AutoSize = true;
             this.rdoDupNone.Checked = true;
-            this.rdoDupNone.Location = new System.Drawing.Point(37, 50);
-            this.rdoDupNone.Margin = new System.Windows.Forms.Padding(7);
+            this.rdoDupNone.Location = new System.Drawing.Point(29, 39);
+            this.rdoDupNone.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rdoDupNone.Name = "rdoDupNone";
-            this.rdoDupNone.Size = new System.Drawing.Size(178, 31);
+            this.rdoDupNone.Size = new System.Drawing.Size(140, 25);
             this.rdoDupNone.TabIndex = 0;
             this.rdoDupNone.TabStop = true;
             this.rdoDupNone.Text = "什么都不做";
@@ -1120,11 +1013,11 @@
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Location = new System.Drawing.Point(19, 171);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox4.Location = new System.Drawing.Point(15, 133);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(7);
-            this.groupBox4.Size = new System.Drawing.Size(548, 297);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox4.Size = new System.Drawing.Size(426, 231);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "截取时的框选范围";
@@ -1132,10 +1025,10 @@
             // rdoSelLineTypeDotted
             // 
             this.rdoSelLineTypeDotted.AutoSize = true;
-            this.rdoSelLineTypeDotted.Location = new System.Drawing.Point(390, 104);
-            this.rdoSelLineTypeDotted.Margin = new System.Windows.Forms.Padding(7);
+            this.rdoSelLineTypeDotted.Location = new System.Drawing.Point(303, 81);
+            this.rdoSelLineTypeDotted.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rdoSelLineTypeDotted.Name = "rdoSelLineTypeDotted";
-            this.rdoSelLineTypeDotted.Size = new System.Drawing.Size(97, 31);
+            this.rdoSelLineTypeDotted.Size = new System.Drawing.Size(77, 25);
             this.rdoSelLineTypeDotted.TabIndex = 3;
             this.rdoSelLineTypeDotted.Text = "虚线";
             this.toolTip1.SetToolTip(this.rdoSelLineTypeDotted, "设置框选范围的边框线的类型。");
@@ -1145,10 +1038,10 @@
             // 
             this.rdoSelLineTypeSolid.AutoSize = true;
             this.rdoSelLineTypeSolid.Checked = true;
-            this.rdoSelLineTypeSolid.Location = new System.Drawing.Point(275, 106);
-            this.rdoSelLineTypeSolid.Margin = new System.Windows.Forms.Padding(7);
+            this.rdoSelLineTypeSolid.Location = new System.Drawing.Point(214, 82);
+            this.rdoSelLineTypeSolid.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.rdoSelLineTypeSolid.Name = "rdoSelLineTypeSolid";
-            this.rdoSelLineTypeSolid.Size = new System.Drawing.Size(97, 31);
+            this.rdoSelLineTypeSolid.Size = new System.Drawing.Size(77, 25);
             this.rdoSelLineTypeSolid.TabIndex = 2;
             this.rdoSelLineTypeSolid.TabStop = true;
             this.rdoSelLineTypeSolid.Text = "实线";
@@ -1158,19 +1051,19 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(385, 218);
-            this.label12.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label12.Location = new System.Drawing.Point(299, 170);
+            this.label12.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(26, 27);
+            this.label12.Size = new System.Drawing.Size(21, 21);
             this.label12.TabIndex = 7;
             this.label12.Text = "%";
             // 
             // numSelectAreaTrans
             // 
-            this.numSelectAreaTrans.Location = new System.Drawing.Point(275, 214);
-            this.numSelectAreaTrans.Margin = new System.Windows.Forms.Padding(7);
+            this.numSelectAreaTrans.Location = new System.Drawing.Point(214, 166);
+            this.numSelectAreaTrans.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.numSelectAreaTrans.Name = "numSelectAreaTrans";
-            this.numSelectAreaTrans.Size = new System.Drawing.Size(96, 38);
+            this.numSelectAreaTrans.Size = new System.Drawing.Size(75, 31);
             this.numSelectAreaTrans.TabIndex = 6;
             this.toolTip1.SetToolTip(this.numSelectAreaTrans, "设置框选范围填充颜色的透明度。\n选择透明度100％时可提高响应速度。");
             this.numSelectAreaTrans.Value = new decimal(new int[] {
@@ -1184,10 +1077,10 @@
             this.picSelectAreaBackColor.BackColor = System.Drawing.Color.AliceBlue;
             this.picSelectAreaBackColor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.picSelectAreaBackColor.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picSelectAreaBackColor.Location = new System.Drawing.Point(275, 158);
-            this.picSelectAreaBackColor.Margin = new System.Windows.Forms.Padding(7);
+            this.picSelectAreaBackColor.Location = new System.Drawing.Point(214, 123);
+            this.picSelectAreaBackColor.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.picSelectAreaBackColor.Name = "picSelectAreaBackColor";
-            this.picSelectAreaBackColor.Size = new System.Drawing.Size(69, 36);
+            this.picSelectAreaBackColor.Size = new System.Drawing.Size(55, 29);
             this.picSelectAreaBackColor.TabIndex = 10;
             this.picSelectAreaBackColor.TabStop = false;
             this.toolTip1.SetToolTip(this.picSelectAreaBackColor, "设置全面填充框选范围的颜色。\n不全面涂抹的情况设置透明度为100％。");
@@ -1198,10 +1091,10 @@
             this.picSelectAreaLineColor.BackColor = System.Drawing.Color.Blue;
             this.picSelectAreaLineColor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.picSelectAreaLineColor.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picSelectAreaLineColor.Location = new System.Drawing.Point(275, 50);
-            this.picSelectAreaLineColor.Margin = new System.Windows.Forms.Padding(7);
+            this.picSelectAreaLineColor.Location = new System.Drawing.Point(214, 39);
+            this.picSelectAreaLineColor.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.picSelectAreaLineColor.Name = "picSelectAreaLineColor";
-            this.picSelectAreaLineColor.Size = new System.Drawing.Size(69, 36);
+            this.picSelectAreaLineColor.Size = new System.Drawing.Size(55, 29);
             this.picSelectAreaLineColor.TabIndex = 9;
             this.picSelectAreaLineColor.TabStop = false;
             this.toolTip1.SetToolTip(this.picSelectAreaLineColor, "指定框选范围的边框线的颜色。");
@@ -1210,40 +1103,40 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(37, 218);
-            this.label10.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label10.Location = new System.Drawing.Point(29, 170);
+            this.label10.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(255, 27);
+            this.label10.Size = new System.Drawing.Size(199, 21);
             this.label10.TabIndex = 5;
             this.label10.Text = "框选范围的透明度：";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(37, 164);
-            this.label9.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label9.Location = new System.Drawing.Point(29, 128);
+            this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(228, 27);
+            this.label9.Size = new System.Drawing.Size(178, 21);
             this.label9.TabIndex = 4;
             this.label9.Text = "框选范围的颜色：";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(37, 54);
-            this.label8.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label8.Location = new System.Drawing.Point(29, 42);
+            this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(201, 27);
+            this.label8.Size = new System.Drawing.Size(157, 21);
             this.label8.TabIndex = 0;
             this.label8.Text = "框选线的颜色∶";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(37, 108);
-            this.label7.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label7.Location = new System.Drawing.Point(29, 84);
+            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(201, 27);
+            this.label7.Size = new System.Drawing.Size(157, 21);
             this.label7.TabIndex = 1;
             this.label7.Text = "框选线的种类∶";
             // 
@@ -1253,11 +1146,11 @@
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.hotkeyControl1);
-            this.groupBox2.Location = new System.Drawing.Point(19, 18);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox2.Location = new System.Drawing.Point(15, 14);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(23, 16, 7, 7);
-            this.groupBox2.Size = new System.Drawing.Size(987, 140);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(18, 12, 5, 5);
+            this.groupBox2.Size = new System.Drawing.Size(768, 109);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "快捷键设置";
@@ -1265,10 +1158,10 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(562, 58);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(7);
+            this.checkBox1.Location = new System.Drawing.Point(437, 45);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(179, 31);
+            this.checkBox1.Size = new System.Drawing.Size(141, 25);
             this.checkBox1.TabIndex = 2;
             this.checkBox1.Text = "启用快捷键";
             this.toolTip1.SetToolTip(this.checkBox1, "要启用快捷键，请勾选。");
@@ -1277,20 +1170,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 61);
-            this.label3.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label3.Location = new System.Drawing.Point(29, 47);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 27);
+            this.label3.Size = new System.Drawing.Size(94, 21);
             this.label3.TabIndex = 1;
             this.label3.Text = "快捷键：";
             // 
             // hotkeyControl1
             // 
             this.hotkeyControl1.Hotkey = System.Windows.Forms.Keys.None;
-            this.hotkeyControl1.Location = new System.Drawing.Point(173, 54);
-            this.hotkeyControl1.Margin = new System.Windows.Forms.Padding(7);
+            this.hotkeyControl1.Location = new System.Drawing.Point(135, 42);
+            this.hotkeyControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.hotkeyControl1.Name = "hotkeyControl1";
-            this.hotkeyControl1.Size = new System.Drawing.Size(350, 43);
+            this.hotkeyControl1.Size = new System.Drawing.Size(272, 33);
             this.hotkeyControl1.TabIndex = 0;
             this.toolTip1.SetToolTip(this.hotkeyControl1, "Ctrl键，Shift键和Alt键，各个键的组合来设置截取的快捷键。\n不能使用其他程序设置的快捷键。");
             // 
@@ -1298,11 +1191,11 @@
             // 
             this.pageScrap.BackColor = System.Drawing.Color.White;
             this.pageScrap.Controls.Add(this.flowLayoutPanel1);
-            this.pageScrap.Location = new System.Drawing.Point(4, 40);
-            this.pageScrap.Margin = new System.Windows.Forms.Padding(7);
+            this.pageScrap.Location = new System.Drawing.Point(4, 34);
+            this.pageScrap.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pageScrap.Name = "pageScrap";
-            this.pageScrap.Padding = new System.Windows.Forms.Padding(7);
-            this.pageScrap.Size = new System.Drawing.Size(1035, 757);
+            this.pageScrap.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pageScrap.Size = new System.Drawing.Size(803, 585);
             this.pageScrap.TabIndex = 2;
             this.pageScrap.Text = "参考图设置";
             this.pageScrap.UseVisualStyleBackColor = true;
@@ -1313,10 +1206,10 @@
             this.flowLayoutPanel1.Controls.Add(this.pnlScrapStyle);
             this.flowLayoutPanel1.Controls.Add(this.panel4);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(7, 7);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(7);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 5);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(989, 680);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(769, 529);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // pnlScrapStyle
@@ -1325,20 +1218,20 @@
             this.pnlScrapStyle.Controls.Add(this.label5);
             this.pnlScrapStyle.Controls.Add(this.cmbCreateStyle);
             this.pnlScrapStyle.Controls.Add(this.label4);
-            this.pnlScrapStyle.Location = new System.Drawing.Point(7, 7);
-            this.pnlScrapStyle.Margin = new System.Windows.Forms.Padding(7);
+            this.pnlScrapStyle.Location = new System.Drawing.Point(5, 5);
+            this.pnlScrapStyle.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pnlScrapStyle.Name = "pnlScrapStyle";
-            this.pnlScrapStyle.Size = new System.Drawing.Size(961, 140);
+            this.pnlScrapStyle.Size = new System.Drawing.Size(747, 109);
             this.pnlScrapStyle.TabIndex = 0;
             // 
             // cmbWClickStyle
             // 
             this.cmbWClickStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbWClickStyle.FormattingEnabled = true;
-            this.cmbWClickStyle.Location = new System.Drawing.Point(380, 86);
-            this.cmbWClickStyle.Margin = new System.Windows.Forms.Padding(7);
+            this.cmbWClickStyle.Location = new System.Drawing.Point(296, 67);
+            this.cmbWClickStyle.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cmbWClickStyle.Name = "cmbWClickStyle";
-            this.cmbWClickStyle.Size = new System.Drawing.Size(429, 35);
+            this.cmbWClickStyle.Size = new System.Drawing.Size(335, 29);
             this.cmbWClickStyle.TabIndex = 3;
             this.toolTip1.SetToolTip(this.cmbWClickStyle, "指定双击参考图时使用的自动操作。");
             this.cmbWClickStyle.SelectionChangeCommitted += new System.EventHandler(this.cmbWClickStyle_SelectionChangeCommitted);
@@ -1346,10 +1239,10 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(47, 86);
-            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label5.Location = new System.Drawing.Point(37, 67);
+            this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 27);
+            this.label5.Size = new System.Drawing.Size(94, 21);
             this.label5.TabIndex = 2;
             this.label5.Text = "双击时∶";
             // 
@@ -1357,10 +1250,10 @@
             // 
             this.cmbCreateStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCreateStyle.FormattingEnabled = true;
-            this.cmbCreateStyle.Location = new System.Drawing.Point(380, 25);
-            this.cmbCreateStyle.Margin = new System.Windows.Forms.Padding(7);
+            this.cmbCreateStyle.Location = new System.Drawing.Point(296, 19);
+            this.cmbCreateStyle.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cmbCreateStyle.Name = "cmbCreateStyle";
-            this.cmbCreateStyle.Size = new System.Drawing.Size(429, 35);
+            this.cmbCreateStyle.Size = new System.Drawing.Size(335, 29);
             this.cmbCreateStyle.TabIndex = 1;
             this.toolTip1.SetToolTip(this.cmbCreateStyle, "您可以指定要创建参考图时使用的自动操作。");
             this.cmbCreateStyle.SelectionChangeCommitted += new System.EventHandler(this.cmbCreateStyle_SelectionChangeCommitted);
@@ -1368,10 +1261,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(47, 32);
-            this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label4.Location = new System.Drawing.Point(37, 25);
+            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(201, 27);
+            this.label4.Size = new System.Drawing.Size(157, 21);
             this.label4.TabIndex = 0;
             this.label4.Text = "基本自动操作：";
             // 
@@ -1379,19 +1272,19 @@
             // 
             this.panel4.Controls.Add(this.chkScrapImageDrag);
             this.panel4.Controls.Add(this.groupBox11);
-            this.panel4.Location = new System.Drawing.Point(7, 161);
-            this.panel4.Margin = new System.Windows.Forms.Padding(7);
+            this.panel4.Location = new System.Drawing.Point(5, 124);
+            this.panel4.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(961, 479);
+            this.panel4.Size = new System.Drawing.Size(747, 373);
             this.panel4.TabIndex = 0;
             // 
             // chkScrapImageDrag
             // 
             this.chkScrapImageDrag.AutoSize = true;
-            this.chkScrapImageDrag.Location = new System.Drawing.Point(51, 7);
-            this.chkScrapImageDrag.Margin = new System.Windows.Forms.Padding(7);
+            this.chkScrapImageDrag.Location = new System.Drawing.Point(40, 5);
+            this.chkScrapImageDrag.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkScrapImageDrag.Name = "chkScrapImageDrag";
-            this.chkScrapImageDrag.Size = new System.Drawing.Size(395, 31);
+            this.chkScrapImageDrag.Size = new System.Drawing.Size(309, 25);
             this.chkScrapImageDrag.TabIndex = 0;
             this.chkScrapImageDrag.Text = "拖动图像文件创建一个参考图";
             this.toolTip1.SetToolTip(this.chkScrapImageDrag, "拖动图像文件到参考图可作为参考图查看。");
@@ -1407,11 +1300,11 @@
             this.groupBox11.Controls.Add(this.label6);
             this.groupBox11.Controls.Add(this.numInactiveAlpha);
             this.groupBox11.Controls.Add(this.chkInactiveAlphaChange);
-            this.groupBox11.Location = new System.Drawing.Point(7, 70);
-            this.groupBox11.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox11.Location = new System.Drawing.Point(5, 54);
+            this.groupBox11.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Padding = new System.Windows.Forms.Padding(7);
-            this.groupBox11.Size = new System.Drawing.Size(947, 277);
+            this.groupBox11.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox11.Size = new System.Drawing.Size(737, 215);
             this.groupBox11.TabIndex = 1;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "非选择时的效果";
@@ -1419,34 +1312,34 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(590, 194);
-            this.label15.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label15.Location = new System.Drawing.Point(459, 151);
+            this.label15.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(26, 27);
+            this.label15.Size = new System.Drawing.Size(21, 21);
             this.label15.TabIndex = 7;
             this.label15.Text = "%";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(590, 86);
-            this.label13.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label13.Location = new System.Drawing.Point(459, 67);
+            this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(26, 27);
+            this.label13.Size = new System.Drawing.Size(21, 21);
             this.label13.TabIndex = 3;
             this.label13.Text = "%";
             // 
             // numMouseOverAlpha
             // 
-            this.numMouseOverAlpha.Location = new System.Drawing.Point(497, 184);
-            this.numMouseOverAlpha.Margin = new System.Windows.Forms.Padding(7);
+            this.numMouseOverAlpha.Location = new System.Drawing.Point(387, 143);
+            this.numMouseOverAlpha.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.numMouseOverAlpha.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numMouseOverAlpha.Name = "numMouseOverAlpha";
-            this.numMouseOverAlpha.Size = new System.Drawing.Size(91, 38);
+            this.numMouseOverAlpha.Size = new System.Drawing.Size(71, 31);
             this.numMouseOverAlpha.TabIndex = 6;
             this.numMouseOverAlpha.Value = new decimal(new int[] {
             1,
@@ -1457,10 +1350,10 @@
             // chkMouseOverAlphaChange
             // 
             this.chkMouseOverAlphaChange.AutoSize = true;
-            this.chkMouseOverAlphaChange.Location = new System.Drawing.Point(114, 191);
-            this.chkMouseOverAlphaChange.Margin = new System.Windows.Forms.Padding(7);
+            this.chkMouseOverAlphaChange.Location = new System.Drawing.Point(89, 149);
+            this.chkMouseOverAlphaChange.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkMouseOverAlphaChange.Name = "chkMouseOverAlphaChange";
-            this.chkMouseOverAlphaChange.Size = new System.Drawing.Size(314, 31);
+            this.chkMouseOverAlphaChange.Size = new System.Drawing.Size(246, 25);
             this.chkMouseOverAlphaChange.TabIndex = 5;
             this.chkMouseOverAlphaChange.Text = "改变参考图的不透明度";
             this.toolTip1.SetToolTip(this.chkMouseOverAlphaChange, "设置鼠标光标处于参考图上时参考图的透明度。\n如果响应速度很慢请关闭。");
@@ -1469,34 +1362,34 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(49, 158);
-            this.label11.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label11.Location = new System.Drawing.Point(38, 123);
+            this.label11.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(147, 27);
+            this.label11.Size = new System.Drawing.Size(115, 21);
             this.label11.TabIndex = 4;
             this.label11.Text = "鼠标触到时";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(49, 52);
-            this.label6.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label6.Location = new System.Drawing.Point(38, 40);
+            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(174, 27);
+            this.label6.Size = new System.Drawing.Size(136, 21);
             this.label6.TabIndex = 0;
             this.label6.Text = "鼠标没触到时";
             // 
             // numInactiveAlpha
             // 
-            this.numInactiveAlpha.Location = new System.Drawing.Point(497, 79);
-            this.numInactiveAlpha.Margin = new System.Windows.Forms.Padding(7);
+            this.numInactiveAlpha.Location = new System.Drawing.Point(387, 61);
+            this.numInactiveAlpha.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.numInactiveAlpha.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numInactiveAlpha.Name = "numInactiveAlpha";
-            this.numInactiveAlpha.Size = new System.Drawing.Size(91, 38);
+            this.numInactiveAlpha.Size = new System.Drawing.Size(71, 31);
             this.numInactiveAlpha.TabIndex = 2;
             this.numInactiveAlpha.Value = new decimal(new int[] {
             1,
@@ -1507,10 +1400,10 @@
             // chkInactiveAlphaChange
             // 
             this.chkInactiveAlphaChange.AutoSize = true;
-            this.chkInactiveAlphaChange.Location = new System.Drawing.Point(114, 86);
-            this.chkInactiveAlphaChange.Margin = new System.Windows.Forms.Padding(7);
+            this.chkInactiveAlphaChange.Location = new System.Drawing.Point(89, 67);
+            this.chkInactiveAlphaChange.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.chkInactiveAlphaChange.Name = "chkInactiveAlphaChange";
-            this.chkInactiveAlphaChange.Size = new System.Drawing.Size(314, 31);
+            this.chkInactiveAlphaChange.Size = new System.Drawing.Size(246, 25);
             this.chkInactiveAlphaChange.TabIndex = 1;
             this.chkInactiveAlphaChange.Text = "改变参考图的不透明度";
             this.toolTip1.SetToolTip(this.chkInactiveAlphaChange, "设置鼠标光标离开参考图上后参考图的透明度。\n如果响应速度很慢请关闭。");
@@ -1520,11 +1413,11 @@
             // 
             this.pageStyle.BackColor = System.Drawing.Color.White;
             this.pageStyle.Controls.Add(this.groupBox1);
-            this.pageStyle.Location = new System.Drawing.Point(4, 40);
+            this.pageStyle.Location = new System.Drawing.Point(4, 34);
             this.pageStyle.Margin = new System.Windows.Forms.Padding(0);
             this.pageStyle.Name = "pageStyle";
-            this.pageStyle.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.pageStyle.Size = new System.Drawing.Size(1035, 757);
+            this.pageStyle.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.pageStyle.Size = new System.Drawing.Size(803, 585);
             this.pageStyle.TabIndex = 0;
             this.pageStyle.Text = "编辑自动操作";
             this.pageStyle.UseVisualStyleBackColor = true;
@@ -1540,21 +1433,21 @@
             this.groupBox1.Controls.Add(this.listStyleItems);
             this.groupBox1.Controls.Add(this.btnDeleteStyle);
             this.groupBox1.Controls.Add(this.btnNewStyle);
-            this.groupBox1.Location = new System.Drawing.Point(19, 18);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox1.Location = new System.Drawing.Point(15, 14);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(7);
-            this.groupBox1.Size = new System.Drawing.Size(987, 691);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox1.Size = new System.Drawing.Size(768, 537);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "自动操作列表";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(530, 40);
-            this.button1.Margin = new System.Windows.Forms.Padding(7);
+            this.button1.Location = new System.Drawing.Point(412, 31);
+            this.button1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(147, 58);
+            this.button1.Size = new System.Drawing.Size(114, 45);
             this.button1.TabIndex = 8;
             this.button1.Text = "复制";
             this.button1.UseVisualStyleBackColor = true;
@@ -1571,10 +1464,10 @@
             this.listStyles.ItemLine = false;
             this.listStyles.ItemLineColor = System.Drawing.Color.Gray;
             this.listStyles.LeftSpace = 2;
-            this.listStyles.Location = new System.Drawing.Point(47, 110);
-            this.listStyles.Margin = new System.Windows.Forms.Padding(7);
+            this.listStyles.Location = new System.Drawing.Point(37, 86);
+            this.listStyles.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.listStyles.Name = "listStyles";
-            this.listStyles.Size = new System.Drawing.Size(464, 524);
+            this.listStyles.Size = new System.Drawing.Size(362, 404);
             this.listStyles.TabIndex = 3;
             this.listStyles.SelectedIndexChanged += new System.EventHandler(this.listStyles_SelectedIndexChanged);
             this.listStyles.DoubleClick += new System.EventHandler(this.listStyles_DoubleClick);
@@ -1584,39 +1477,39 @@
             this.listKeyItems.BackColor = System.Drawing.Color.White;
             this.listKeyItems.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listKeyItems.FormattingEnabled = true;
-            this.listKeyItems.ItemHeight = 27;
-            this.listKeyItems.Location = new System.Drawing.Point(553, 459);
-            this.listKeyItems.Margin = new System.Windows.Forms.Padding(7);
+            this.listKeyItems.ItemHeight = 21;
+            this.listKeyItems.Location = new System.Drawing.Point(430, 357);
+            this.listKeyItems.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.listKeyItems.Name = "listKeyItems";
-            this.listKeyItems.Size = new System.Drawing.Size(415, 193);
+            this.listKeyItems.Size = new System.Drawing.Size(324, 151);
             this.listKeyItems.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(548, 423);
-            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label2.Location = new System.Drawing.Point(426, 329);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(174, 27);
+            this.label2.Size = new System.Drawing.Size(136, 21);
             this.label2.TabIndex = 6;
             this.label2.Text = "快捷键分配：";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(548, 133);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.label1.Location = new System.Drawing.Point(426, 103);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(228, 27);
+            this.label1.Size = new System.Drawing.Size(178, 21);
             this.label1.TabIndex = 4;
             this.label1.Text = "自动操作的构成：";
             // 
             // btnEditStyle
             // 
-            this.btnEditStyle.Location = new System.Drawing.Point(208, 40);
-            this.btnEditStyle.Margin = new System.Windows.Forms.Padding(7);
+            this.btnEditStyle.Location = new System.Drawing.Point(162, 31);
+            this.btnEditStyle.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnEditStyle.Name = "btnEditStyle";
-            this.btnEditStyle.Size = new System.Drawing.Size(147, 58);
+            this.btnEditStyle.Size = new System.Drawing.Size(114, 45);
             this.btnEditStyle.TabIndex = 1;
             this.btnEditStyle.Tag = " ";
             this.btnEditStyle.Text = "编辑";
@@ -1628,19 +1521,19 @@
             this.listStyleItems.BackColor = System.Drawing.Color.White;
             this.listStyleItems.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listStyleItems.FormattingEnabled = true;
-            this.listStyleItems.ItemHeight = 27;
-            this.listStyleItems.Location = new System.Drawing.Point(553, 171);
-            this.listStyleItems.Margin = new System.Windows.Forms.Padding(7);
+            this.listStyleItems.ItemHeight = 21;
+            this.listStyleItems.Location = new System.Drawing.Point(430, 133);
+            this.listStyleItems.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.listStyleItems.Name = "listStyleItems";
-            this.listStyleItems.Size = new System.Drawing.Size(415, 220);
+            this.listStyleItems.Size = new System.Drawing.Size(324, 172);
             this.listStyleItems.TabIndex = 5;
             // 
             // btnDeleteStyle
             // 
-            this.btnDeleteStyle.Location = new System.Drawing.Point(369, 40);
-            this.btnDeleteStyle.Margin = new System.Windows.Forms.Padding(7);
+            this.btnDeleteStyle.Location = new System.Drawing.Point(287, 31);
+            this.btnDeleteStyle.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnDeleteStyle.Name = "btnDeleteStyle";
-            this.btnDeleteStyle.Size = new System.Drawing.Size(147, 58);
+            this.btnDeleteStyle.Size = new System.Drawing.Size(114, 45);
             this.btnDeleteStyle.TabIndex = 2;
             this.btnDeleteStyle.Text = "删除";
             this.btnDeleteStyle.UseVisualStyleBackColor = true;
@@ -1648,10 +1541,10 @@
             // 
             // btnNewStyle
             // 
-            this.btnNewStyle.Location = new System.Drawing.Point(47, 40);
-            this.btnNewStyle.Margin = new System.Windows.Forms.Padding(7);
+            this.btnNewStyle.Location = new System.Drawing.Point(37, 31);
+            this.btnNewStyle.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnNewStyle.Name = "btnNewStyle";
-            this.btnNewStyle.Size = new System.Drawing.Size(147, 58);
+            this.btnNewStyle.Size = new System.Drawing.Size(114, 45);
             this.btnNewStyle.TabIndex = 0;
             this.btnNewStyle.Text = "新建";
             this.btnNewStyle.UseVisualStyleBackColor = true;
@@ -1664,21 +1557,21 @@
             this.pageScrapMenu.Controls.Add(this.groupBox10);
             this.pageScrapMenu.Controls.Add(this.groupBox9);
             this.pageScrapMenu.Controls.Add(this.groupBox8);
-            this.pageScrapMenu.Location = new System.Drawing.Point(4, 40);
-            this.pageScrapMenu.Margin = new System.Windows.Forms.Padding(7);
+            this.pageScrapMenu.Location = new System.Drawing.Point(4, 34);
+            this.pageScrapMenu.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pageScrapMenu.Name = "pageScrapMenu";
-            this.pageScrapMenu.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.pageScrapMenu.Size = new System.Drawing.Size(1035, 757);
+            this.pageScrapMenu.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.pageScrapMenu.Size = new System.Drawing.Size(803, 585);
             this.pageScrapMenu.TabIndex = 3;
             this.pageScrapMenu.Text = "参考图菜单";
             this.pageScrapMenu.UseVisualStyleBackColor = true;
             // 
             // btnScrapMenuMove
             // 
-            this.btnScrapMenuMove.Location = new System.Drawing.Point(457, 58);
-            this.btnScrapMenuMove.Margin = new System.Windows.Forms.Padding(7);
+            this.btnScrapMenuMove.Location = new System.Drawing.Point(355, 45);
+            this.btnScrapMenuMove.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnScrapMenuMove.Name = "btnScrapMenuMove";
-            this.btnScrapMenuMove.Size = new System.Drawing.Size(112, 628);
+            this.btnScrapMenuMove.Size = new System.Drawing.Size(87, 488);
             this.btnScrapMenuMove.TabIndex = 2;
             this.btnScrapMenuMove.Text = ">>";
             this.btnScrapMenuMove.UseVisualStyleBackColor = true;
@@ -1687,11 +1580,11 @@
             // groupBox10
             // 
             this.groupBox10.Controls.Add(this.listScrapMenuList);
-            this.groupBox10.Location = new System.Drawing.Point(583, 18);
-            this.groupBox10.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox10.Location = new System.Drawing.Point(453, 14);
+            this.groupBox10.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Padding = new System.Windows.Forms.Padding(12, 7, 12, 7);
-            this.groupBox10.Size = new System.Drawing.Size(422, 686);
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(9, 5, 9, 5);
+            this.groupBox10.Size = new System.Drawing.Size(328, 534);
             this.groupBox10.TabIndex = 3;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "参考图菜单";
@@ -1708,21 +1601,21 @@
             this.listScrapMenuList.ItemLine = false;
             this.listScrapMenuList.ItemLineColor = System.Drawing.Color.Gray;
             this.listScrapMenuList.LeftSpace = 2;
-            this.listScrapMenuList.Location = new System.Drawing.Point(19, 40);
-            this.listScrapMenuList.Margin = new System.Windows.Forms.Padding(7);
+            this.listScrapMenuList.Location = new System.Drawing.Point(15, 31);
+            this.listScrapMenuList.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.listScrapMenuList.Name = "listScrapMenuList";
-            this.listScrapMenuList.Size = new System.Drawing.Size(380, 623);
+            this.listScrapMenuList.Size = new System.Drawing.Size(296, 485);
             this.listScrapMenuList.TabIndex = 0;
             this.toolTip1.SetToolTip(this.listScrapMenuList, "右键单击参考图时显示的菜单结构。");
             // 
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.listScrapMenuItems);
-            this.groupBox9.Location = new System.Drawing.Point(19, 457);
-            this.groupBox9.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox9.Location = new System.Drawing.Point(15, 355);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Padding = new System.Windows.Forms.Padding(12, 7, 12, 7);
-            this.groupBox9.Size = new System.Drawing.Size(425, 248);
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(9, 5, 9, 5);
+            this.groupBox9.Size = new System.Drawing.Size(331, 193);
             this.groupBox9.TabIndex = 1;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "其他";
@@ -1738,10 +1631,10 @@
             this.listScrapMenuItems.ItemLine = false;
             this.listScrapMenuItems.ItemLineColor = System.Drawing.Color.Gray;
             this.listScrapMenuItems.LeftSpace = 2;
-            this.listScrapMenuItems.Location = new System.Drawing.Point(19, 40);
-            this.listScrapMenuItems.Margin = new System.Windows.Forms.Padding(7);
+            this.listScrapMenuItems.Location = new System.Drawing.Point(15, 31);
+            this.listScrapMenuItems.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.listScrapMenuItems.Name = "listScrapMenuItems";
-            this.listScrapMenuItems.Size = new System.Drawing.Size(382, 164);
+            this.listScrapMenuItems.Size = new System.Drawing.Size(298, 124);
             this.listScrapMenuItems.TabIndex = 0;
             this.listScrapMenuItems.Enter += new System.EventHandler(this.listScrapMenuItems_Enter);
             this.listScrapMenuItems.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listScrapMenuItems_MouseDoubleClick);
@@ -1749,11 +1642,11 @@
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.listScrapMenuStyles);
-            this.groupBox8.Location = new System.Drawing.Point(19, 18);
-            this.groupBox8.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox8.Location = new System.Drawing.Point(15, 14);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Padding = new System.Windows.Forms.Padding(12, 7, 12, 7);
-            this.groupBox8.Size = new System.Drawing.Size(425, 425);
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(9, 5, 9, 5);
+            this.groupBox8.Size = new System.Drawing.Size(331, 331);
             this.groupBox8.TabIndex = 0;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "自动操作列表";
@@ -1769,10 +1662,10 @@
             this.listScrapMenuStyles.ItemLine = false;
             this.listScrapMenuStyles.ItemLineColor = System.Drawing.Color.Gray;
             this.listScrapMenuStyles.LeftSpace = 2;
-            this.listScrapMenuStyles.Location = new System.Drawing.Point(19, 40);
-            this.listScrapMenuStyles.Margin = new System.Windows.Forms.Padding(7);
+            this.listScrapMenuStyles.Location = new System.Drawing.Point(15, 31);
+            this.listScrapMenuStyles.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.listScrapMenuStyles.Name = "listScrapMenuStyles";
-            this.listScrapMenuStyles.Size = new System.Drawing.Size(382, 364);
+            this.listScrapMenuStyles.Size = new System.Drawing.Size(298, 284);
             this.listScrapMenuStyles.TabIndex = 0;
             this.listScrapMenuStyles.Enter += new System.EventHandler(this.listScrapMenuStyles_Enter);
             this.listScrapMenuStyles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listScrapMenuStyles_MouseDoubleClick);
@@ -1782,38 +1675,14 @@
             this.pageDPISetting.BackColor = System.Drawing.Color.White;
             this.pageDPISetting.Controls.Add(this.groupBox15);
             this.pageDPISetting.Controls.Add(this.groupBox14);
-            this.pageDPISetting.Location = new System.Drawing.Point(4, 40);
-            this.pageDPISetting.Margin = new System.Windows.Forms.Padding(7);
+            this.pageDPISetting.Location = new System.Drawing.Point(4, 34);
+            this.pageDPISetting.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pageDPISetting.Name = "pageDPISetting";
-            this.pageDPISetting.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
-            this.pageDPISetting.Size = new System.Drawing.Size(1035, 757);
+            this.pageDPISetting.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.pageDPISetting.Size = new System.Drawing.Size(803, 585);
             this.pageDPISetting.TabIndex = 3;
             this.pageDPISetting.Text = "显示器DPI设置";
             this.pageDPISetting.UseVisualStyleBackColor = true;
-            // 
-            // groupBox14
-            // 
-            this.groupBox14.Controls.Add(this.label17);
-            this.groupBox14.Location = new System.Drawing.Point(19, 18);
-            this.groupBox14.Margin = new System.Windows.Forms.Padding(7);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Padding = new System.Windows.Forms.Padding(7);
-            this.groupBox14.Size = new System.Drawing.Size(987, 197);
-            this.groupBox14.TabIndex = 11;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "说明";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label17.Location = new System.Drawing.Point(36, 47);
-            this.label17.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(702, 135);
-            this.label17.TabIndex = 12;
-            this.label17.Text = "由于获取其他显示器（不是主显示器）DPI需要以下条件：\r\n    1、Win10周年更新以上\r\n    2、.Net Framework 4.7以上\r\n\r\n所以直" +
-    "接改成手动配置DPI\r\n";
             // 
             // groupBox15
             // 
@@ -1826,86 +1695,21 @@
             this.groupBox15.Controls.Add(this.label19);
             this.groupBox15.Controls.Add(this.Dpi1Txt);
             this.groupBox15.Controls.Add(this.label18);
-            this.groupBox15.Location = new System.Drawing.Point(19, 229);
-            this.groupBox15.Margin = new System.Windows.Forms.Padding(7);
+            this.groupBox15.Location = new System.Drawing.Point(15, 178);
+            this.groupBox15.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Padding = new System.Windows.Forms.Padding(7);
-            this.groupBox15.Size = new System.Drawing.Size(987, 374);
+            this.groupBox15.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox15.Size = new System.Drawing.Size(768, 291);
             this.groupBox15.TabIndex = 12;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "DPI配置";
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.Location = new System.Drawing.Point(35, 123);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(231, 33);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "主显示器DPI：";
-            // 
-            // Dpi1Txt
-            // 
-            this.Dpi1Txt.Location = new System.Drawing.Point(324, 118);
-            this.Dpi1Txt.Name = "Dpi1Txt";
-            this.Dpi1Txt.Size = new System.Drawing.Size(173, 38);
-            this.Dpi1Txt.TabIndex = 1;
-            this.Dpi1Txt.Text = "1.0";
-            this.Dpi1Txt.Validated += new System.EventHandler(this.Dpi1Txt_Validated);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(36, 38);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(807, 54);
-            this.label19.TabIndex = 2;
-            this.label19.Text = "填写说明：1.0 <= DPI数值 <= 5.0（例如缩放250%，则填写2.5）\r\n如果分不清是哪台显示器，打开Windows设置->系统->显示";
-            // 
-            // Dpi2Txt
-            // 
-            this.Dpi2Txt.Location = new System.Drawing.Point(324, 178);
-            this.Dpi2Txt.Name = "Dpi2Txt";
-            this.Dpi2Txt.Size = new System.Drawing.Size(173, 38);
-            this.Dpi2Txt.TabIndex = 4;
-            this.Dpi2Txt.Text = "1.0";
-            this.Dpi2Txt.Validated += new System.EventHandler(this.Dpi2Txt_Validated);
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label20.Location = new System.Drawing.Point(35, 183);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(264, 33);
-            this.label20.TabIndex = 3;
-            this.label20.Text = "第二显示器DPI：";
-            // 
-            // Dpi3Txt
-            // 
-            this.Dpi3Txt.Location = new System.Drawing.Point(324, 237);
-            this.Dpi3Txt.Name = "Dpi3Txt";
-            this.Dpi3Txt.Size = new System.Drawing.Size(173, 38);
-            this.Dpi3Txt.TabIndex = 6;
-            this.Dpi3Txt.Text = "1.0";
-            this.Dpi3Txt.Validated += new System.EventHandler(this.Dpi3Txt_Validated);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label21.Location = new System.Drawing.Point(35, 242);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(264, 33);
-            this.label21.TabIndex = 5;
-            this.label21.Text = "第三显示器DPI：";
-            // 
             // Dpi4Txt
             // 
-            this.Dpi4Txt.Location = new System.Drawing.Point(324, 302);
+            this.Dpi4Txt.Location = new System.Drawing.Point(252, 235);
+            this.Dpi4Txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Dpi4Txt.Name = "Dpi4Txt";
-            this.Dpi4Txt.Size = new System.Drawing.Size(173, 38);
+            this.Dpi4Txt.Size = new System.Drawing.Size(135, 31);
             this.Dpi4Txt.TabIndex = 8;
             this.Dpi4Txt.Text = "1.0";
             this.Dpi4Txt.Validated += new System.EventHandler(this.Dpi4Txt_Validated);
@@ -1914,22 +1718,256 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label22.Location = new System.Drawing.Point(35, 307);
+            this.label22.Location = new System.Drawing.Point(27, 239);
+            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(264, 33);
+            this.label22.Size = new System.Drawing.Size(207, 26);
             this.label22.TabIndex = 7;
             this.label22.Text = "第四显示器DPI：";
             // 
+            // Dpi3Txt
+            // 
+            this.Dpi3Txt.Location = new System.Drawing.Point(252, 184);
+            this.Dpi3Txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Dpi3Txt.Name = "Dpi3Txt";
+            this.Dpi3Txt.Size = new System.Drawing.Size(135, 31);
+            this.Dpi3Txt.TabIndex = 6;
+            this.Dpi3Txt.Text = "1.0";
+            this.Dpi3Txt.Validated += new System.EventHandler(this.Dpi3Txt_Validated);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label21.Location = new System.Drawing.Point(27, 188);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(207, 26);
+            this.label21.TabIndex = 5;
+            this.label21.Text = "第三显示器DPI：";
+            // 
+            // Dpi2Txt
+            // 
+            this.Dpi2Txt.Location = new System.Drawing.Point(252, 138);
+            this.Dpi2Txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Dpi2Txt.Name = "Dpi2Txt";
+            this.Dpi2Txt.Size = new System.Drawing.Size(135, 31);
+            this.Dpi2Txt.TabIndex = 4;
+            this.Dpi2Txt.Text = "1.0";
+            this.Dpi2Txt.Validated += new System.EventHandler(this.Dpi2Txt_Validated);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label20.Location = new System.Drawing.Point(27, 142);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(207, 26);
+            this.label20.TabIndex = 3;
+            this.label20.Text = "第二显示器DPI：";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(28, 30);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(631, 42);
+            this.label19.TabIndex = 2;
+            this.label19.Text = "填写说明：1.0 <= DPI数值 <= 5.0（例如缩放250%，则填写2.5）\r\n如果分不清是哪台显示器，打开Windows设置->系统->显示";
+            // 
+            // Dpi1Txt
+            // 
+            this.Dpi1Txt.Location = new System.Drawing.Point(252, 92);
+            this.Dpi1Txt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Dpi1Txt.Name = "Dpi1Txt";
+            this.Dpi1Txt.Size = new System.Drawing.Size(135, 31);
+            this.Dpi1Txt.TabIndex = 1;
+            this.Dpi1Txt.Text = "1.0";
+            this.Dpi1Txt.Validated += new System.EventHandler(this.Dpi1Txt_Validated);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("宋体", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.Location = new System.Drawing.Point(27, 96);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(181, 26);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "主显示器DPI：";
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.label17);
+            this.groupBox14.Location = new System.Drawing.Point(15, 14);
+            this.groupBox14.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox14.Size = new System.Drawing.Size(768, 153);
+            this.groupBox14.TabIndex = 11;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "说明";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label17.Location = new System.Drawing.Point(28, 37);
+            this.label17.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(547, 105);
+            this.label17.TabIndex = 12;
+            this.label17.Text = "由于获取其他显示器（不是主显示器）DPI需要以下条件：\r\n    1、Win10周年更新以上\r\n    2、.Net Framework 4.7以上\r\n\r\n所以直" +
+    "接改成手动配置DPI\r\n";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(163)))), ((int)(((byte)(236)))));
+            this.panel1.Controls.Add(this.lblMenuStyle);
+            this.panel1.Controls.Add(this.lblMenuCapture);
+            this.panel1.Controls.Add(this.lblMenuMenu);
+            this.panel1.Controls.Add(this.lblMenuScrap);
+            this.panel1.Controls.Add(this.lblMenuDPI);
+            this.panel1.Controls.Add(this.lblMenuAll);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(234, 630);
+            this.panel1.TabIndex = 1;
+            // 
+            // lblMenuStyle
+            // 
+            this.lblMenuStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuStyle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuStyle.ForeColor = System.Drawing.Color.White;
+            this.lblMenuStyle.Location = new System.Drawing.Point(49, 123);
+            this.lblMenuStyle.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblMenuStyle.Name = "lblMenuStyle";
+            this.lblMenuStyle.Size = new System.Drawing.Size(181, 25);
+            this.lblMenuStyle.TabIndex = 2;
+            this.lblMenuStyle.Text = "创建自动操作";
+            this.lblMenuStyle.Click += new System.EventHandler(this.lblMenuStyle_Click);
+            this.lblMenuStyle.MouseEnter += new System.EventHandler(this.lblMenuStyle_MouseEnter);
+            this.lblMenuStyle.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
+            // 
+            // lblMenuCapture
+            // 
+            this.lblMenuCapture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuCapture.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuCapture.ForeColor = System.Drawing.Color.White;
+            this.lblMenuCapture.Location = new System.Drawing.Point(22, 53);
+            this.lblMenuCapture.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblMenuCapture.Name = "lblMenuCapture";
+            this.lblMenuCapture.Size = new System.Drawing.Size(181, 25);
+            this.lblMenuCapture.TabIndex = 5;
+            this.lblMenuCapture.Text = "截取设置";
+            this.lblMenuCapture.Click += new System.EventHandler(this.lblMenuCapture_Click);
+            this.lblMenuCapture.MouseEnter += new System.EventHandler(this.lblMenuCapture_MouseEnter);
+            this.lblMenuCapture.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
+            // 
+            // lblMenuMenu
+            // 
+            this.lblMenuMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuMenu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuMenu.ForeColor = System.Drawing.Color.White;
+            this.lblMenuMenu.Location = new System.Drawing.Point(49, 157);
+            this.lblMenuMenu.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblMenuMenu.Name = "lblMenuMenu";
+            this.lblMenuMenu.Size = new System.Drawing.Size(181, 25);
+            this.lblMenuMenu.TabIndex = 3;
+            this.lblMenuMenu.Text = "参考图菜单";
+            this.lblMenuMenu.Click += new System.EventHandler(this.lblMenuMenu_Click);
+            this.lblMenuMenu.MouseEnter += new System.EventHandler(this.lblMenuMenu_MouseEnter);
+            this.lblMenuMenu.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
+            // 
+            // lblMenuScrap
+            // 
+            this.lblMenuScrap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuScrap.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuScrap.ForeColor = System.Drawing.Color.White;
+            this.lblMenuScrap.Location = new System.Drawing.Point(22, 87);
+            this.lblMenuScrap.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblMenuScrap.Name = "lblMenuScrap";
+            this.lblMenuScrap.Size = new System.Drawing.Size(181, 25);
+            this.lblMenuScrap.TabIndex = 1;
+            this.lblMenuScrap.Text = "参考图设置";
+            this.lblMenuScrap.Click += new System.EventHandler(this.lblMenuScrap_Click);
+            this.lblMenuScrap.MouseEnter += new System.EventHandler(this.lblMenuScrap_MouseEnter);
+            this.lblMenuScrap.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
+            // 
+            // lblMenuDPI
+            // 
+            this.lblMenuDPI.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuDPI.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuDPI.ForeColor = System.Drawing.Color.White;
+            this.lblMenuDPI.Location = new System.Drawing.Point(22, 191);
+            this.lblMenuDPI.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblMenuDPI.Name = "lblMenuDPI";
+            this.lblMenuDPI.Size = new System.Drawing.Size(181, 25);
+            this.lblMenuDPI.TabIndex = 4;
+            this.lblMenuDPI.Text = "显示器DPI设置";
+            this.lblMenuDPI.Click += new System.EventHandler(this.lblMenuDPI_Click);
+            this.lblMenuDPI.MouseEnter += new System.EventHandler(this.lblMenuDPI_MouseEnter);
+            this.lblMenuDPI.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
+            // 
+            // lblMenuAll
+            // 
+            this.lblMenuAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuAll.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblMenuAll.ForeColor = System.Drawing.Color.White;
+            this.lblMenuAll.Location = new System.Drawing.Point(22, 17);
+            this.lblMenuAll.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblMenuAll.Name = "lblMenuAll";
+            this.lblMenuAll.Size = new System.Drawing.Size(181, 26);
+            this.lblMenuAll.TabIndex = 0;
+            this.lblMenuAll.Text = "常规";
+            this.lblMenuAll.Click += new System.EventHandler(this.lblMenuAll_Click);
+            this.lblMenuAll.MouseEnter += new System.EventHandler(this.lblMenuAll_MouseEnter);
+            this.lblMenuAll.MouseLeave += new System.EventHandler(this.lblMenu_Clear);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(234, 630);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(547, 39);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(5);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(162, 25);
+            this.checkBox3.TabIndex = 9;
+            this.checkBox3.Text = "截图始终置顶";
+            this.toolTip1.SetToolTip(this.checkBox3, "截图会一直保持置顶，如果不需要始终置顶，单击任务栏图标也会置顶一次截图");
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
             // OptionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(216F, 216F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(168F, 168F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1353, 900);
+            this.ClientSize = new System.Drawing.Size(1052, 700);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(7);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "OptionForm";
@@ -1940,8 +1978,6 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.detailPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.pageAll.ResumeLayout(false);
             this.groupBox13.ResumeLayout(false);
@@ -1982,10 +2018,12 @@
             this.groupBox9.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.pageDPISetting.ResumeLayout(false);
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
             this.groupBox15.ResumeLayout(false);
             this.groupBox15.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2149,6 +2187,7 @@
             this.hotkeyControl1.Hotkey = (Keys)this._so.ScrapHotKey;
             this.checkBox1.Checked = this._so.ScrapHotKeyEnable;
             this.checkBox2.Checked = AutoStartup.Check();
+            this.checkBox3.Checked = this._so.alwaysTopMost;
             this.rdoSelLineTypeSolid.Checked = this._so.Setuna.SelectLineSolid;
             this.rdoSelLineTypeDotted.Checked = !this._so.Setuna.SelectLineSolid;
             this.picSelectAreaLineColor.BackColor = this._so.Setuna.SelectLineColor;
@@ -2359,6 +2398,7 @@
             this._so.ScrapHotKey = (int)this.hotkeyControl1.Hotkey;
             this._so.ScrapHotKeyEnable = this.checkBox1.Checked;
             AutoStartup.Set(this.checkBox2.Checked);
+            this._so.alwaysTopMost = this.checkBox3.Checked;
             if (this.rdoExeTypeApp.Checked)
             {
                 this._so.Setuna.AppType = SetunaOption.SetunaOptionData.ApplicationType.ApplicationMode;
@@ -2493,6 +2533,11 @@
             {
                 tDpiTxts[tIndex].ReadOnly = true;
             }
+        }
+
+        static public implicit operator bool(OptionForm pForm)
+        {
+            return pForm != null && !pForm.IsDisposed;
         }
     }
 }

@@ -14,14 +14,28 @@
     using System.IO;
     using System.Resources;
     using System.Runtime.CompilerServices;
+    using System.Runtime.InteropServices;
     using System.Windows.Forms;
     using System.Xml.Serialization;
 
     public sealed class Mainform : Form, IScrapKeyPressEventListener, IScrapAddedListener, IScrapRemovedListener, IScrapStyleListener, IScrapMenuListener, ISingletonForm
     {
+        static Mainform sInstance;
+        static public Mainform instance
+        {
+            get
+            {
+                if (sInstance == null)
+                {
+                    sInstance = new Mainform();
+                }
+                return sInstance;
+            }
+        }
+
         private Queue<ScrapSource> _imgpool;
         private bool _iscapture = false;
-        private bool _isoption = false;
+        private OptionForm _optionForm = null;
         private bool _isstart = false;
         private static CaptureForm cap_form;
         private IContainer components;
@@ -38,6 +52,7 @@
         private Timer timPool;
         private Button button4;
         private Button button1;
+        private Timer timer1;
         private ToolTip toolTip1;
 
         public Mainform()
@@ -54,8 +69,40 @@
             this.keyBook = this.optSetuna.GetKeyItemBook();
             this._imgpool = new Queue<ScrapSource>();
             this.SetSubMenu();
-            this.Width = 300;
-            this.Height = 100;
+        }
+
+        LayerInfo mLayerInfo;
+        protected override void OnLoad(EventArgs e)
+        {
+            base.Visible = false;
+            this.LoadOption();
+            this.InitData();
+
+            var tDpi = Math.Max(1, DPIUtils.GetPrimaryDpi());
+            this.Width = (int)Math.Round(300 * tDpi);
+            this.Height = (int)Math.Round(100 * tDpi);
+
+            this.OptionApply();
+            this.SaveOption();
+            if (this.optSetuna.Setuna.ShowSplashWindow)
+            {
+                this.frmSplash = new SplashForm();
+                base.AddOwnedForm(this.frmSplash);
+                this.frmSplash.Show(this);
+                this.frmSplash.SplashTimer.Start();
+            }
+            this.timPool.Start();
+            cap_form = new CaptureForm(this.optSetuna.Setuna);
+            this.IsStart = true;
+
+            mLayerInfo = new LayerInfo(this);
+
+            this.UpdateTopMostTimer();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         public void AddImageList(ScrapSource src)
@@ -196,7 +243,7 @@
                 switch (num)
                 {
                     case 1:
-                        if (this.IsOption)
+                        if (this.optionForm)
                         {
                             break;
                         }
@@ -313,6 +360,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.subMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -326,6 +374,7 @@
             this.setunaIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("setunaIcon.Icon")));
             this.setunaIcon.Text = "SETUNA2";
             this.setunaIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.setunaIcon_MouseClick);
+            this.setunaIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.setunaIcon_MouseDoubleClick);
             // 
             // setunaIconMenu
             // 
@@ -342,12 +391,12 @@
             this.testToolStripMenuItem});
             this.subMenu.Name = "subMenu";
             this.subMenu.Scrap = null;
-            this.subMenu.Size = new System.Drawing.Size(139, 44);
+            this.subMenu.Size = new System.Drawing.Size(123, 38);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(138, 40);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(122, 34);
             this.testToolStripMenuItem.Text = "test";
             // 
             // toolTip1
@@ -364,9 +413,9 @@
             this.button4.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.button4.ForeColor = System.Drawing.Color.Gray;
             this.button4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button4.Location = new System.Drawing.Point(368, 0);
+            this.button4.Location = new System.Drawing.Point(380, 0);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(154, 121);
+            this.button4.Size = new System.Drawing.Size(154, 161);
             this.button4.TabIndex = 1;
             this.button4.Text = "选项";
             this.button4.UseVisualStyleBackColor = false;
@@ -380,29 +429,32 @@
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(368, 121);
+            this.button1.Size = new System.Drawing.Size(380, 161);
             this.button1.TabIndex = 0;
             this.button1.Text = "截取";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
             // Mainform
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(522, 121);
+            this.ClientSize = new System.Drawing.Size(534, 161);
             this.ContextMenuStrip = this.setunaIconMenu;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button4);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(550, 200);
+            this.MinimumSize = new System.Drawing.Size(100, 50);
             this.Name = "Mainform";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SETUNA2";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Mainform_FormClosing);
-            this.Load += new System.EventHandler(this.Mainform_Load);
-            this.Shown += new System.EventHandler(this.Mainform_Shown);
             this.subMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -426,8 +478,9 @@
                     stream.Close();
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 this.optSetuna = SetunaOption.GetDefaultOption();
                 MessageBox.Show("无法读取配置文件。\n使用默认设置。", "SETUNA2", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
@@ -442,25 +495,6 @@
             this.optSetuna.UnregistHotKey();
         }
 
-        private void Mainform_Load(object sender, EventArgs e)
-        {
-            base.Visible = false;
-            this.LoadOption();
-            this.OptionApply();
-            this.SaveOption();
-            this.InitData();
-            if (this.optSetuna.Setuna.ShowSplashWindow)
-            {
-                this.frmSplash = new SplashForm();
-                base.AddOwnedForm(this.frmSplash);
-                this.frmSplash.Show(this);
-                this.frmSplash.SplashTimer.Start();
-            }
-            this.timPool.Start();
-            cap_form = new CaptureForm(this.optSetuna.Setuna);
-            this.IsStart = true;
-        }
-
         public void InitData()
         {
             CacheManager.Init(info =>
@@ -468,11 +502,7 @@
                 this.scrapBook.AddScrap(info, true);
             });
 
-            DPIUtils.Init(this);
-        }
-
-        private void Mainform_Shown(object sender, EventArgs e)
-        {
+            DPIUtils.Init();
         }
 
         private void miCapture_Click(object sender, EventArgs e)
@@ -503,36 +533,29 @@
         {
             if (!this.IsCapture)
             {
-                this.IsOption = true;
+                if (this.optionForm)
+                {
+                    this.optionForm.Activate();
+                    return;
+                }
+
                 SetunaOption opt = (SetunaOption)this.optSetuna.Clone();
                 List<ScrapBase> list = new List<ScrapBase>();
                 try
                 {
-                    foreach (ScrapBase base2 in this.scrapBook)
-                    {
-                        if (base2.Visible && base2.TopMost)
-                        {
-                            list.Add(base2);
-                        }
-                    }
-                    foreach (ScrapBase base3 in list)
-                    {
-                        base3.TopMost = false;
-                    }
-                    base.TopMost = false;
                     this.optSetuna.UnregistHotKey();
                     if (this.frmClickCapture != null)
                     {
                         this.frmClickCapture.Stop();
                     }
-                    OptionForm form = new OptionForm(opt)
+                    this.optionForm = new OptionForm(opt)
                     {
                         StartPosition = FormStartPosition.CenterScreen,
                     };
-                    form.ShowDialog();
-                    if (form.DialogResult == DialogResult.OK)
+                    this.optionForm.ShowDialog();
+                    if (this.optionForm.DialogResult == DialogResult.OK)
                     {
-                        this.optSetuna = form.Option;
+                        this.optSetuna = this.optionForm.Option;
                         this.OptionApply();
                     }
                     if (!this.optSetuna.RegistHotKey(base.Handle))
@@ -540,19 +563,14 @@
                         this.optSetuna.ScrapHotKeyEnable = false;
                         new HotkeyMsg { HotKey = (Keys)this.optSetuna.ScrapHotKey }.ShowDialog();
                     }
-                    if (form.DialogResult == DialogResult.OK)
+                    if (this.optionForm.DialogResult == DialogResult.OK)
                     {
                         this.SaveOption();
                     }
                 }
                 finally
                 {
-                    base.TopMost = true;
-                    foreach (ScrapBase base4 in list)
-                    {
-                        base4.TopMost = true;
-                    }
-                    this.IsOption = false;
+                    this.optionForm = null;
                 }
             }
         }
@@ -561,6 +579,7 @@
         {
             try
             {
+                this.UpdateTopMostTimer();
                 this.keyBook = this.optSetuna.GetKeyItemBook();
                 if (this.optSetuna.Setuna.DustBoxEnable)
                 {
@@ -675,8 +694,9 @@
                 serializer.Serialize((Stream)stream, this.optSetuna);
                 stream.Close();
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 MessageBox.Show("无法保存配置文件。", "SETUNA2", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
@@ -783,7 +803,12 @@
 
         private void setunaIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            base.Activate();
+            LayerManager.instance.Update();
+        }
+
+        private void setunaIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Option();
         }
 
         private void setunaIconMenu_Opening(object sender, CancelEventArgs e)
@@ -793,7 +818,7 @@
 
         public void StartCapture()
         {
-            if ((!this.IsCapture && (cap_form != null)) && !this.IsOption)
+            if ((!this.IsCapture && (cap_form != null)) && !this.optionForm)
             {
                 try
                 {
@@ -822,7 +847,7 @@
 
         private void timPool_Tick(object sender, EventArgs e)
         {
-            if (((this._imgpool.Count == 0) || this.IsCapture) || (this.IsOption || !this.IsStart))
+            if (((this._imgpool.Count == 0) || this.IsCapture) || (this.optionForm || !this.IsStart))
             {
                 this.timPool.Stop();
             }
@@ -861,16 +886,16 @@
             }
         }
 
-        public bool IsOption
+        public OptionForm optionForm
         {
             get
             {
                 return
-                this._isoption;
+                this._optionForm;
             }
             set
             {
-                this._isoption = value;
+                this._optionForm = value;
                 if (!value && (this._imgpool.Count > 0))
                 {
                     this.timPool.Start();
@@ -896,6 +921,23 @@
         }
 
         private delegate void ExternalStartupDelegate(string version, string[] args);
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            LayerManager.instance.Update();
+        }
+
+        public void UpdateTopMostTimer()
+        {
+            if (this.optSetuna.alwaysTopMost)
+            {
+                this.timer1.Start();
+            }
+            else
+            {
+                this.timer1.Stop();
+            }
+        }
     }
 }
 

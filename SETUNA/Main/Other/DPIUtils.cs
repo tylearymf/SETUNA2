@@ -23,7 +23,6 @@ namespace SETUNA.Main.Other
         public static float defaultDpi3 { private set; get; }
         public static float defaultDpi4 { private set; get; }
 
-        static Mainform sForm;
         static public float GetPrimaryDpi()
         {
             return GetDpiByIndex(0);
@@ -34,13 +33,13 @@ namespace SETUNA.Main.Other
             switch (pIndex)
             {
                 case 0:
-                    return sForm.optSetuna.dpi1;
+                    return Mainform.instance.optSetuna.dpi1;
                 case 1:
-                    return sForm.optSetuna.dpi2;
+                    return Mainform.instance.optSetuna.dpi2;
                 case 2:
-                    return sForm.optSetuna.dpi3;
+                    return Mainform.instance.optSetuna.dpi3;
                 case 3:
-                    return sForm.optSetuna.dpi4;
+                    return Mainform.instance.optSetuna.dpi4;
                 default:
                     return 1.0F;
             }
@@ -62,10 +61,8 @@ namespace SETUNA.Main.Other
             return GetPrimaryDpi();
         }
 
-        static public void Init(Mainform pForm)
+        static public void Init()
         {
-            sForm = pForm;
-
             var tPrimary = GetDC(IntPtr.Zero);
             defaultDpi1 = GetDeviceCaps(tPrimary, LOGPIXELSX) / 96F;
             defaultDpi2 = defaultDpi3 = defaultDpi4 = 1.0F;
