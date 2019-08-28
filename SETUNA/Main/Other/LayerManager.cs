@@ -45,6 +45,16 @@ namespace SETUNA.Main.Other
 
         List<LayerInfo> mFormList = new List<LayerInfo>();
         public int clickCount { set; get; }
+        static List<string> mIgnoreClassNames = new List<string>()
+        {
+            //QQ
+            "TXGuiFoundation",
+            //有度
+            "ScreenShotWnd",
+            //微信
+            "SnapshotWnd",
+            "CToolBarWnd",
+        };
 
         public void AddInfo(LayerInfo pInfo)
         {
@@ -58,13 +68,21 @@ namespace SETUNA.Main.Other
 
         public void Update()
         {
+            var tTopHandler = WindowsAPI.GetForegroundWindow();
+            var tTopTitle = WindowsAPI.GetWindowTitle(tTopHandler);
+            var tTopModuleName = WindowsAPI.GetModuleName(tTopHandler);
+            var tTopClassName = WindowsAPI.GetClassName(tTopHandler);
+
+            //过滤其他截图工具
+            if (!string.IsNullOrEmpty(tTopClassName) && mIgnoreClassNames.Contains(tTopClassName))
+            {
+                return;
+            }
+
             mFormList.Sort((x, y) =>
             {
                 return x.clickCount.CompareTo(y.clickCount);
             });
-
-            var tTopHandler = WindowsAPI.GetForegroundWindow();
-            var tTopTitle = WindowsAPI.GetWindowTItle(tTopHandler);
 
             var tTopOrder = 0;
             WindowsAPI.GetWindowZOrder(tTopHandler, out tTopOrder);
@@ -98,8 +116,8 @@ namespace SETUNA.Main.Other
             }
             if (tIsTop) return;
 
-            MyConsole.WriteLine("UpdateLayer" + " TopTitle:{0} " + "TopOrder:{1} " + "OrderList:{2}",
-                              tTopTitle, tTopOrder, string.Join(",", tOrderList.ToArray()));
+            MyConsole.WriteLine("UpdateLayer TopTitle:{0} TopOrder:{1} OrderList:{2} ModuleName:{3} ClassName:{4}",
+                              tTopTitle, tTopOrder, string.Join(",", tOrderList.ToArray()), tTopModuleName, tTopClassName);
 
             //刷新层级
             for (int i = 0, imax = mFormList.Count; i < imax; i++)

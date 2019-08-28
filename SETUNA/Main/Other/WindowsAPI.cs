@@ -19,6 +19,12 @@ namespace SETUNA.Main.Other
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         static public extern int GetWindowTextLength(IntPtr hWnd);
 
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern int GetWindowModuleFileName(IntPtr hWnd, StringBuilder lpFilename, int nSize);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern int GetClassName(IntPtr hWnd, StringBuilder lpFilename, int nSize);
+
         static public bool GetWindowZOrder(IntPtr hwnd, out int zOrder)
         {
             const uint GW_HWNDPREV = 3;
@@ -44,9 +50,8 @@ namespace SETUNA.Main.Other
             return false;
         }
 
-        static public string GetWindowTItle(IntPtr hwnd)
+        static public string GetWindowTitle(IntPtr hwnd)
         {
-
             int length = GetWindowTextLength(hwnd);
             if (length == 0) return string.Empty;
 
@@ -54,7 +59,22 @@ namespace SETUNA.Main.Other
             GetWindowText(hwnd, builder, length + 1);
 
             return builder.ToString();
+        }
 
+        static public string GetModuleName(IntPtr hwnd)
+        {
+            var builder = new StringBuilder(1024);
+            var len = GetWindowModuleFileName(hwnd, builder, builder.Capacity);
+
+            return builder.ToString();
+        }
+
+        static public string GetClassName(IntPtr hwnd)
+        {
+            var builder = new StringBuilder(1024);
+            var len = GetClassName(hwnd, builder, builder.Capacity);
+
+            return builder.ToString();
         }
     }
 }
