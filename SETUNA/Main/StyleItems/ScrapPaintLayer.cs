@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -20,6 +21,7 @@
         private Panel panel1;
         private Panel panel2;
         private Panel panel3;
+        private LayerInfo mLayerInfo;
 
         public event ScrapPaintLayerItem.LayerDelegate LayerRefresh;
 
@@ -33,6 +35,16 @@
             this.LayerCommands = new List<LayerCommand>();
             this.HistoryCommands = new List<ToolCommand>();
             this._layers = new List<ScrapPaintLayerItem>();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         public void addCmd_AddLayer(AddLayerCommand sender)

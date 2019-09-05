@@ -1,6 +1,7 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
     using SETUNA.Main;
+    using SETUNA.Main.Other;
     using System;
     using System.Collections.Generic;
     using System.Drawing;
@@ -14,6 +15,7 @@
         private bool isToolUse;
         private ScrapPaintLayer layerForm;
         private ScrapPaintToolBar toolFrm;
+        private LayerInfo mLayerInfo;
 
         public ScrapPaintWindow(ScrapBase scrap) : base(scrap)
         {
@@ -32,6 +34,19 @@
             this.layerForm.LayerRefresh += new ScrapPaintLayerItem.LayerDelegate(this.layerForm_LayerRefresh);
             base.AddOwnedForm(this.layerForm);
             this.activeLayer = this.layerForm.SelectionLayer;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+
+            base.OnLoad(e);
+            this.toolFrm.SwitchTool(ScrapPaintToolBar.ToolKind.笔工具);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void activeTool_Finished(ToolCommand command)
@@ -129,12 +144,6 @@
         {
             base.OnKeyUp(e);
             this.KeyInput(e);
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            this.toolFrm.SwitchTool(ScrapPaintToolBar.ToolKind.笔工具);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)

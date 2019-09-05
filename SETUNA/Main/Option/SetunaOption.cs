@@ -627,7 +627,7 @@
             COpacityStyleItem item40 = new COpacityStyleItem
             {
                 Absolute = true,
-                Opacity = 0x5f
+                Opacity = 95
             };
             style.AddStyle(item40);
             option.Styles.Add(style);
@@ -930,9 +930,9 @@
                     {
                         return 100;
                     }
-                    if (this._InactiveAlphaValue < 1)
+                    if (this._InactiveAlphaValue < 0)
                     {
-                        return 1;
+                        return 0;
                     }
                     return this._InactiveAlphaValue;
                 }
@@ -942,9 +942,9 @@
                     {
                         this._InactiveAlphaValue = 100;
                     }
-                    else if (value < 1)
+                    else if (value < 0)
                     {
-                        this._InactiveAlphaValue = 1;
+                        this._InactiveAlphaValue = 0;
                     }
                     else
                     {
@@ -984,9 +984,9 @@
                     {
                         return 100;
                     }
-                    if (this._MouseOverAlphaValue < 1)
+                    if (this._MouseOverAlphaValue < 0)
                     {
-                        return 1;
+                        return 0;
                     }
                     return this._MouseOverAlphaValue;
                 }
@@ -996,9 +996,9 @@
                     {
                         this._MouseOverAlphaValue = 100;
                     }
-                    else if (value < 1)
+                    else if (value < 0)
                     {
-                        this._MouseOverAlphaValue = 1;
+                        this._MouseOverAlphaValue = 0;
                     }
                     else
                     {

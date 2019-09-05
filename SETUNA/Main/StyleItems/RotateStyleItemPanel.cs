@@ -1,6 +1,7 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
     using Properties;
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -23,6 +24,7 @@
         private RadioButton rdoLeft90;
         private RadioButton rdoNone;
         private RadioButton rdoRight90;
+        private LayerInfo mLayerInfo;
 
         public RotateStyleItemPanel()
         {
@@ -30,6 +32,16 @@
 
         public RotateStyleItemPanel(CRotateStyleItem item) : base(item)
         {
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         protected override object GetStyleFromForm()

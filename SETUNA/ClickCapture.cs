@@ -1,5 +1,6 @@
 ﻿namespace SETUNA
 {
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -21,6 +22,7 @@
         private IContainer components;
         private Rectangle CursorRect;
         private Timer timer1;
+        private LayerInfo mLayerInfo;
 
         public event ClipCaptureDelegate ClickCaptureEvent;
 
@@ -30,6 +32,16 @@
             this.ClickFlags = values;
             this.CursorRect = new Rectangle(0, 0, 1, 1);
             this.ClickPosition = ClickPositionType.CP0;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void ClickCapture_Click(object sender, EventArgs e)

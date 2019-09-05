@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main
 {
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -15,10 +16,21 @@
         private Label label3;
         private Label lblKey;
         private PictureBox pictureBox1;
+        private LayerInfo mLayerInfo;
 
         public HotkeyMsg()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

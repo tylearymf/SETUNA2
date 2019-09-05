@@ -39,6 +39,7 @@
         private const int SRCCOPY = 0xcc0020;
         private System.Windows.Forms.Timer timer1;
         private Thread trd;
+        private LayerInfo mLayerInfo;
 
         private Screen targetScreen
         {
@@ -456,7 +457,6 @@
             this.ResumeLayout(false);
         }
 
-        LayerInfo mLayerInfo;
         protected override void OnLoad(EventArgs e)
         {
             mLayerInfo = new LayerInfo(this);

@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main
 {
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -19,6 +20,7 @@
         private Pen penWhite;
         private Point ptSel;
         private Size szSel;
+        private LayerInfo mLayerInfo;
 
         public CaptureSelLine()
         {
@@ -39,6 +41,16 @@
             this.SetPen(issolid, linecolor);
             base.TransparencyKey = Color.Fuchsia;
             this.penWhite = new Pen(new SolidBrush(Color.White), 1f);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         public static void AddDashOffset()

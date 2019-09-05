@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main
 {
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -17,12 +18,23 @@
         private Point ptMouse;
         private Point ptStart;
         private Thread trd;
+        private LayerInfo mLayerInfo;
 
         public CaptureInfo()
         {
             this.InitializeComponent();
             this.baseImage = null;
             base.Top = 100;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void CaptureInfo_FormClosing(object sender, FormClosingEventArgs e)

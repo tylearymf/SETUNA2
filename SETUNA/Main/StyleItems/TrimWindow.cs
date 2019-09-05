@@ -1,6 +1,7 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
     using SETUNA.Main;
+    using SETUNA.Main.Other;
     using System;
     using System.Drawing;
     using System.Drawing.Drawing2D;
@@ -20,6 +21,7 @@
         private int _sright;
         private int _stop;
         private Pen penCenter;
+        private LayerInfo mLayerInfo;
 
         public TrimWindow(ScrapBase scrap) : base(scrap)
         {
@@ -32,6 +34,16 @@
             this._locmouse = Locate.None;
             this._locsel = Locate.None;
             this._drag = false;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void InitializeComponent()

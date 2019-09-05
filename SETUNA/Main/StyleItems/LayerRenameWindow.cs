@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -13,10 +14,21 @@
         private ErrorProvider errorProvider1;
         private Label label1;
         private TextBox txtLayerName;
+        private LayerInfo mLayerInfo;
 
         public LayerRenameWindow()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         protected override void Dispose(bool disposing)

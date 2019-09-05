@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.Drawing;
     using System.Windows.Forms;
@@ -15,6 +16,7 @@
         private NumericUpDown numLeft;
         private NumericUpDown numRight;
         private NumericUpDown numUp;
+        private LayerInfo mLayerInfo;
 
         public MoveStyleItemPanel(CStyleItem item) : base(item)
         {
@@ -22,6 +24,16 @@
             this.numDown.Maximum = CMoveStyleItem.MAX_MOVE;
             this.numLeft.Maximum = CMoveStyleItem.MAX_MOVE;
             this.numRight.Maximum = CMoveStyleItem.MAX_MOVE;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void chkDown_CheckedChanged(object sender, EventArgs e)

@@ -14,6 +14,7 @@
         private Label lblVer;
         private PictureBox pictureBox1;
         public Timer SplashTimer;
+        private LayerInfo mLayerInfo;
 
         public SplashForm()
         {
@@ -108,7 +109,6 @@
 
         }
 
-        LayerInfo mLayerInfo;
         protected override void OnLoad(EventArgs e)
         {
             mLayerInfo = new LayerInfo(this);

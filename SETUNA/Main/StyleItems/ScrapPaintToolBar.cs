@@ -1,6 +1,7 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
     using Properties;
+    using SETUNA.Main.Other;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -24,6 +25,7 @@
         private TableLayoutPanel tableLayoutPanel2;
         private List<CheckBox> tools;
         private ToolTip toolTip1;
+        private LayerInfo mLayerInfo;
 
         public event SelectToolDelegate SelectTool;
 
@@ -36,6 +38,16 @@
             this.tools.Add(this.chkPen);
             this.tools.Add(this.chkErase);
             this.tools.Add(this.chkText);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         public void ChangeColor()

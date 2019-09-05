@@ -10,6 +10,7 @@
     using System.Drawing;
     using System.Windows.Forms;
     using Image = System.Drawing.Image;
+    using SETUNA.Main.Other;
 
     public class StyleEditForm : Form
     {
@@ -41,6 +42,7 @@
         private ToolTip toolTip1;
         private ToolTip toolTip2;
         private TextBox txtStyleName;
+        private LayerInfo mLayerInfo;
 
         public StyleEditForm(CStyle trgStyle, KeyItemBook keybook)
         {
@@ -58,6 +60,16 @@
             this.RefreshAllStyleItemList();
             this.RefreshKeyItemList();
             this.txtStyleName_TextChanged(this.txtStyleName, new EventArgs());
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

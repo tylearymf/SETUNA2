@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -22,6 +23,7 @@
         private Label lblQuality;
         private Panel panel1;
         private PictureBox picPreview;
+        private LayerInfo mLayerInfo;
 
         public ImagePngPreviewPanel()
         {
@@ -32,6 +34,16 @@
             this._img = img;
             this._icodec = icodec;
             this.UpdatePreview();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void barQuality_Scroll(object sender, EventArgs e)

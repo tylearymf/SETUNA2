@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.Diagnostics;
     using System.Drawing;
@@ -17,6 +18,7 @@
         private LinkLabel linkLabel1;
         private TextBox txtID;
         private TextBox txtPass;
+        private LayerInfo mLayerInfo;
 
         public PicasaStyleItemPanel()
         {
@@ -24,6 +26,16 @@
 
         public PicasaStyleItemPanel(CPicasaUploaderStyleItem item) : base(item)
         {
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void button1_Click(object sender, EventArgs e)

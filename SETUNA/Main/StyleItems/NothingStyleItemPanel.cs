@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.Drawing;
     using System.Windows.Forms;
@@ -7,9 +8,20 @@
     internal class NothingStyleItemPanel : ToolBoxForm
     {
         private Label label1;
+        private LayerInfo mLayerInfo;
 
         public NothingStyleItemPanel(CStyleItem item) : base(item)
         {
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         protected override object GetStyleFromForm() => 

@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.Drawing;
     using System.Drawing.Drawing2D;
@@ -19,9 +20,20 @@
         private NumericUpDown numRelativeScale;
         private RadioButton rdoFixed;
         private RadioButton rdoIncrement;
+        private LayerInfo mLayerInfo;
 
         public ScaleStyleItemPanel(CScaleStyleItem item) : base(item)
         {
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void barFixed_Scroll(object sender, EventArgs e)

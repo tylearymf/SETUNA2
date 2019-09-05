@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.Drawing;
     using System.IO;
@@ -27,6 +28,7 @@
         private RadioButton rdoScrapName;
         private TextBox txtFolder;
         private TextBox txtName;
+        private LayerInfo mLayerInfo;
 
         public ImageJpegStyleItemPanel()
         {
@@ -34,6 +36,16 @@
 
         public ImageJpegStyleItemPanel(CImageJpegStyleItem item) : base(item)
         {
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void barQuality_Scroll(object sender, EventArgs e)

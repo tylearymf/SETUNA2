@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -15,10 +16,21 @@
         private Label label2;
         private TextBox txtID;
         private TextBox txtPass;
+        private LayerInfo mLayerInfo;
 
         public LoginInput()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void btnOK_Click(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -27,6 +28,7 @@
         private PictureBox picPreview;
         private string tempimg;
         private Timer timer1;
+        private LayerInfo mLayerInfo;
 
         public ImageJpegPreviewPanel()
         {
@@ -38,6 +40,16 @@
             this._img = img;
             this._icodec = icodec;
             this.UpdatePreview();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void barQuality_Scroll(object sender, EventArgs e)

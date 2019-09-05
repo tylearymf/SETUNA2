@@ -3,6 +3,7 @@
     using com.clearunit;
     using Properties;
     using Properties;
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -26,10 +27,21 @@
         private IContainer components;
         private PictureBox pictureBox1;
         private ProgressBar progressBar1;
+        private LayerInfo mLayerInfo;
 
         public PicasaBar()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)

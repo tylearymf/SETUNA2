@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -10,6 +11,7 @@
         protected Button cmdCancel;
         protected Button cmdOK;
         private IContainer components;
+        private LayerInfo mLayerInfo;
 
         public ToolBoxForm()
         {
@@ -20,6 +22,16 @@
         {
             this.InitializeComponent();
             this.SetStyleToForm(style);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void cmdCancel_Click(object sender, EventArgs e)

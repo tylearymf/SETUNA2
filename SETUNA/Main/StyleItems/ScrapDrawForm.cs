@@ -1,6 +1,7 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
     using SETUNA.Main;
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -17,6 +18,7 @@
         private IContainer components;
         protected const int Space = 50;
         private const int SRCCOPY = 0xcc0020;
+        private LayerInfo mLayerInfo;
 
         private ScrapDrawForm()
         {
@@ -60,6 +62,16 @@
             base.Left = p.X - (base.Width / 2);
             base.Top = p.Y - (base.Height / 2);
             this._scrap.Hide();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         [DllImport("gdi32.dll")]

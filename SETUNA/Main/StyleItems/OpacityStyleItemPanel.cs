@@ -1,6 +1,7 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
     using Properties;
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -28,6 +29,7 @@
         private PictureBox picPreview;
         private RadioButton rdoFixed;
         private RadioButton rdoIncrement;
+        private LayerInfo mLayerInfo;
 
         public OpacityStyleItemPanel()
         {
@@ -35,6 +37,16 @@
 
         public OpacityStyleItemPanel(COpacityStyleItem item) : base(item)
         {
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void barOpacity_Scroll(object sender, EventArgs e)

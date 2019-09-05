@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -29,6 +30,7 @@
         private Panel pnlOpacity;
         private Panel pnlPen;
         private ToolTip toolTip1;
+        private LayerInfo mLayerInfo;
 
         public ScrapPaintPenTool(PenTool penTool)
         {
@@ -60,6 +62,16 @@
                     button.ButtonColor = Color.FromArgb(0x5f, 0xa8, 0xef);
                 }
             }
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         protected override void Dispose(bool disposing)

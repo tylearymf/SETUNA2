@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -22,6 +23,7 @@
         private Panel pnlEditing;
         private Panel pnlPen;
         private ToolTip toolTip1;
+        private LayerInfo mLayerInfo;
 
         public ScrapPaintTextTool(TextTool textTool)
         {
@@ -31,6 +33,16 @@
             this._edit = null;
             this._texttool.Editing += new TextTool.BoolDelegate(this._texttool_Editing);
             this._texttool.ChangedFont += new TextTool.FontDelegate(this.SetFont);
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void _texttool_Editing(bool value, TextBox edit)

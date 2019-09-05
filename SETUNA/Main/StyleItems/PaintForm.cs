@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -10,6 +11,7 @@
         private System.Drawing.Image _src;
         private Button button1;
         private IContainer components;
+        private LayerInfo mLayerInfo;
 
         public PaintForm(System.Drawing.Image src)
         {
@@ -20,6 +22,16 @@
         private void button1_Click(object sender, EventArgs e)
         {
             base.Close();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         protected override void Dispose(bool disposing)

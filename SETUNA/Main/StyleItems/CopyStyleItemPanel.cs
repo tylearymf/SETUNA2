@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.Drawing;
     using System.Windows.Forms;
@@ -8,6 +9,7 @@
     {
         private CheckBox chkWindow;
         private GroupBox groupBox1;
+        private LayerInfo mLayerInfo;
 
         public CopyStyleItemPanel()
         {
@@ -15,6 +17,16 @@
 
         public CopyStyleItemPanel(CCopyStyleItem item) : base(item)
         {
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         protected override object GetStyleFromForm() => 

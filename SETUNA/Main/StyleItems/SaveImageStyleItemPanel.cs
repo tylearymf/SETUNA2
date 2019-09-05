@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.Drawing;
     using System.Windows.Forms;
@@ -21,6 +22,7 @@
         private TabPage tabJpeg;
         private TabPage tabPng;
         private TextBox textBox1;
+        private LayerInfo mLayerInfo;
 
         public SaveImageStyleItemPanel()
         {
@@ -28,6 +30,16 @@
 
         public SaveImageStyleItemPanel(CCopyStyleItem item) : base(item)
         {
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         private void barJpegQuality_Scroll(object sender, EventArgs e)

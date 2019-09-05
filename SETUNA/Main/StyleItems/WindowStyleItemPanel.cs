@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main.StyleItems
 {
+    using SETUNA.Main.Other;
     using System;
     using System.Drawing;
     using System.Windows.Forms;
@@ -10,9 +11,20 @@
         private Panel panel1;
         private RadioButton rdoFixed;
         private RadioButton rdoIncrement;
+        private LayerInfo mLayerInfo;
 
         public WindowStyleItemPanel(CWindowStyleItem style) : base(style)
         {
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            mLayerInfo = new LayerInfo(this);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            mLayerInfo.Dispose();
         }
 
         protected override object GetStyleFromForm() => 
