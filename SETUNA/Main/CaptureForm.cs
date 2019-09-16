@@ -79,7 +79,7 @@
             selArea.ShowInTaskbar = false;
             selArea.SizeGripStyle = SizeGripStyle.Hide;
             selArea.StartPosition = FormStartPosition.Manual;
-            selArea.Text = "CaptureSelArea";
+            selArea.Text = typeof(CaptureForm).Name;
             selArea.TopMost = true;
             selArea.Left = 0;
             selArea.Top = 0;
