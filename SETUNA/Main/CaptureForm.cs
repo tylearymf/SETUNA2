@@ -514,8 +514,6 @@
         {
             if (imgSnap != null)
             {
-                Cursor.Current = Cursors.Cross;
-                Cursor.Clip = this.targetScreen.Bounds;
                 if ((this.screenNewSize.Width != imgSnap.Width) || (this.screenNewSize.Height != imgSnap.Height))
                 {
                     imgSnap = new Bitmap(this.screenNewSize.Width, this.screenNewSize.Height, PixelFormat.Format24bppRgb);
@@ -560,6 +558,10 @@
                     selLineVer2.Show(this);
                 }
                 Console.WriteLine(string.Concat(new object[] { "14 - ", DateTime.Now.ToString(), " ", DateTime.Now.Millisecond }));
+
+                Thread.Sleep(1);
+                Cursor.Current = Cursors.Cross;
+                Cursor.Clip = this.targetScreen.Bounds;
             }
         }
 
