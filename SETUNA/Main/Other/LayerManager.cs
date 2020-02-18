@@ -73,8 +73,13 @@ namespace SETUNA.Main.Other
             var tTopModuleName = WindowsAPI.GetModuleName(tTopHandler);
             var tTopClassName = WindowsAPI.GetClassName(tTopHandler);
 
+            //不处理无标题
+            if (string.IsNullOrEmpty(tTopTitle)) return;
+
             //当前正在截图
             if (!string.IsNullOrEmpty(tTopTitle) && tTopTitle == typeof(CaptureForm).Name) return;
+            //当前正在保存
+            if (!string.IsNullOrEmpty(tTopTitle) && tTopTitle == CImageStyleItem.SaveImageTitle) return;
 
             //过滤其他截图工具
             if (!string.IsNullOrEmpty(tTopClassName) && mIgnoreClassNames.Contains(tTopClassName))

@@ -9,6 +9,7 @@
 
     public abstract class CImageStyleItem : CStyleItem
     {
+        public const string SaveImageTitle = "SETUNA2 - 另存为";
         public bool CopyPath = false;
         public EnumDupliType DupliType = EnumDupliType.OverWrite;
         public string FileName;
@@ -132,6 +133,7 @@
             if (flag)
             {
                 SaveFileDialog dialog = new SaveFileDialog {
+                    Title = SaveImageTitle,
                     InitialDirectory = saveFolder,
                     FileName = name,
                     DefaultExt = extension,
