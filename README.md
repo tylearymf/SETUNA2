@@ -1,3 +1,7 @@
+## 介绍
+A best screenshot small tool (support high dpi screenshots) </br>
+一款好用的截图小工具（支持高分屏截图）
+
 # 免责声明
 - [官方网站](http://www.clearunit.com/clearup/setuna2)（地址已挂）
 - 官方已不再维护该软件，本人基于高分屏截图不全原因，优化并维护该软件，如有侵权请联系删除！
