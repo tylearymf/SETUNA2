@@ -7,7 +7,7 @@
 [assembly: System.Runtime.InteropServices.ComVisible(false)]
 [assembly: System.Runtime.InteropServices.Guid("4483e561-8b3e-427d-98a4-e0e821b7bf2f")]
 [assembly: System.Reflection.AssemblyConfiguration("")]
-[assembly: System.Reflection.AssemblyFileVersion("2.5.7")]
+[assembly: System.Reflection.AssemblyFileVersion("2.5.8")]
 [assembly: System.Runtime.CompilerServices.CompilationRelaxations(8)]
 [assembly: System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows = true)]
 

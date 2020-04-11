@@ -1,5 +1,6 @@
 ﻿namespace SETUNA.Main
 {
+    using Opulos.Core.UI;
     using System;
     using System.Collections;
     using System.Windows.Forms;
@@ -14,6 +15,8 @@
             this._scrapbook = scrapbook;
             base.DropDownItems.Clear();
             base.DropDownItems.Insert(0, new ToolStripMenuItem("无"));
+
+            ToolStripEx.BigButtons(this.DropDown);
         }
 
         protected abstract ArrayList GetItems();
@@ -22,8 +25,25 @@
         {
         }
 
+        protected override void OnDropDownOpened(EventArgs e)
+        {
+            Mainform.instance.MouseWheelCallbackEvent += DropDown_MouseWheel;
+            this.DropDown.MouseWheel += DropDown_MouseWheel;
+
+            base.OnDropDownOpened(e);
+        }
+
+        private void DropDown_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0) SendKeys.SendWait("{UP}");
+            else SendKeys.SendWait("{DOWN}");
+        }
+
         protected override void OnDropDownClosed(EventArgs e)
         {
+            this.DropDown.MouseWheel -= DropDown_MouseWheel;
+            Mainform.instance.MouseWheelCallbackEvent -= DropDown_MouseWheel;
+
             this._createdlist = false;
             base.OnDropDownClosed(e);
         }
@@ -43,7 +63,8 @@
                 {
                     foreach (ScrapBase base2 in this.GetItems())
                     {
-                        ToolStripMenuItem addmi = new ToolStripMenuItem(string.Concat(new object[] { base2.Name, "\n", base2.Width, " x ", base2.Height }), base2.GetThumbnail(), new EventHandler(this._scrapbook.BindForm.OnActiveScrapInList)) {
+                        ToolStripMenuItem addmi = new ToolStripMenuItem(string.Concat(new object[] { base2.Name, "\n", base2.Width, " x ", base2.Height }), base2.GetThumbnail(), new EventHandler(this._scrapbook.BindForm.OnActiveScrapInList))
+                        {
                             Tag = base2,
                             ImageScaling = ToolStripItemImageScaling.None
                         };
