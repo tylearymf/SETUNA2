@@ -190,7 +190,7 @@
         {
             this._dragmode = true;
             this._dragpoint = pt;
-            this._saveopacity = this.Opacity;
+            this._saveopacity = this.ActiveOpacity;
             base.SuspendLayout();
             this.Opacity = 0.5;
             base.ResumeLayout();
