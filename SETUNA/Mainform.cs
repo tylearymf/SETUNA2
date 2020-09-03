@@ -48,12 +48,13 @@
         private NotifyIcon setunaIcon;
         private SETUNA.Main.ContextStyleMenuStrip setunaIconMenu;
         private SETUNA.Main.ContextStyleMenuStrip subMenu;
-        private ToolStripMenuItem testToolStripMenuItem;
         private Timer timPool;
         private Button button4;
         private Button button1;
         private Timer timer1;
-        private ToolTip toolTip1;
+
+        public delegate void MouseWheelCallback(object sender, MouseEventArgs e);
+        public event MouseWheelCallback MouseWheelCallbackEvent;
 
         public Mainform()
         {
@@ -356,12 +357,9 @@
             this.setunaIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.setunaIconMenu = new SETUNA.Main.ContextStyleMenuStrip(this.components);
             this.subMenu = new SETUNA.Main.ContextStyleMenuStrip(this.components);
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.subMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // timPool
@@ -387,25 +385,9 @@
             // subMenu
             // 
             this.subMenu.ImageScalingSize = new System.Drawing.Size(36, 36);
-            this.subMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.testToolStripMenuItem});
             this.subMenu.Name = "subMenu";
             this.subMenu.Scrap = null;
-            this.subMenu.Size = new System.Drawing.Size(123, 38);
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(122, 34);
-            this.testToolStripMenuItem.Text = "test";
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.ShowAlways = true;
-            this.toolTip1.StripAmpersands = true;
-            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip1.ToolTipTitle = "asfdadsf";
+            this.subMenu.Size = new System.Drawing.Size(61, 4);
             // 
             // button4
             // 
@@ -778,6 +760,16 @@
         {
             this.subMenu.Scrap = e.scrap;
             this.subMenu.Show(e.scrap, e.scrap.PointToClient(Cursor.Position));
+            this.subMenu.MouseWheel -= SubMenu_MouseWheel;
+			this.subMenu.MouseWheel += SubMenu_MouseWheel;
+        }
+
+        private void SubMenu_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if(MouseWheelCallbackEvent != null)
+            {
+                MouseWheelCallbackEvent(sender, e);
+            }
         }
 
         public void ScrapRemoved(object sender, ScrapEventArgs e)

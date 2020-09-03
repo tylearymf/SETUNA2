@@ -654,7 +654,7 @@
             this.linkLabel1.Size = new System.Drawing.Size(131, 12);
             this.linkLabel1.TabIndex = 0;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "优化版本 by tylearymf";
+            this.linkLabel1.Text = string.Format("优化版本 by tylearymf. version: {0}", ProductVersion);
             this.toolTip1.SetToolTip(this.linkLabel1, "https://github.com/tylearymf/SETUNA2");
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
