@@ -24,7 +24,6 @@
         private IContainer components;
         private const int GW_HWNDNEXT = 2;
         private const int GW_OWNER = 4;
-        private static Image imgSnap;
         private Size ptClipSize;
         private Point ptClipStart;
         private Point ptEnd;
@@ -40,6 +39,8 @@
         private System.Windows.Forms.Timer timer1;
         private Thread trd;
         private LayerInfo mLayerInfo;
+
+        private static Image imgSnap;
 
         private Screen targetScreen
         {
@@ -64,7 +65,7 @@
         public CaptureForm(SetunaOption.SetunaOptionData opt)
         {
             this.InitializeComponent();
-            imgSnap = new Bitmap(this.screenNewSize.Width, this.screenNewSize.Height, PixelFormat.Format24bppRgb);
+            ImgSnap = new Bitmap(this.screenNewSize.Width, this.screenNewSize.Height, PixelFormat.Format24bppRgb);
             selArea = new Form();
             selArea.AutoScaleMode = AutoScaleMode.None;
             selArea.BackColor = Color.Blue;
@@ -176,9 +177,9 @@
 
         private void CaptureForm_Paint(object sender, PaintEventArgs e)
         {
-            if (imgSnap != null)
+            if (ImgSnap != null)
             {
-                e.Graphics.DrawImageUnscaled(imgSnap, 0, 0);
+                e.Graphics.DrawImageUnscaled(ImgSnap, 0, 0);
             }
         }
 
@@ -239,7 +240,7 @@
             this.bmpClip = new Bitmap(size.Width, size.Height, PixelFormat.Format24bppRgb);
             using (Graphics graphics = Graphics.FromImage(this.bmpClip))
             {
-                graphics.DrawImageUnscaled(imgSnap, -(pt.X - this.targetScreen.Bounds.X), -(pt.Y - this.targetScreen.Bounds.Y));
+                graphics.DrawImageUnscaled(ImgSnap, -(pt.X - this.targetScreen.Bounds.X), -(pt.Y - this.targetScreen.Bounds.Y));
             }
         }
 
@@ -512,11 +513,11 @@
 
         public void ShowCapture(SetunaOption.SetunaOptionData opt)
         {
-            if (imgSnap != null)
+            if (ImgSnap != null)
             {
-                if ((this.screenNewSize.Width != imgSnap.Width) || (this.screenNewSize.Height != imgSnap.Height))
+                if ((this.screenNewSize.Width != ImgSnap.Width) || (this.screenNewSize.Height != ImgSnap.Height))
                 {
-                    imgSnap = new Bitmap(this.screenNewSize.Width, this.screenNewSize.Height, PixelFormat.Format24bppRgb);
+                    ImgSnap = new Bitmap(this.screenNewSize.Width, this.screenNewSize.Height, PixelFormat.Format24bppRgb);
                 }
                 this.trd = new Thread(new ThreadStart(this.ThreadTask));
                 this.trd.IsBackground = true;
@@ -583,9 +584,9 @@
 
             var tBitmap = new Bitmap(tScreenSize.Width, tScreenSize.Height, PixelFormat.Format24bppRgb);
             tBitmap.SetResolution(tDpi * 96, tDpi * 96);
-            imgSnap = tBitmap;
+            ImgSnap = tBitmap;
 
-            if (CopyFromScreen(imgSnap, new Point(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y)))
+            if (CopyFromScreen(ImgSnap, new Point(this.targetScreen.Bounds.X, this.targetScreen.Bounds.Y)))
             {
                 base.Invoke(new ShowFormDelegate(this.ShowForm));
             }
@@ -627,6 +628,23 @@
             set
             {
                 this.CaptureClosedHandler = value;
+            }
+        }
+
+        public static Image ImgSnap
+        {
+            get
+            {
+                return imgSnap;
+            }
+            set
+            {
+                if (imgSnap != null)
+                {
+                    imgSnap.Dispose();
+                }
+
+                imgSnap = value;
             }
         }
 
