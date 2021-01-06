@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props" Condition="Exists('..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{15D64201-91AD-47B1-8675-5DBB30DF6A39}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SETUNA</RootNamespace>
+    <AssemblyName>SETUNA</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>SETUNA.ico</ApplicationIcon>
+    <StartupObject>SETUNA.Program</StartupObject>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Costura, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
+      <HintPath>..\packages\Costura.Fody.4.1.0\lib\net40\Costura.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClickCapture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClickCapture.Designer.cs">
+      <DependentUpon>ClickCapture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="com\clearunit\DesCrypto.cs" />
+    <Compile Include="com\clearunit\ISingletonForm.cs" />
+    <Compile Include="com\clearunit\PicasaAccessor.cs" />
+    <Compile Include="com\clearunit\PicasaLoginError.cs" />
+    <Compile Include="com\clearunit\PicasaUploadError.cs" />
+    <Compile Include="com\clearunit\SingletonApplication.cs" />
+    <Compile Include="com\clearunit\SingletonAppRemoteObject.cs" />
+    <Compile Include="com\clearunit\WithoutTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Mainform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mainform.Designer.cs">
+      <DependentUpon>Mainform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Cache\CacheItem.cs" />
+    <Compile Include="Main\Cache\CacheManager.cs" />
+    <Compile Include="Main\CaptureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\CaptureForm.Designer.cs">
+      <DependentUpon>CaptureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\CaptureInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\CaptureInfo.Designer.cs">
+      <DependentUpon>CaptureInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\CaptureSelLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\CaptureSelLine.Designer.cs">
+      <DependentUpon>CaptureSelLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Common\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\Common\Utils.cs" />
+    <Compile Include="Main\HotKeyID.cs" />
+    <Compile Include="Main\ToolStripEx.cs" />
+    <Compile Include="Main\Window\WindowManager.cs" />
+    <Compile Include="Main\ContextStyleMenuStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Main\ContextStyleMenuStrip.Designer.cs">
+      <DependentUpon>ContextStyleMenuStrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Extensions\ExtensionAttribute.cs" />
+    <Compile Include="Main\Extensions\Extensions.cs" />
+    <Compile Include="Main\HotkeyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Main\HotkeyControl.Designer.cs">
+      <DependentUpon>HotkeyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\HotkeyMsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\HotkeyMsg.Designer.cs">
+      <DependentUpon>HotkeyMsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\IFormDeactivatedListener.cs" />
+    <Compile Include="Main\IFormActivatedListener.cs" />
+    <Compile Include="Main\IScrapAddedListener.cs" />
+    <Compile Include="Main\IScrapKeyPressEventListener.cs" />
+    <Compile Include="Main\IScrapImageChangedListener.cs" />
+    <Compile Include="Main\IScrapStyleRemovedListener.cs" />
+    <Compile Include="Main\IScrapStyleAppliedListener.cs" />
+    <Compile Include="Main\IScrapLocationChangedListener.cs" />
+    <Compile Include="Main\IScrapMenuListener.cs" />
+    <Compile Include="Main\IScrapRemovedListener.cs" />
+    <Compile Include="Main\IScrapStyleListener.cs" />
+    <Compile Include="Main\KeyItems\IKeyItemListener.cs" />
+    <Compile Include="Main\KeyItems\KeyItem.cs" />
+    <Compile Include="Main\KeyItems\KeyItemBook.cs" />
+    <Compile Include="Main\Layer\WindowsFilter.cs" />
+    <Compile Include="Main\Layer\IWindowFilter.cs" />
+    <Compile Include="Main\Layer\LayerManager.cs" />
+    <Compile Include="Main\Window\FormManager.cs" />
+    <Compile Include="Main\Option\OptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\Option\OptionForm.Designer.cs">
+      <DependentUpon>OptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Option\SetunaOption.cs" />
+    <Compile Include="Main\Option\StyleEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\Option\StyleEditForm.Designer.cs">
+      <DependentUpon>StyleEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\RGBColor.cs" />
+    <Compile Include="Main\ScrapBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\ScrapBase.Designer.cs">
+      <DependentUpon>ScrapBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\ScrapBook.cs" />
+    <Compile Include="Main\ScrapEventArgs.cs" />
+    <Compile Include="Main\ScrapKeyPressEventArgs.cs" />
+    <Compile Include="Main\ScrapMenuArgs.cs" />
+    <Compile Include="Main\ScrapMenuItem.cs" />
+    <Compile Include="Main\ScrapSource.cs" />
+    <Compile Include="Main\ScrapSourceImage.cs" />
+    <Compile Include="Main\ScrapSourcePath.cs" />
+    <Compile Include="Main\SelLineType.cs" />
+    <Compile Include="Main\SetunaListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Main\SplashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\SplashForm.Designer.cs">
+      <DependentUpon>SplashForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Startup\AutoStartup.cs" />
+    <Compile Include="Main\StyleItemEditListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItemListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\AddLayerCommand.cs" />
+    <Compile Include="Main\StyleItems\AddTextLayerCommand.cs" />
+    <Compile Include="Main\StyleItems\CCloseStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CCompactStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CCopyStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CImageBmpStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CImageJpegStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CImagePngStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CImageStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CMarginStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CMoveStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CompactScrap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\CompactScrap.Designer.cs">
+      <DependentUpon>CompactScrap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\CompactStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\CompactStyleItemPanel.Designer.cs">
+      <DependentUpon>CompactStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\COpacityStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CopyStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\CopyStyleItemPanel.Designer.cs">
+      <DependentUpon>CopyStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\CPaintStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CPasteStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CPicasaUploaderStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CRotateStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CScaleStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CTimerStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CToneReverseStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CTrimStyleItem.cs" />
+    <Compile Include="Main\StyleItems\CWindowStyleItem.cs" />
+    <Compile Include="Main\StyleItems\DeleteLayerCommand.cs" />
+    <Compile Include="Main\StyleItems\ILayer.cs" />
+    <Compile Include="Main\StyleItems\ImageBmpStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ImageBmpStyleItemPanel.Designer.cs">
+      <DependentUpon>ImageBmpStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ImageJpegPreviewPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ImageJpegPreviewPanel.Designer.cs">
+      <DependentUpon>ImageJpegPreviewPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ImageJpegStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ImageJpegStyleItemPanel.Designer.cs">
+      <DependentUpon>ImageJpegStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ImagePngPreviewPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ImagePngPreviewPanel.Designer.cs">
+      <DependentUpon>ImagePngPreviewPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ImagePngStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ImagePngStyleItemPanel.Designer.cs">
+      <DependentUpon>ImagePngStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\IPaintToolWindow.cs" />
+    <Compile Include="Main\StyleItems\IScrapStyle.cs" />
+    <Compile Include="Main\StyleItems\IStyleItemPanel.cs" />
+    <Compile Include="Main\StyleItems\LayerCommand.cs" />
+    <Compile Include="Main\StyleItems\LayerRenameWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\LayerRenameWindow.Designer.cs">
+      <DependentUpon>LayerRenameWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\LoginInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\LoginInput.Designer.cs">
+      <DependentUpon>LoginInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\MarginStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\MarginStyleItemPanel.Designer.cs">
+      <DependentUpon>MarginStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\MoveStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\MoveStyleItemPanel.Designer.cs">
+      <DependentUpon>MoveStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\NothingStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\NothingStyleItemPanel.Designer.cs">
+      <DependentUpon>NothingStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\OpacityStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\OpacityStyleItemPanel.Designer.cs">
+      <DependentUpon>OpacityStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\PaintForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\PaintForm.Designer.cs">
+      <DependentUpon>PaintForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\PaintTool.cs" />
+    <Compile Include="Main\StyleItems\PenButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\PenTool.cs" />
+    <Compile Include="Main\StyleItems\PenToolCommand.cs" />
+    <Compile Include="Main\StyleItems\PicasaBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\PicasaBar.Designer.cs">
+      <DependentUpon>PicasaBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\PicasaStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\PicasaStyleItemPanel.Designer.cs">
+      <DependentUpon>PicasaStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\RenameLayerCommand.cs" />
+    <Compile Include="Main\StyleItems\RotateStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\RotateStyleItemPanel.Designer.cs">
+      <DependentUpon>RotateStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\SaveImageStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\SaveImageStyleItemPanel.Designer.cs">
+      <DependentUpon>SaveImageStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScaleStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScaleStyleItemPanel.Designer.cs">
+      <DependentUpon>ScaleStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapDrawForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapDrawForm.Designer.cs">
+      <DependentUpon>ScrapDrawForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapPaintLayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapPaintLayer.Designer.cs">
+      <DependentUpon>ScrapPaintLayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapPaintLayerItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapPaintPenTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapPaintPenTool.Designer.cs">
+      <DependentUpon>ScrapPaintPenTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapPaintTextLayerItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapPaintTextTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapPaintTextTool.Designer.cs">
+      <DependentUpon>ScrapPaintTextTool.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapPaintToolBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapPaintToolBar.Designer.cs">
+      <DependentUpon>ScrapPaintToolBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapPaintWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ScrapPaintWindow.Designer.cs">
+      <DependentUpon>ScrapPaintWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\StyleItemDictionary.cs" />
+    <Compile Include="Main\StyleItems\TextTool.cs" />
+    <Compile Include="Main\StyleItems\TextToolCommand.cs" />
+    <Compile Include="Main\StyleItems\TimerStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\TimerStyleItemPanel.Designer.cs">
+      <DependentUpon>TimerStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ToolBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\ToolBoxForm.Designer.cs">
+      <DependentUpon>ToolBoxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\ToolCommand.cs" />
+    <Compile Include="Main\StyleItems\TrimWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\TrimWindow.Designer.cs">
+      <DependentUpon>TrimWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\StyleItems\WindowStyleItemPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\StyleItems\WindowStyleItemPanel.Designer.cs">
+      <DependentUpon>WindowStyleItemPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\Style\CAllHideStyle.cs" />
+    <Compile Include="Main\Style\CAllShowStyle.cs" />
+    <Compile Include="Main\Style\CCaptureStyle.cs" />
+    <Compile Include="Main\Style\CCloseStyle.cs" />
+    <Compile Include="Main\Style\CDustBoxStyle.cs" />
+    <Compile Include="Main\Style\CDustEraseStyle.cs" />
+    <Compile Include="Main\Style\COptionStyle.cs" />
+    <Compile Include="Main\Style\CPreStyle.cs" />
+    <Compile Include="Main\Style\CPreStyles.cs" />
+    <Compile Include="Main\Style\CScrapListStyle.cs" />
+    <Compile Include="Main\Style\CSeparatorStyle.cs" />
+    <Compile Include="Main\Style\CShowVersionStyle.cs" />
+    <Compile Include="Main\Style\CShutDownStyle.cs" />
+    <Compile Include="Main\Style\CStyle.cs" />
+    <Compile Include="Main\Style\IStyleMenu.cs" />
+    <Compile Include="Main\ToolStripAbstractList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Main\ToolStripDustboxList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Main\ToolStripScrapList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Main\ToolStripStyleButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Main\Common\WindowsAPI.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Resources\Image.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mainform.resx">
+      <DependentUpon>Mainform.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\CaptureSelLine.resx">
+      <DependentUpon>CaptureSelLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\ContextStyleMenuStrip.resx">
+      <DependentUpon>ContextStyleMenuStrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\Option\OptionForm.resx">
+      <DependentUpon>OptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\CaptureForm.resx">
+      <DependentUpon>CaptureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\CaptureInfo.resx">
+      <DependentUpon>CaptureInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\HotkeyMsg.resx">
+      <DependentUpon>HotkeyMsg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\Option\StyleEditForm.resx">
+      <DependentUpon>StyleEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\ScrapBase.resx">
+      <DependentUpon>ScrapBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\SplashForm.resx">
+      <DependentUpon>SplashForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\CompactScrap.resx">
+      <DependentUpon>CompactScrap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\CompactStyleItemPanel.resx">
+      <DependentUpon>CompactStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\CopyStyleItemPanel.resx">
+      <DependentUpon>CopyStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ImageBmpStyleItemPanel.resx">
+      <DependentUpon>ImageBmpStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ImageJpegPreviewPanel.resx">
+      <DependentUpon>ImageJpegPreviewPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ImageJpegStyleItemPanel.resx">
+      <DependentUpon>ImageJpegStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ImagePngPreviewPanel.resx">
+      <DependentUpon>ImagePngPreviewPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ImagePngStyleItemPanel.resx">
+      <DependentUpon>ImagePngStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\LayerRenameWindow.resx">
+      <DependentUpon>LayerRenameWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\LoginInput.resx">
+      <DependentUpon>LoginInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\MarginStyleItemPanel.resx">
+      <DependentUpon>MarginStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\MoveStyleItemPanel.resx">
+      <DependentUpon>MoveStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\NothingStyleItemPanel.resx">
+      <DependentUpon>NothingStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\OpacityStyleItemPanel.resx">
+      <DependentUpon>OpacityStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\PaintForm.resx">
+      <DependentUpon>PaintForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\PicasaBar.resx">
+      <DependentUpon>PicasaBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\PicasaStyleItemPanel.resx">
+      <DependentUpon>PicasaStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\RotateStyleItemPanel.resx">
+      <DependentUpon>RotateStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\SaveImageStyleItemPanel.resx">
+      <DependentUpon>SaveImageStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ScaleStyleItemPanel.resx">
+      <DependentUpon>ScaleStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ScrapDrawForm.resx">
+      <DependentUpon>ScrapDrawForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ScrapPaintLayer.resx">
+      <DependentUpon>ScrapPaintLayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ScrapPaintLayerItem.resx">
+      <DependentUpon>ScrapPaintLayerItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ScrapPaintPenTool.resx">
+      <DependentUpon>ScrapPaintPenTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ScrapPaintTextLayerItem.resx">
+      <DependentUpon>ScrapPaintTextLayerItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ScrapPaintTextTool.resx">
+      <DependentUpon>ScrapPaintTextTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ScrapPaintToolBar.resx">
+      <DependentUpon>ScrapPaintToolBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ScrapPaintWindow.resx">
+      <DependentUpon>ScrapPaintWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\TimerStyleItemPanel.resx">
+      <DependentUpon>TimerStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\ToolBoxForm.resx">
+      <DependentUpon>ToolBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\TrimWindow.resx">
+      <DependentUpon>TrimWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\StyleItems\WindowStyleItemPanel.resx">
+      <DependentUpon>WindowStyleItemPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Resources\Image.resx">
+      <DependentUpon>Image.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Fody.6.0.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.0.0\build\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props'))" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>mkdir $(SolutionDir)\publish
+7z a $(TargetName)_$(ConfigurationName)_$(PlatformName).zip $(ProjectDir)$(OutDir)$(TargetFileName) $(ProjectDir)$(OutDir)$(TargetFileName).config
+copy /y $(TargetName)_$(ConfigurationName)_$(PlatformName).zip $(SolutionDir)\publish\$(TargetName)_$(ConfigurationName)_$(PlatformName).zip</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+</Project>

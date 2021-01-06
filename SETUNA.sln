@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SETUNA", "SETUNA\SETUNA.csproj", "{15D64201-91AD-47B1-8675-5DBB30DF6A39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{99B848A6-8048-4D03-BBAC-FE8D5B84B935}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SETUNATests", "SETUNATests\SETUNATests.csproj", "{A601CD5F-88CA-47C6-9D24-33E006864BD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15D64201-91AD-47B1-8675-5DBB30DF6A39}.Debug|x64.ActiveCfg = Debug|x64
+		{15D64201-91AD-47B1-8675-5DBB30DF6A39}.Debug|x64.Build.0 = Debug|x64
+		{15D64201-91AD-47B1-8675-5DBB30DF6A39}.Debug|x86.ActiveCfg = Debug|x86
+		{15D64201-91AD-47B1-8675-5DBB30DF6A39}.Debug|x86.Build.0 = Debug|x86
+		{15D64201-91AD-47B1-8675-5DBB30DF6A39}.Release|x64.ActiveCfg = Release|x64
+		{15D64201-91AD-47B1-8675-5DBB30DF6A39}.Release|x64.Build.0 = Release|x64
+		{15D64201-91AD-47B1-8675-5DBB30DF6A39}.Release|x86.ActiveCfg = Release|x86
+		{15D64201-91AD-47B1-8675-5DBB30DF6A39}.Release|x86.Build.0 = Release|x86
+		{A601CD5F-88CA-47C6-9D24-33E006864BD9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A601CD5F-88CA-47C6-9D24-33E006864BD9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A601CD5F-88CA-47C6-9D24-33E006864BD9}.Release|x64.ActiveCfg = Release|Any CPU
+		{A601CD5F-88CA-47C6-9D24-33E006864BD9}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6CDECD6E-B551-4B50-92BD-3DAAC9B49B9D}
+	EndGlobalSection
+EndGlobal
