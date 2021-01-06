@@ -16,9 +16,11 @@ namespace SETUNA.Main.Style
                 new CScrapListStyle(),
                 new CDustBoxStyle(),
                 new CDustEraseStyle(),
+                new CDustScrapStyle(),
                 new CCaptureStyle(),
+                new CPasteStyle(),
                 new COptionStyle(),
-                new CShutDownStyle()
+                new CShutDownStyle(),
             };
         }
 

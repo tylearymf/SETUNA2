@@ -242,7 +242,8 @@ namespace SETUNA.Main
         // Token: 0x060001C8 RID: 456 RVA: 0x00009E5C File Offset: 0x0000805C
         public void CloseAllScrap()
         {
-            foreach (var obj in _scraps)
+            var list = _scraps.ToArray();
+            foreach (var obj in list)
             {
                 var scrapBase = (ScrapBase)obj;
                 scrapBase.Close();

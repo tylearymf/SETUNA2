@@ -99,8 +99,10 @@ namespace SETUNA
             setunaIconMenu.Items.Add(new CScrapListStyle().GetToolStrip(scrapBook));
             setunaIconMenu.Items.Add(new CDustBoxStyle().GetToolStrip(scrapBook));
             setunaIconMenu.Items.Add(new CDustEraseStyle().GetToolStrip());
+            setunaIconMenu.Items.Add(new CDustScrapStyle().GetToolStrip());
             setunaIconMenu.Items.Add(new ToolStripSeparator());
             setunaIconMenu.Items.Add(new CCaptureStyle().GetToolStrip());
+            setunaIconMenu.Items.Add(new CPasteStyle().GetToolStrip());
             setunaIconMenu.Items.Add(new ToolStripSeparator());
             setunaIconMenu.Items.Add(new CShowVersionStyle().GetToolStrip());
             setunaIconMenu.Items.Add(new COptionStyle().GetToolStrip());

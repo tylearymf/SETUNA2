@@ -163,6 +163,8 @@
     </Compile>
     <Compile Include="Main\Common\Utils.cs" />
     <Compile Include="Main\HotKeyID.cs" />
+    <Compile Include="Main\Style\CPasteStyle.cs" />
+    <Compile Include="Main\Style\CDustScrapStyle.cs" />
     <Compile Include="Main\ToolStripEx.cs" />
     <Compile Include="Main\Window\WindowManager.cs" />
     <Compile Include="Main\ContextStyleMenuStrip.cs">
