@@ -627,8 +627,11 @@ namespace SETUNA
         // Token: 0x06000212 RID: 530 RVA: 0x0000B3B6 File Offset: 0x000095B6
         private void setunaIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            base.Activate();
-            SETUNA.Main.Layer.LayerManager.Instance.RefreshLayer();
+            if (e.Button == MouseButtons.Left)
+            {
+                base.Activate();
+                SETUNA.Main.Layer.LayerManager.Instance.RefreshLayer();
+            }
         }
 
         private void setunaIcon_MouseDoubleClick(object sender, EventArgs e)

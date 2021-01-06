@@ -137,6 +137,7 @@ namespace SETUNA.Main.Option
             _so.Scrap.SubMenuStyles = list;
 
             _so.Setuna.TopMostEnabled = checkBox_topMost.Checked;
+            Startup.AutoStartup.Set(checkBox_autoStartup.Checked);
         }
 
         // Token: 0x060002D6 RID: 726 RVA: 0x00013D84 File Offset: 0x00011F84
