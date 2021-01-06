@@ -110,7 +110,11 @@
             this.listScrapMenuItems = new SETUNA.Main.SetunaListBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.listScrapMenuStyles = new SETUNA.Main.SetunaListBox();
+            this.pageMisc = new System.Windows.Forms.TabPage();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.checkBox_cursor = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblMenuMisc = new System.Windows.Forms.Label();
             this.lblMenuStyle = new System.Windows.Forms.Label();
             this.lblMenuCapture = new System.Windows.Forms.Label();
             this.lblMenuMenu = new System.Windows.Forms.Label();
@@ -149,6 +153,8 @@
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.pageMisc.SuspendLayout();
+            this.groupBox14.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -228,6 +234,7 @@
             this.tabControl1.Controls.Add(this.pageScrap);
             this.tabControl1.Controls.Add(this.pageStyle);
             this.tabControl1.Controls.Add(this.pageScrapMenu);
+            this.tabControl1.Controls.Add(this.pageMisc);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(0);
@@ -1298,9 +1305,45 @@
             this.listScrapMenuStyles.Enter += new System.EventHandler(this.listScrapMenuStyles_Enter);
             this.listScrapMenuStyles.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listScrapMenuStyles_MouseDoubleClick);
             // 
+            // pageMisc
+            // 
+            this.pageMisc.BackColor = System.Drawing.Color.White;
+            this.pageMisc.Controls.Add(this.groupBox14);
+            this.pageMisc.Location = new System.Drawing.Point(4, 28);
+            this.pageMisc.Name = "pageMisc";
+            this.pageMisc.Padding = new System.Windows.Forms.Padding(3);
+            this.pageMisc.Size = new System.Drawing.Size(588, 413);
+            this.pageMisc.TabIndex = 5;
+            this.pageMisc.Text = "杂项设置";
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.checkBox_cursor);
+            this.groupBox14.Location = new System.Drawing.Point(7, 7);
+            this.groupBox14.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox14.Size = new System.Drawing.Size(574, 92);
+            this.groupBox14.TabIndex = 12;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "样式";
+            // 
+            // checkBox_cursor
+            // 
+            this.checkBox_cursor.AutoSize = true;
+            this.checkBox_cursor.Location = new System.Drawing.Point(38, 38);
+            this.checkBox_cursor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.checkBox_cursor.Name = "checkBox_cursor";
+            this.checkBox_cursor.Size = new System.Drawing.Size(89, 19);
+            this.checkBox_cursor.TabIndex = 6;
+            this.checkBox_cursor.Text = "显示鼠标";
+            this.toolTip1.SetToolTip(this.checkBox_cursor, "截图时是否显示鼠标");
+            this.checkBox_cursor.UseVisualStyleBackColor = true;
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(163)))), ((int)(((byte)(236)))));
+            this.panel1.Controls.Add(this.lblMenuMisc);
             this.panel1.Controls.Add(this.lblMenuStyle);
             this.panel1.Controls.Add(this.lblMenuCapture);
             this.panel1.Controls.Add(this.lblMenuMenu);
@@ -1313,6 +1356,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(172, 450);
             this.panel1.TabIndex = 1;
+            // 
+            // lblMenuMisc
+            // 
+            this.lblMenuMisc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(132)))), ((int)(((byte)(215)))));
+            this.lblMenuMisc.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblMenuMisc.ForeColor = System.Drawing.Color.White;
+            this.lblMenuMisc.Location = new System.Drawing.Point(16, 138);
+            this.lblMenuMisc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMenuMisc.Name = "lblMenuMisc";
+            this.lblMenuMisc.Size = new System.Drawing.Size(133, 17);
+            this.lblMenuMisc.TabIndex = 6;
+            this.lblMenuMisc.Text = "杂项设置";
+            this.lblMenuMisc.Click += new System.EventHandler(this.lblMenuMisc_Click);
+            this.lblMenuMisc.MouseEnter += new System.EventHandler(this.lblMenuMisc_MouseEnter);
+            this.lblMenuMisc.MouseLeave += new System.EventHandler(this.lblMenuMisc_MouseLeave);
             // 
             // lblMenuStyle
             // 
@@ -1466,6 +1524,9 @@
             this.groupBox10.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
+            this.pageMisc.ResumeLayout(false);
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1760,5 +1821,9 @@
         private System.Windows.Forms.Button button2;
         private HotkeyControl hotkeyControl2;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TabPage pageMisc;
+        private System.Windows.Forms.Label lblMenuMisc;
+        private System.Windows.Forms.CheckBox checkBox_cursor;
+        private System.Windows.Forms.GroupBox groupBox14;
     }
 }

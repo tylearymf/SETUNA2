@@ -152,7 +152,7 @@ namespace SETUNA.Main
             {
                 return;
             }
-            Cursor.Current = Cursors.Cross;
+            //Cursor.Current = Cursors.Cross;
             targetScreen = GetCurrentScreen();
             if (targetScreen.Bounds.Width != CaptureForm.imgSnap.Width || targetScreen.Bounds.Height != CaptureForm.imgSnap.Height)
             {
@@ -255,6 +255,7 @@ namespace SETUNA.Main
             var flag = CaptureForm.CopyFromScreen(CaptureForm.imgSnap, new Point(targetScreen.Bounds.X, targetScreen.Bounds.Y));
             if (flag)
             {
+                Cursor.Current = Cursors.Cross;
                 base.Invoke(new CaptureForm.ShowFormDelegate(ShowForm));
                 return;
             }
@@ -266,19 +267,26 @@ namespace SETUNA.Main
         {
             var result = true;
             var intPtr = IntPtr.Zero;
+            Graphics graphics = null;
             try
             {
                 intPtr = CaptureForm.GetDC(IntPtr.Zero);
-                using (var graphics = Graphics.FromImage(img))
+                graphics = Graphics.FromImage(img);
                 {
                     var intPtr2 = IntPtr.Zero;
                     try
                     {
                         intPtr2 = graphics.GetHdc();
                         CaptureForm.BitBlt(intPtr2, 0, 0, img.Width, img.Height, intPtr, location.X, location.Y, 1087111200);
+
+                        if (Mainform.Instance.optSetuna.Setuna.CursorEnabled)
+                        {
+                            WindowsAPI.DrawCursorImageToScreenImage(intPtr2);
+                        }
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine(ex);
                         throw ex;
                     }
                     finally
@@ -292,11 +300,13 @@ namespace SETUNA.Main
             }
             catch (Exception ex2)
             {
-                Console.WriteLine(ex2.Message);
+                Console.WriteLine(ex2);
                 result = false;
             }
             finally
             {
+                graphics.Dispose();
+
                 if (intPtr != IntPtr.Zero)
                 {
                     CaptureForm.DeleteDC(intPtr);

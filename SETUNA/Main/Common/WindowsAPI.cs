@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -123,6 +124,29 @@ namespace SETUNA.Main
 
         [DllImport("user32.dll")]
         public static extern bool GetWindowRect(IntPtr hwnd, ref Rect rectangle);
+
+
+
+        private const int CURSOR_SHOWING = 0x00000001;
+        [DllImport("user32.dll")]
+        static extern bool GetCursorInfo(out CURSORINFO pci);
+        [DllImport("user32.dll")]
+        static extern bool DrawIcon(IntPtr hDC, int X, int Y, IntPtr hIcon);
+
+        /// <summary>
+        /// 将鼠标指针形状绘制到屏幕截图上
+        /// </summary>
+        /// <param name="g"></param>
+        public static void DrawCursorImageToScreenImage(IntPtr hDC)
+        {
+            CURSORINFO vCurosrInfo;
+            vCurosrInfo.cbSize = Marshal.SizeOf(typeof(CURSORINFO));
+            GetCursorInfo(out vCurosrInfo);
+            if (vCurosrInfo.flags == CURSOR_SHOWING)
+            {
+                DrawIcon(hDC, vCurosrInfo.ptScreenPos.X, vCurosrInfo.ptScreenPos.Y, vCurosrInfo.hCursor);
+            }
+        }
     }
 
     public struct Rect
@@ -131,5 +155,15 @@ namespace SETUNA.Main
         public int Top { get; set; }
         public int Right { get; set; }
         public int Bottom { get; set; }
+    }
+
+
+    [StructLayout(LayoutKind.Sequential)]
+    struct CURSORINFO
+    {
+        public int cbSize;
+        public int flags;
+        public IntPtr hCursor;
+        public Point ptScreenPos;
     }
 }

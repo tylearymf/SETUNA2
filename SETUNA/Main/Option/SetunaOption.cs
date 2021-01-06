@@ -42,6 +42,7 @@ namespace SETUNA.Main.Option
 
 
             setunaOption.Setuna.TopMostEnabled = false;
+            setunaOption.Setuna.CursorEnabled = false;
 
 
             var cstyle = new CStyle
@@ -1020,6 +1021,7 @@ namespace SETUNA.Main.Option
                 ClickCapture2 = false;
                 ClickCapture3 = false;
                 TopMostEnabled = false;
+                CursorEnabled = false;
             }
 
             // Token: 0x17000072 RID: 114
@@ -1097,6 +1099,8 @@ namespace SETUNA.Main.Option
             public bool ClickCapture3;
 
             public bool TopMostEnabled;
+
+            public bool CursorEnabled;
 
             // Token: 0x02000052 RID: 82
             public enum ApplicationType

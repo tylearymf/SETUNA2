@@ -72,6 +72,7 @@ namespace SETUNA.Main.Option
 
             checkBox_topMost.Checked = _so.Setuna.TopMostEnabled;
             checkBox_autoStartup.Checked = Startup.AutoStartup.IsSetup();
+            checkBox_cursor.Checked = _so.Setuna.CursorEnabled;
         }
 
         // Token: 0x060002D5 RID: 725 RVA: 0x00013908 File Offset: 0x00011B08
@@ -138,6 +139,7 @@ namespace SETUNA.Main.Option
 
             _so.Setuna.TopMostEnabled = checkBox_topMost.Checked;
             Startup.AutoStartup.Set(checkBox_autoStartup.Checked);
+            _so.Setuna.CursorEnabled = checkBox_cursor.Checked;
         }
 
         // Token: 0x060002D6 RID: 726 RVA: 0x00013D84 File Offset: 0x00011F84
@@ -197,6 +199,7 @@ namespace SETUNA.Main.Option
             lblMenuScrap.Font = new Font(lblMenuScrap.Font, FontStyle.Regular);
             lblMenuStyle.Font = new Font(lblMenuStyle.Font, FontStyle.Regular);
             lblMenuMenu.Font = new Font(lblMenuMenu.Font, FontStyle.Regular);
+            lblMenuMisc.Font = new Font(lblMenuMisc.Font, FontStyle.Regular);
             if (tabControl1.SelectedTab == pageAll)
             {
                 lblMenuAll.Font = new Font(lblMenuAll.Font, FontStyle.Bold);
@@ -218,6 +221,10 @@ namespace SETUNA.Main.Option
                 lblMenuMenu.Font = new Font(lblMenuMenu.Font, FontStyle.Bold);
                 RefreshScrapMenuStyleList_Menu();
                 RefreshScrapMenuList_Menu(GetStyleIDList_Menu());
+            }
+            if (tabControl1.SelectedTab == pageMisc)
+            {
+                lblMenuMisc.Font = new Font(lblMenuMisc.Font, FontStyle.Bold);
             }
         }
 
@@ -763,6 +770,21 @@ namespace SETUNA.Main.Option
         private void button2_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(Cache.CacheManager.Path);
+        }
+
+        private void lblMenuMisc_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab = pageMisc;
+        }
+
+        private void lblMenuMisc_MouseEnter(object sender, EventArgs e)
+        {
+            lblComment.Text = "鼠标样式设置等等。";
+        }
+
+        private void lblMenuMisc_MouseLeave(object sender, EventArgs e)
+        {
+            lblComment.Text = "";
         }
     }
 }
