@@ -495,7 +495,14 @@ namespace SETUNA
             if (toolStripMenuItem.Tag != null)
             {
                 var scrapBase = (ScrapBase)toolStripMenuItem.Tag;
-                scrapBase.Activate();
+                if (scrapBase.Visible)
+                {
+                    scrapBase.Activate();
+                }
+                else if (scrapBase.StyleForm is Main.StyleItems.CompactScrap compactScrap)
+                {
+                    compactScrap.Close();
+                }
             }
         }
 
