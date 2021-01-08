@@ -111,8 +111,16 @@
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.listScrapMenuStyles = new SETUNA.Main.SetunaListBox();
             this.pageMisc = new System.Windows.Forms.TabPage();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.checkBox_fullscreenCursor = new System.Windows.Forms.CheckBox();
+            this.radioButton2_fullscreenCursor = new System.Windows.Forms.RadioButton();
+            this.radioButton1_fullscreenCursor = new System.Windows.Forms.RadioButton();
+            this.label18 = new System.Windows.Forms.Label();
+            this.pictureBox_fullscreenCursor = new System.Windows.Forms.PictureBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.checkBox_cursor = new System.Windows.Forms.CheckBox();
+            this.checkBox_magnifier = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblMenuMisc = new System.Windows.Forms.Label();
             this.lblMenuStyle = new System.Windows.Forms.Label();
@@ -154,7 +162,9 @@
             this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.pageMisc.SuspendLayout();
-            this.groupBox14.SuspendLayout();
+            this.groupBox16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fullscreenCursor)).BeginInit();
+            this.groupBox15.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -1308,7 +1318,8 @@
             // pageMisc
             // 
             this.pageMisc.BackColor = System.Drawing.Color.White;
-            this.pageMisc.Controls.Add(this.groupBox14);
+            this.pageMisc.Controls.Add(this.groupBox16);
+            this.pageMisc.Controls.Add(this.groupBox15);
             this.pageMisc.Location = new System.Drawing.Point(4, 28);
             this.pageMisc.Name = "pageMisc";
             this.pageMisc.Padding = new System.Windows.Forms.Padding(3);
@@ -1316,29 +1327,131 @@
             this.pageMisc.TabIndex = 5;
             this.pageMisc.Text = "杂项设置";
             // 
-            // groupBox14
+            // groupBox16
             // 
-            this.groupBox14.Controls.Add(this.checkBox_cursor);
-            this.groupBox14.Location = new System.Drawing.Point(7, 7);
-            this.groupBox14.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox14.Size = new System.Drawing.Size(574, 92);
-            this.groupBox14.TabIndex = 12;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "样式";
+            this.groupBox16.Controls.Add(this.checkBox_fullscreenCursor);
+            this.groupBox16.Controls.Add(this.radioButton2_fullscreenCursor);
+            this.groupBox16.Controls.Add(this.radioButton1_fullscreenCursor);
+            this.groupBox16.Controls.Add(this.label18);
+            this.groupBox16.Controls.Add(this.pictureBox_fullscreenCursor);
+            this.groupBox16.Controls.Add(this.label19);
+            this.groupBox16.Location = new System.Drawing.Point(7, 7);
+            this.groupBox16.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox16.Name = "groupBox16";
+            this.groupBox16.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox16.Size = new System.Drawing.Size(574, 92);
+            this.groupBox16.TabIndex = 13;
+            this.groupBox16.TabStop = false;
+            this.groupBox16.Text = "全屏十字光标样式";
+            // 
+            // checkBox_fullscreenCursor
+            // 
+            this.checkBox_fullscreenCursor.AutoSize = true;
+            this.checkBox_fullscreenCursor.Location = new System.Drawing.Point(485, 12);
+            this.checkBox_fullscreenCursor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.checkBox_fullscreenCursor.Name = "checkBox_fullscreenCursor";
+            this.checkBox_fullscreenCursor.Size = new System.Drawing.Size(89, 19);
+            this.checkBox_fullscreenCursor.TabIndex = 7;
+            this.checkBox_fullscreenCursor.Text = "全屏光标";
+            this.toolTip1.SetToolTip(this.checkBox_fullscreenCursor, "截图时的光标显示为全屏光标");
+            this.checkBox_fullscreenCursor.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2_fullscreenCursor
+            // 
+            this.radioButton2_fullscreenCursor.AutoSize = true;
+            this.radioButton2_fullscreenCursor.Location = new System.Drawing.Point(240, 60);
+            this.radioButton2_fullscreenCursor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.radioButton2_fullscreenCursor.Name = "radioButton2_fullscreenCursor";
+            this.radioButton2_fullscreenCursor.Size = new System.Drawing.Size(58, 19);
+            this.radioButton2_fullscreenCursor.TabIndex = 17;
+            this.radioButton2_fullscreenCursor.Text = "虚线";
+            this.toolTip1.SetToolTip(this.radioButton2_fullscreenCursor, "设置框选范围的边框线的类型。");
+            this.radioButton2_fullscreenCursor.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1_fullscreenCursor
+            // 
+            this.radioButton1_fullscreenCursor.AutoSize = true;
+            this.radioButton1_fullscreenCursor.Checked = true;
+            this.radioButton1_fullscreenCursor.Location = new System.Drawing.Point(175, 61);
+            this.radioButton1_fullscreenCursor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.radioButton1_fullscreenCursor.Name = "radioButton1_fullscreenCursor";
+            this.radioButton1_fullscreenCursor.Size = new System.Drawing.Size(58, 19);
+            this.radioButton1_fullscreenCursor.TabIndex = 16;
+            this.radioButton1_fullscreenCursor.TabStop = true;
+            this.radioButton1_fullscreenCursor.Text = "实线";
+            this.toolTip1.SetToolTip(this.radioButton1_fullscreenCursor, "设置框选范围的边框线的类型。");
+            this.radioButton1_fullscreenCursor.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(39, 33);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(112, 15);
+            this.label18.TabIndex = 14;
+            this.label18.Text = "框选线的颜色∶";
+            // 
+            // pictureBox_fullscreenCursor
+            // 
+            this.pictureBox_fullscreenCursor.BackColor = System.Drawing.Color.Blue;
+            this.pictureBox_fullscreenCursor.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox_fullscreenCursor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox_fullscreenCursor.Location = new System.Drawing.Point(175, 30);
+            this.pictureBox_fullscreenCursor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pictureBox_fullscreenCursor.Name = "pictureBox_fullscreenCursor";
+            this.pictureBox_fullscreenCursor.Size = new System.Drawing.Size(41, 21);
+            this.pictureBox_fullscreenCursor.TabIndex = 18;
+            this.pictureBox_fullscreenCursor.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox_fullscreenCursor, "指定框选范围的边框线的颜色。");
+            this.pictureBox_fullscreenCursor.Click += new System.EventHandler(this.pictureBox_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(39, 63);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(112, 15);
+            this.label19.TabIndex = 15;
+            this.label19.Text = "框选线的种类∶";
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.checkBox_cursor);
+            this.groupBox15.Controls.Add(this.checkBox_magnifier);
+            this.groupBox15.Location = new System.Drawing.Point(7, 108);
+            this.groupBox15.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox15.Size = new System.Drawing.Size(574, 57);
+            this.groupBox15.TabIndex = 13;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "其他";
             // 
             // checkBox_cursor
             // 
             this.checkBox_cursor.AutoSize = true;
-            this.checkBox_cursor.Location = new System.Drawing.Point(38, 38);
+            this.checkBox_cursor.Location = new System.Drawing.Point(42, 24);
             this.checkBox_cursor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.checkBox_cursor.Name = "checkBox_cursor";
-            this.checkBox_cursor.Size = new System.Drawing.Size(89, 19);
+            this.checkBox_cursor.Size = new System.Drawing.Size(149, 19);
             this.checkBox_cursor.TabIndex = 6;
-            this.checkBox_cursor.Text = "显示鼠标";
+            this.checkBox_cursor.Text = "在截图中保留鼠标";
             this.toolTip1.SetToolTip(this.checkBox_cursor, "截图时是否显示鼠标");
             this.checkBox_cursor.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_magnifier
+            // 
+            this.checkBox_magnifier.AutoSize = true;
+            this.checkBox_magnifier.Location = new System.Drawing.Point(224, 24);
+            this.checkBox_magnifier.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.checkBox_magnifier.Name = "checkBox_magnifier";
+            this.checkBox_magnifier.Size = new System.Drawing.Size(209, 19);
+            this.checkBox_magnifier.TabIndex = 6;
+            this.checkBox_magnifier.Text = "截图时显示放大镜以供参考";
+            this.toolTip1.SetToolTip(this.checkBox_magnifier, "截图时显示放大镜以供参考");
+            this.checkBox_magnifier.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -1525,8 +1638,11 @@
             this.groupBox9.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.pageMisc.ResumeLayout(false);
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
+            this.groupBox16.ResumeLayout(false);
+            this.groupBox16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_fullscreenCursor)).EndInit();
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1824,6 +1940,14 @@
         private System.Windows.Forms.TabPage pageMisc;
         private System.Windows.Forms.Label lblMenuMisc;
         private System.Windows.Forms.CheckBox checkBox_cursor;
-        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.CheckBox checkBox_magnifier;
+        private System.Windows.Forms.GroupBox groupBox16;
+        private System.Windows.Forms.CheckBox checkBox_fullscreenCursor;
+        private System.Windows.Forms.RadioButton radioButton2_fullscreenCursor;
+        private System.Windows.Forms.RadioButton radioButton1_fullscreenCursor;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.PictureBox pictureBox_fullscreenCursor;
+        private System.Windows.Forms.Label label19;
     }
 }

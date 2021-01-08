@@ -25,12 +25,12 @@ namespace SETUNA.Main.Option
             setunaOption.Setuna.DustBoxCapacity = 5;
             setunaOption.Setuna.DustBoxEnable = true;
             setunaOption.Setuna.SelectAreaTransparent = 80;
-            setunaOption.Setuna.SelectBackColorR = 0;
-            setunaOption.Setuna.SelectBackColorG = 0;
-            setunaOption.Setuna.SelectBackColorB = 139;
-            setunaOption.Setuna.SelectLineColorR = 0;
-            setunaOption.Setuna.SelectLineColorG = 0;
-            setunaOption.Setuna.SelectLineColorB = 0;
+            setunaOption.Setuna.SelectBackColorR = Color.DarkBlue.R;
+            setunaOption.Setuna.SelectBackColorG = Color.DarkBlue.G;
+            setunaOption.Setuna.SelectBackColorB = Color.DarkBlue.B;
+            setunaOption.Setuna.SelectLineColorR = Color.Blue.R;
+            setunaOption.Setuna.SelectLineColorG = Color.Blue.G;
+            setunaOption.Setuna.SelectLineColorB = Color.Blue.B;
             setunaOption.Setuna.ShowSplashWindow = true;
             setunaOption.Setuna.SelectLineSolid = false;
             setunaOption.ScrapHotKeyDatas = new Keys[(int)HotKeyID.__Count__] { Keys.Control | Keys.D1, Keys.Control | Keys.D2 };
@@ -43,6 +43,12 @@ namespace SETUNA.Main.Option
 
             setunaOption.Setuna.TopMostEnabled = false;
             setunaOption.Setuna.CursorEnabled = false;
+            setunaOption.Setuna.FullscreenCursor = false;
+            setunaOption.Setuna.MagnifierEnabled = false;
+            setunaOption.Setuna.FullscreenCursorSolid = true;
+            setunaOption.Setuna.FullscreenCursorColorR = Color.Orange.R;
+            setunaOption.Setuna.FullscreenCursorColorG = Color.Orange.G;
+            setunaOption.Setuna.FullscreenCursorColorB = Color.Orange.B;
 
 
             var cstyle = new CStyle
@@ -1020,8 +1026,16 @@ namespace SETUNA.Main.Option
                 ClickCapture1 = false;
                 ClickCapture2 = false;
                 ClickCapture3 = false;
+
                 TopMostEnabled = false;
                 CursorEnabled = false;
+                FullscreenCursor = false;
+                MagnifierEnabled = false;
+
+                FullscreenCursorSolid = true;
+                FullscreenCursorColorR = Color.Orange.R;
+                FullscreenCursorColorG = Color.Orange.G;
+                FullscreenCursorColorB = Color.Orange.B;
             }
 
             // Token: 0x17000072 RID: 114
@@ -1101,6 +1115,18 @@ namespace SETUNA.Main.Option
             public bool TopMostEnabled;
 
             public bool CursorEnabled;
+
+            public bool FullscreenCursor;
+
+            public bool MagnifierEnabled;
+
+            public Color FullscreenCursorLineColor => Color.FromArgb(FullscreenCursorColorR, FullscreenCursorColorG, FullscreenCursorColorB);
+            public bool FullscreenCursorSolid;
+            public byte FullscreenCursorColorR;
+            public byte FullscreenCursorColorG;
+            public byte FullscreenCursorColorB;
+
+
 
             // Token: 0x02000052 RID: 82
             public enum ApplicationType

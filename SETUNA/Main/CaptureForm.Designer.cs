@@ -16,33 +16,27 @@
 		// Token: 0x060002B8 RID: 696 RVA: 0x0000F360 File Offset: 0x0000D560
 		private void InitializeComponent()
 		{
-            this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 250;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // CaptureForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.ClientSize = new System.Drawing.Size(389, 332);
             this.ControlBox = false;
             this.Cursor = System.Windows.Forms.Cursors.Cross;
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CaptureForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "CaptureForm";
             this.TopMost = true;
-            this.Shown += new System.EventHandler(this.CaptureForm_Shown);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CaptureForm_FormClosed);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CaptureForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CaptureForm_FormClosed);
+            this.Shown += new System.EventHandler(this.CaptureForm_Shown);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.CaptureForm_Paint);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CaptureForm_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CaptureForm_KeyUp);
@@ -55,8 +49,5 @@
 
         // Token: 0x0400013E RID: 318
         private global::System.ComponentModel.IContainer components;
-
-		// Token: 0x0400013F RID: 319
-		private global::System.Windows.Forms.Timer timer1;
-	}
+    }
 }

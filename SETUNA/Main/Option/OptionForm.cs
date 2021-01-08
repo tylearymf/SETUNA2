@@ -73,6 +73,12 @@ namespace SETUNA.Main.Option
             checkBox_topMost.Checked = _so.Setuna.TopMostEnabled;
             checkBox_autoStartup.Checked = Startup.AutoStartup.IsSetup();
             checkBox_cursor.Checked = _so.Setuna.CursorEnabled;
+            checkBox_fullscreenCursor.Checked = _so.Setuna.FullscreenCursor;
+            checkBox_magnifier.Checked = _so.Setuna.MagnifierEnabled;
+
+            radioButton1_fullscreenCursor.Checked = _so.Setuna.FullscreenCursorSolid;
+            radioButton2_fullscreenCursor.Checked = !_so.Setuna.FullscreenCursorSolid;
+            pictureBox_fullscreenCursor.BackColor = _so.Setuna.FullscreenCursorLineColor;
         }
 
         // Token: 0x060002D5 RID: 725 RVA: 0x00013908 File Offset: 0x00011B08
@@ -140,6 +146,13 @@ namespace SETUNA.Main.Option
             _so.Setuna.TopMostEnabled = checkBox_topMost.Checked;
             Startup.AutoStartup.Set(checkBox_autoStartup.Checked);
             _so.Setuna.CursorEnabled = checkBox_cursor.Checked;
+            _so.Setuna.FullscreenCursor = checkBox_fullscreenCursor.Checked;
+            _so.Setuna.MagnifierEnabled = checkBox_magnifier.Checked;
+
+            _so.Setuna.FullscreenCursorSolid = radioButton1_fullscreenCursor.Checked;
+            _so.Setuna.FullscreenCursorColorR = pictureBox_fullscreenCursor.BackColor.R;
+            _so.Setuna.FullscreenCursorColorG = pictureBox_fullscreenCursor.BackColor.G;
+            _so.Setuna.FullscreenCursorColorB = pictureBox_fullscreenCursor.BackColor.B;
         }
 
         // Token: 0x060002D6 RID: 726 RVA: 0x00013D84 File Offset: 0x00011F84

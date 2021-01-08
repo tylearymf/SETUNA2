@@ -163,6 +163,12 @@
     </Compile>
     <Compile Include="Main\Common\Utils.cs" />
     <Compile Include="Main\HotKeyID.cs" />
+    <Compile Include="Main\Magnifier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\Magnifier.Designer.cs">
+      <DependentUpon>Magnifier.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main\Style\CPasteStyle.cs" />
     <Compile Include="Main\Style\CDustScrapStyle.cs" />
     <Compile Include="Main\ToolStripEx.cs" />
@@ -522,6 +528,9 @@
     <EmbeddedResource Include="Main\ContextStyleMenuStrip.resx">
       <DependentUpon>ContextStyleMenuStrip.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Main\Magnifier.resx">
+      <DependentUpon>Magnifier.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main\Option\OptionForm.resx">
       <DependentUpon>OptionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -668,6 +677,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Image1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />

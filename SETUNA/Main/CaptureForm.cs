@@ -88,6 +88,9 @@ namespace SETUNA.Main
         // (get) Token: 0x0600029A RID: 666 RVA: 0x0000DE96 File Offset: 0x0000C096
         public Size ClipSize => ptClipSize;
 
+        public Screen TargetScreen => targetScreen;
+
+
         // Token: 0x1700006F RID: 111
         // (set) Token: 0x0600029B RID: 667 RVA: 0x0000DE9E File Offset: 0x0000C09E
         public CaptureForm.CaptureClosedDelegate OnCaptureClose
@@ -142,7 +145,70 @@ namespace SETUNA.Main
             CaptureForm.selLineVer1.Visible = false;
             CaptureForm.selLineVer2.Visible = false;
             CaptureForm.selArea.Visible = false;
+
+            fullscreenHorLine = new CaptureSelLine(SelLineType.Horizon, opt.SelectLineSolid, opt.SelectLineColor);
+            InitChildForm(fullscreenHorLine, true);
+            fullscreenVerLine = new CaptureSelLine(SelLineType.Vertical, opt.SelectLineSolid, opt.SelectLineColor);
+            InitChildForm(fullscreenVerLine, true);
+
+            magnifier = new Magnifier(this);
+            base.AddOwnedForm(magnifier);
+            magnifier.Show();
+            magnifier.Visible = false;
+
             base.Opacity = 0.99000000953674316;
+        }
+
+
+        void InitChildForm(Form form, bool adjustOpacity = false)
+        {
+            base.AddOwnedForm(form);
+            form.Cursor = Cursors.Cross;
+
+            if (adjustOpacity)
+                form.Opacity = 0.0099999997764825821;
+
+            form.MouseDown += (sender, e) => Form_MouseEvent(CaptureForm_MouseDown, sender, e);
+            form.MouseMove += (sender, e) => Form_MouseEvent(CaptureForm_MouseMove, sender, e);
+            form.MouseUp += (sender, e) => Form_MouseEvent(CaptureForm_MouseUp, sender, e);
+
+            form.Show(this);
+            form.Visible = false;
+        }
+
+        private void Form_MouseEvent(Action<object, MouseEventArgs> action, object sender, MouseEventArgs e)
+        {
+            if (sender is Form form)
+            {
+                if (form == fullscreenHorLine)
+                {
+                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X, e.Y + form.Top, e.Delta));
+                }
+                else if (form == fullscreenVerLine)
+                {
+                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X + form.Left, e.Y, e.Delta));
+                }
+                else if (form == selLineHor1)
+                {
+                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X, e.Y + form.Top, e.Delta));
+                }
+                else if (form == selLineHor2)
+                {
+                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X, e.Y + form.Top, e.Delta));
+                }
+                else if (form == selLineVer1)
+                {
+                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X + form.Left, e.Y, e.Delta));
+                }
+                else if (form == selLineVer2)
+                {
+                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X + form.Left, e.Y, e.Delta));
+                }
+                else if (form == selArea)
+                {
+                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X, e.Y, e.Delta));
+                }
+            }
         }
 
         // Token: 0x0600029D RID: 669 RVA: 0x0000E104 File Offset: 0x0000C304
@@ -230,6 +296,11 @@ namespace SETUNA.Main
                 " ",
                 DateTime.Now.Millisecond
             }));
+
+            CaptureForm.fullscreenHorLine.SetPen(opt.FullscreenCursorSolid, opt.FullscreenCursorLineColor);
+            CaptureForm.fullscreenHorLine.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y, targetScreen.Bounds.Width, targetScreen.Bounds.Height);
+            CaptureForm.fullscreenVerLine.SetPen(opt.FullscreenCursorSolid, opt.FullscreenCursorLineColor);
+            CaptureForm.fullscreenVerLine.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y, targetScreen.Bounds.Width, targetScreen.Bounds.Height);
 
             Thread.Sleep(1);
             Cursor.Clip = targetScreen.Bounds;
@@ -321,9 +392,38 @@ namespace SETUNA.Main
             base.Opacity = 0.0099999997764825821;
             base.Visible = true;
             base.Opacity = 0.0099999997764825821;
+
+            if (Mainform.Instance.optSetuna.Setuna.FullscreenCursor)
+            {
+                fullscreenHorLine.Opacity = base.Opacity;
+                fullscreenHorLine.Visible = base.Visible;
+                fullscreenVerLine.Opacity = base.Opacity;
+                fullscreenVerLine.Visible = base.Visible;
+                fullscreenHorLine.Refresh();
+                fullscreenVerLine.Refresh();
+            }
+
+            if (Mainform.Instance.optSetuna.Setuna.MagnifierEnabled)
+            {
+                magnifier.Opacity = base.Opacity;
+                magnifier.Visible = base.Visible;
+                magnifier.Refresh();
+            }
+
             Refresh();
             Thread.Sleep(10);
             base.Opacity = 0.99000000953674316;
+
+            if (Mainform.Instance.optSetuna.Setuna.FullscreenCursor)
+            {
+                fullscreenHorLine.Opacity = base.Opacity;
+                fullscreenVerLine.Opacity = base.Opacity;
+            }
+
+            if (Mainform.Instance.optSetuna.Setuna.MagnifierEnabled)
+            {
+                magnifier.Opacity = base.Opacity;
+            }
         }
 
         // Token: 0x060002A2 RID: 674 RVA: 0x0000E832 File Offset: 0x0000CA32
@@ -361,6 +461,12 @@ namespace SETUNA.Main
             CaptureForm.selLineHor2.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y - 10, targetScreen.Bounds.Width, 1);
             CaptureForm.selLineVer1.SetBounds(targetScreen.Bounds.X - 10, targetScreen.Bounds.Y, 1, targetScreen.Bounds.Height);
             CaptureForm.selLineVer2.SetBounds(targetScreen.Bounds.X - 10, targetScreen.Bounds.Y, 1, CaptureForm.selLineVer2.Height = targetScreen.Bounds.Height);
+
+            fullscreenHorLine.Hide();
+            fullscreenVerLine.Hide();
+
+            magnifier.Hide();
+
             base.Hide();
             Console.WriteLine("Hide end---");
         }
@@ -429,8 +535,8 @@ namespace SETUNA.Main
         // Token: 0x060002AB RID: 683 RVA: 0x0000EC00 File Offset: 0x0000CE00
         private void CaptureForm_MouseDown(object sender, MouseEventArgs e)
         {
-            ptStart.X = targetScreen.Bounds.X + e.Location.X;
-            ptStart.Y = targetScreen.Bounds.Y + e.Location.Y;
+            ptStart.X = targetScreen.Bounds.X + e.X;
+            ptStart.Y = targetScreen.Bounds.Y + e.Y;
             DrawSelectArea(0, 0, 1, 1, BoundsSpecified.Size);
             blDrag = true;
         }
@@ -501,12 +607,47 @@ namespace SETUNA.Main
         // Token: 0x060002AE RID: 686 RVA: 0x0000EEF4 File Offset: 0x0000D0F4
         private void CaptureForm_MouseMove(object sender, MouseEventArgs e)
         {
+            if (Mainform.Instance.optSetuna.Setuna.FullscreenCursor)
+            {
+                var cursorPos = Cursor.Position;
+                var cursorRealPos = new Point(cursorPos.X - targetScreen.Bounds.X, cursorPos.Y - targetScreen.Bounds.Y);
+                fullscreenHorLine.SetSelSize(0, targetScreen.Bounds.Width);
+                if (fullscreenHorLine.Top != cursorPos.Y)
+                {
+                    fullscreenHorLine.Top = cursorPos.Y;
+                }
+                fullscreenVerLine.SetSelSize(0, targetScreen.Bounds.Height);
+                if (fullscreenVerLine.Left != cursorPos.X)
+                {
+                    fullscreenVerLine.Left = cursorPos.X;
+                }
+            }
+
             if (blDrag)
             {
                 DrawSelRect();
-                return;
             }
-            DrawSelectArea(0, 0, 1, 1, BoundsSpecified.All);
+            else
+            {
+                DrawSelectArea(0, 0, 1, 1, BoundsSpecified.All);
+            }
+
+            if (Mainform.Instance.optSetuna.Setuna.MagnifierEnabled)
+            {
+                var cursorPos = Cursor.Position;
+                var point = Point.Empty;
+                var point2 = Point.Empty;
+
+                if (blDrag)
+                {
+                    point.X = Math.Min(ptStart.X, ptEnd.X);
+                    point.Y = Math.Min(ptStart.Y, ptEnd.Y);
+                    point2.X = Math.Max(ptStart.X, ptEnd.X);
+                    point2.Y = Math.Max(ptStart.Y, ptEnd.Y);
+                }
+
+                magnifier.SetText(cursorPos.X, cursorPos.Y, point2.X - point.X, point2.Y - point.Y);
+            }
         }
 
         // Token: 0x060002AF RID: 687 RVA: 0x0000EF14 File Offset: 0x0000D114
@@ -594,16 +735,6 @@ namespace SETUNA.Main
             }
         }
 
-        // Token: 0x060002B4 RID: 692 RVA: 0x0000F248 File Offset: 0x0000D448
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            CaptureSelLine.AddDashOffset();
-            CaptureForm.selLineVer1.Refresh();
-            CaptureForm.selLineVer2.Refresh();
-            CaptureForm.selLineHor1.Refresh();
-            CaptureForm.selLineHor2.Refresh();
-        }
-
         // Token: 0x060002B5 RID: 693 RVA: 0x0000F278 File Offset: 0x0000D478
         private void CaptureForm_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -633,6 +764,7 @@ namespace SETUNA.Main
                 EndCapture();
             }
         }
+
 
         // Token: 0x04000127 RID: 295
         private const int GW_OWNER = 4;
@@ -744,5 +876,12 @@ namespace SETUNA.Main
         // Token: 0x02000070 RID: 112
         // (Invoke) Token: 0x060003AE RID: 942
         private delegate void LineRefreshDelegate();
+
+
+        private static CaptureSelLine fullscreenHorLine;
+        private static CaptureSelLine fullscreenVerLine;
+
+        private static Magnifier magnifier;
+
     }
 }
