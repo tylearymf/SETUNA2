@@ -137,14 +137,14 @@ namespace SETUNA.Main
         /// 将鼠标指针形状绘制到屏幕截图上
         /// </summary>
         /// <param name="g"></param>
-        public static void DrawCursorImageToScreenImage(IntPtr hDC)
+        public static void DrawCursorImageToScreenImage(Point position, IntPtr hDC)
         {
             CURSORINFO vCurosrInfo;
             vCurosrInfo.cbSize = Marshal.SizeOf(typeof(CURSORINFO));
             GetCursorInfo(out vCurosrInfo);
             if (vCurosrInfo.flags == CURSOR_SHOWING)
             {
-                DrawIcon(hDC, vCurosrInfo.ptScreenPos.X, vCurosrInfo.ptScreenPos.Y, vCurosrInfo.hCursor);
+                DrawIcon(hDC, position.X, position.Y, vCurosrInfo.hCursor);
             }
         }
     }

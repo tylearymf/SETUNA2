@@ -88,7 +88,7 @@ namespace SETUNA.Main
         // (get) Token: 0x0600029A RID: 666 RVA: 0x0000DE96 File Offset: 0x0000C096
         public Size ClipSize => ptClipSize;
 
-        public Screen TargetScreen => targetScreen;
+        public static Screen TargetScreen => targetScreen;
 
 
         // Token: 0x1700006F RID: 111
@@ -146,12 +146,14 @@ namespace SETUNA.Main
             CaptureForm.selLineVer2.Visible = false;
             CaptureForm.selArea.Visible = false;
 
-            fullscreenHorLine = new CaptureSelLine(SelLineType.Horizon, opt.SelectLineSolid, opt.SelectLineColor);
-            InitChildForm(fullscreenHorLine, true);
-            fullscreenVerLine = new CaptureSelLine(SelLineType.Vertical, opt.SelectLineSolid, opt.SelectLineColor);
-            InitChildForm(fullscreenVerLine, true);
+            fullscreenHorLine = new CaptureSelLine(SelLineType.Horizon, opt.FullscreenCursorSolid, opt.FullscreenCursorLineColor);
+            fullscreenHorLine.ShowWhiteBackground = false;
+            InitChildForm(fullscreenHorLine);
+            fullscreenVerLine = new CaptureSelLine(SelLineType.Vertical, opt.FullscreenCursorSolid, opt.FullscreenCursorLineColor);
+            fullscreenVerLine.ShowWhiteBackground = false;
+            InitChildForm(fullscreenVerLine);
 
-            magnifier = new Magnifier(this);
+            magnifier = new Magnifier();
             base.AddOwnedForm(magnifier);
             magnifier.Show();
             magnifier.Visible = false;
@@ -159,56 +161,14 @@ namespace SETUNA.Main
             base.Opacity = 0.99000000953674316;
         }
 
-
-        void InitChildForm(Form form, bool adjustOpacity = false)
+        void InitChildForm(Form form)
         {
             base.AddOwnedForm(form);
             form.Cursor = Cursors.Cross;
-
-            if (adjustOpacity)
-                form.Opacity = 0.0099999997764825821;
-
-            form.MouseDown += (sender, e) => Form_MouseEvent(CaptureForm_MouseDown, sender, e);
-            form.MouseMove += (sender, e) => Form_MouseEvent(CaptureForm_MouseMove, sender, e);
-            form.MouseUp += (sender, e) => Form_MouseEvent(CaptureForm_MouseUp, sender, e);
+            form.Opacity = 0.0099999997764825821;
 
             form.Show(this);
             form.Visible = false;
-        }
-
-        private void Form_MouseEvent(Action<object, MouseEventArgs> action, object sender, MouseEventArgs e)
-        {
-            if (sender is Form form)
-            {
-                if (form == fullscreenHorLine)
-                {
-                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X, e.Y + form.Top, e.Delta));
-                }
-                else if (form == fullscreenVerLine)
-                {
-                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X + form.Left, e.Y, e.Delta));
-                }
-                else if (form == selLineHor1)
-                {
-                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X, e.Y + form.Top, e.Delta));
-                }
-                else if (form == selLineHor2)
-                {
-                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X, e.Y + form.Top, e.Delta));
-                }
-                else if (form == selLineVer1)
-                {
-                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X + form.Left, e.Y, e.Delta));
-                }
-                else if (form == selLineVer2)
-                {
-                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X + form.Left, e.Y, e.Delta));
-                }
-                else if (form == selArea)
-                {
-                    action(sender, new MouseEventArgs(e.Button, e.Clicks, e.X, e.Y, e.Delta));
-                }
-            }
         }
 
         // Token: 0x0600029D RID: 669 RVA: 0x0000E104 File Offset: 0x0000C304
@@ -284,7 +244,7 @@ namespace SETUNA.Main
                 CaptureForm.selLineVer1.Show(this);
             }
             CaptureForm.selLineVer2.SetPen(opt.SelectLineSolid, opt.SelectLineColor);
-            CaptureForm.selLineVer2.SetBounds(targetScreen.Bounds.X - 10, targetScreen.Bounds.Y, 1, CaptureForm.selLineVer2.Height = targetScreen.Bounds.Height);
+            CaptureForm.selLineVer2.SetBounds(targetScreen.Bounds.X - 10, targetScreen.Bounds.Y, 1, targetScreen.Bounds.Height);
             if (!CaptureForm.selLineVer2.Visible)
             {
                 CaptureForm.selLineVer2.Show(this);
@@ -297,10 +257,10 @@ namespace SETUNA.Main
                 DateTime.Now.Millisecond
             }));
 
-            CaptureForm.fullscreenHorLine.SetPen(opt.FullscreenCursorSolid, opt.FullscreenCursorLineColor);
-            CaptureForm.fullscreenHorLine.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y, targetScreen.Bounds.Width, targetScreen.Bounds.Height);
-            CaptureForm.fullscreenVerLine.SetPen(opt.FullscreenCursorSolid, opt.FullscreenCursorLineColor);
-            CaptureForm.fullscreenVerLine.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y, targetScreen.Bounds.Width, targetScreen.Bounds.Height);
+            fullscreenHorLine.SetPen(opt.FullscreenCursorSolid, opt.FullscreenCursorLineColor);
+            fullscreenVerLine.SetPen(opt.FullscreenCursorSolid, opt.FullscreenCursorLineColor);
+            fullscreenHorLine.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y, targetScreen.Bounds.Width, 1);
+            fullscreenVerLine.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y, 1, targetScreen.Bounds.Height);
 
             Thread.Sleep(1);
             Cursor.Clip = targetScreen.Bounds;
@@ -326,7 +286,6 @@ namespace SETUNA.Main
             var flag = CaptureForm.CopyFromScreen(CaptureForm.imgSnap, new Point(targetScreen.Bounds.X, targetScreen.Bounds.Y));
             if (flag)
             {
-                Cursor.Current = Cursors.Cross;
                 base.Invoke(new CaptureForm.ShowFormDelegate(ShowForm));
                 return;
             }
@@ -352,7 +311,9 @@ namespace SETUNA.Main
 
                         if (Mainform.Instance.optSetuna.Setuna.CursorEnabled)
                         {
-                            WindowsAPI.DrawCursorImageToScreenImage(intPtr2);
+                            var cursorPos = Cursor.Position;
+                            cursorPos.X -= targetScreen.Bounds.X;
+                            WindowsAPI.DrawCursorImageToScreenImage(cursorPos, intPtr2);
                         }
                     }
                     catch (Exception ex)
@@ -389,6 +350,8 @@ namespace SETUNA.Main
         // Token: 0x060002A1 RID: 673 RVA: 0x0000E7E4 File Offset: 0x0000C9E4
         private void ShowForm()
         {
+            Cursor.Current = Cursors.Cross;
+
             base.Opacity = 0.0099999997764825821;
             base.Visible = true;
             base.Opacity = 0.0099999997764825821;
@@ -416,12 +379,16 @@ namespace SETUNA.Main
 
             if (Mainform.Instance.optSetuna.Setuna.FullscreenCursor)
             {
+                fullscreenHorLine.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y, targetScreen.Bounds.Width, 1);
+                fullscreenVerLine.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y, 1, targetScreen.Bounds.Height);
+
                 fullscreenHorLine.Opacity = base.Opacity;
                 fullscreenVerLine.Opacity = base.Opacity;
             }
 
             if (Mainform.Instance.optSetuna.Setuna.MagnifierEnabled)
             {
+                magnifier.SetLocation(magnifier.LocationType);
                 magnifier.Opacity = base.Opacity;
             }
         }
@@ -460,10 +427,12 @@ namespace SETUNA.Main
             CaptureForm.selLineHor1.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y - 10, targetScreen.Bounds.Width, 1);
             CaptureForm.selLineHor2.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y - 10, targetScreen.Bounds.Width, 1);
             CaptureForm.selLineVer1.SetBounds(targetScreen.Bounds.X - 10, targetScreen.Bounds.Y, 1, targetScreen.Bounds.Height);
-            CaptureForm.selLineVer2.SetBounds(targetScreen.Bounds.X - 10, targetScreen.Bounds.Y, 1, CaptureForm.selLineVer2.Height = targetScreen.Bounds.Height);
+            CaptureForm.selLineVer2.SetBounds(targetScreen.Bounds.X - 10, targetScreen.Bounds.Y, 1, targetScreen.Bounds.Height);
 
             fullscreenHorLine.Hide();
             fullscreenVerLine.Hide();
+            fullscreenHorLine.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y, targetScreen.Bounds.Width, 1);
+            fullscreenVerLine.SetBounds(targetScreen.Bounds.X, targetScreen.Bounds.Y, 1, targetScreen.Bounds.Height);
 
             magnifier.Hide();
 
@@ -610,17 +579,11 @@ namespace SETUNA.Main
             if (Mainform.Instance.optSetuna.Setuna.FullscreenCursor)
             {
                 var cursorPos = Cursor.Position;
-                var cursorRealPos = new Point(cursorPos.X - targetScreen.Bounds.X, cursorPos.Y - targetScreen.Bounds.Y);
+
                 fullscreenHorLine.SetSelSize(0, targetScreen.Bounds.Width);
-                if (fullscreenHorLine.Top != cursorPos.Y)
-                {
-                    fullscreenHorLine.Top = cursorPos.Y;
-                }
+                fullscreenHorLine.Top = cursorPos.Y;
                 fullscreenVerLine.SetSelSize(0, targetScreen.Bounds.Height);
-                if (fullscreenVerLine.Left != cursorPos.X)
-                {
-                    fullscreenVerLine.Left = cursorPos.X;
-                }
+                fullscreenVerLine.Left = cursorPos.X;
             }
 
             if (blDrag)
@@ -803,7 +766,7 @@ namespace SETUNA.Main
         private Size ptClipSize;
 
         // Token: 0x04000133 RID: 307
-        private Screen targetScreen;
+        private static Screen targetScreen;
 
         // Token: 0x04000134 RID: 308
         private static Form selArea;

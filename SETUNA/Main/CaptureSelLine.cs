@@ -44,6 +44,20 @@ namespace SETUNA.Main
             penWhite = new Pen(new SolidBrush(Color.White), 1f);
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                // 鼠标穿透窗体
+                var cp = base.CreateParams;
+                cp.ExStyle |= 0x00000020; //WS_EX_TRANSPARENT
+                return cp;
+            }
+        }
+
+        public bool ShowWhiteBackground { set; get; } = true;
+
+
         // Token: 0x060003B6 RID: 950 RVA: 0x00016554 File Offset: 0x00014754
         public void SetPen(bool issolid, Color linecolor)
         {
@@ -69,7 +83,11 @@ namespace SETUNA.Main
             }
             if (_linetype == SelLineType.Horizon)
             {
-                e.Graphics.DrawLine(penWhite, new Point(ptSel.X, 0), new Point(ptSel.X + szSel.Width - 1, 0));
+                if (ShowWhiteBackground)
+                {
+                    e.Graphics.DrawLine(penWhite, new Point(ptSel.X, 0), new Point(ptSel.X + szSel.Width - 1, 0));
+                }
+
                 e.Graphics.DrawLine(penLine, new Point(ptSel.X + CaptureSelLine.DashOffset, 0), new Point(ptSel.X + szSel.Width - 1, 0));
                 if (CaptureSelLine.DashOffset > 4)
                 {
@@ -79,7 +97,11 @@ namespace SETUNA.Main
             }
             else
             {
-                e.Graphics.DrawLine(penWhite, new Point(0, ptSel.Y), new Point(0, ptSel.Y + szSel.Height - 1));
+                if (ShowWhiteBackground)
+                {
+                    e.Graphics.DrawLine(penWhite, new Point(0, ptSel.Y), new Point(0, ptSel.Y + szSel.Height - 1));
+                }
+
                 e.Graphics.DrawLine(penLine, new Point(0, ptSel.Y + CaptureSelLine.DashOffset), new Point(0, ptSel.Y + szSel.Height - 1));
                 if (CaptureSelLine.DashOffset > 4)
                 {
