@@ -69,9 +69,9 @@ A best screenshot small tool (support high dpi screenshots)
 ---
 
 ## 目前已知问题
-- 暂无
+- 前往 [Projects](https://github.com/tylearymf/SETUNA2/projects/1) 标签查看
 
 ---
 
 ## 后续要加的功能
-- 暂无
+- 前往 [Projects](https://github.com/tylearymf/SETUNA2/projects/1) 标签查看
