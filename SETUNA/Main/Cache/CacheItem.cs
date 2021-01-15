@@ -119,10 +119,6 @@ namespace SETUNA.Main.Cache
             }
 
             var fullPath = Path.Combine(folderPath, InfoFileName);
-            if (File.Exists(fullPath))
-            {
-                File.Delete(fullPath);
-            }
 
             var item = new
             {

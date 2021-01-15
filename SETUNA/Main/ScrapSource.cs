@@ -10,6 +10,8 @@ namespace SETUNA.Main
         // (get) Token: 0x06000263 RID: 611 RVA: 0x0000D1D0 File Offset: 0x0000B3D0
         public string Name => _name;
 
+        public virtual bool IsDone { set; get; } = false;
+
         // Token: 0x06000264 RID: 612
         public abstract Image GetImage();
 

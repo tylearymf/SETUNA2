@@ -116,6 +116,8 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Plugins\ResourceExtractor.cs" />
+    <Compile Include="Plugins\WebPWrapper.cs" />
     <Compile Include="ClickCapture.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +171,7 @@
     <Compile Include="Main\Magnifier.Designer.cs">
       <DependentUpon>Magnifier.cs</DependentUpon>
     </Compile>
+    <Compile Include="Main\ScrapSourceUrl.cs" />
     <Compile Include="Main\Style\CPasteStyle.cs" />
     <Compile Include="Main\Style\CDustScrapStyle.cs" />
     <Compile Include="Main\ToolStripEx.cs" />
@@ -680,6 +683,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Plugins\libwebp_x86.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Plugins\libwebp_x64.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />

@@ -936,6 +936,18 @@ namespace SETUNA.Main
                     Manager.AddDragImageFileName(path);
                 }
             }
+            else if (e.Data.GetDataPresent(DataFormats.Html))
+            {
+                var htmlContent = e.Data.GetData(DataFormats.Html) as string;
+                var match = System.Text.RegularExpressions.Regex.Match(htmlContent, "<img.*?(width=\"(?<width>.*?)\".*?)?(height=\"(?<height>.*?)\".*?)?src=\"(?<src>.*?)\"");
+                if (match.Success)
+                {
+                    int.TryParse(match.Groups["width"].Value, out var width);
+                    int.TryParse(match.Groups["height"].Value, out var height);
+                    var url = match.Groups["src"].Value;
+                    Manager.AddDragImageUrl(url);
+                }
+            }
         }
 
         // Token: 0x0600008B RID: 139 RVA: 0x00004847 File Offset: 0x00002A47

@@ -41,7 +41,7 @@
             this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(190, 54);
+            this.button1.Size = new System.Drawing.Size(253, 54);
             this.button1.TabIndex = 0;
             this.button1.Text = "截取";
             this.button1.UseVisualStyleBackColor = true;
@@ -53,7 +53,7 @@
             this.button4.Font = new System.Drawing.Font("微软雅黑", 9F);
             this.button4.ForeColor = System.Drawing.Color.Gray;
             this.button4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button4.Location = new System.Drawing.Point(189, 0);
+            this.button4.Location = new System.Drawing.Point(252, 0);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(44, 54);
             this.button4.TabIndex = 4;
@@ -94,12 +94,12 @@
             this.testToolStripMenuItem});
             this.subMenu.Name = "subMenu";
             this.subMenu.Scrap = null;
-            this.subMenu.Size = new System.Drawing.Size(107, 28);
+            this.subMenu.Size = new System.Drawing.Size(148, 50);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(106, 24);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(147, 46);
             this.testToolStripMenuItem.Text = "test";
             // 
             // toolTip1
@@ -117,7 +117,7 @@
             // Mainform
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(233, 54);
+            this.ClientSize = new System.Drawing.Size(296, 54);
             this.ContextMenuStrip = this.setunaIconMenu;
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button1);

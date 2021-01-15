@@ -75,3 +75,8 @@ A best screenshot small tool (support high dpi screenshots)
 
 ## 后续要加的功能
 - 前往 [Projects](https://github.com/tylearymf/SETUNA2/projects/1) 标签查看
+
+---
+
+## 引用
+- [JosePineiro/WebP-wrapper](https://github.com.JosePineiro/WebP-wrapper)

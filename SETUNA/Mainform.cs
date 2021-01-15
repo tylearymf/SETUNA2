@@ -37,10 +37,12 @@ namespace SETUNA
             scrapBook.DustBox = dustbox;
             scrapBook.DustBoxCapacity = 5;
             keyBook = optSetuna.GetKeyItemBook();
-            _imgpool = new Queue<ScrapSource>();
+            _imgpool = new List<ScrapSource>();
             SetSubMenu();
 
             Text = $"SETUNA {Application.ProductVersion}";
+
+            NetUtils.Init();
         }
 
         // Token: 0x17000055 RID: 85
@@ -680,16 +682,28 @@ namespace SETUNA
                 timPool.Stop();
                 return;
             }
-            using (var scrapSource = _imgpool.Dequeue())
+
+            for (var i = 0; i < _imgpool.Count; i++)
             {
-                CreateScrapFromsource(scrapSource);
+                var scrap = _imgpool[i];
+                if (scrap.IsDone)
+                {
+                    _imgpool.RemoveAt(i);
+
+                    using (var scrapSource = scrap)
+                    {
+                        CreateScrapFromsource(scrapSource);
+                    }
+
+                    break;
+                }
             }
         }
 
         // Token: 0x06000216 RID: 534 RVA: 0x0000B46C File Offset: 0x0000966C
         public void AddImageList(ScrapSource src)
         {
-            _imgpool.Enqueue(src);
+            _imgpool.Add(src);
             timPool.Start();
         }
 
@@ -953,7 +967,7 @@ namespace SETUNA
         private static CaptureForm cap_form;
 
         // Token: 0x040000E8 RID: 232
-        private Queue<ScrapSource> _imgpool;
+        private List<ScrapSource> _imgpool;
 
         // Token: 0x040000E9 RID: 233
         private bool _iscapture;

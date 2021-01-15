@@ -336,6 +336,11 @@ namespace SETUNA.Main
             _mainform.AddImageList(new ScrapSourcePath(path));
         }
 
+        public void AddDragImageUrl(string url, int width = 0, int height = 0)
+        {
+            _mainform.AddImageList(new ScrapSourceUrl(url, Cursor.Position, width, height));
+        }
+
         // Token: 0x17000052 RID: 82
         // (get) Token: 0x060001D1 RID: 465 RVA: 0x00009FFB File Offset: 0x000081FB
         public bool IsImageDrag => _mainform.optSetuna.Scrap.ImageDrag;

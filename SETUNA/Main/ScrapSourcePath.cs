@@ -7,6 +7,9 @@ namespace SETUNA.Main
     // Token: 0x0200003E RID: 62
     public class ScrapSourcePath : ScrapSource
     {
+        public override bool IsDone => true;
+
+
         // Token: 0x06000261 RID: 609 RVA: 0x0000D139 File Offset: 0x0000B339
         public ScrapSourcePath(string path)
         {
@@ -24,9 +27,12 @@ namespace SETUNA.Main
                 {
                     try
                     {
-                        fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-                        result = Image.FromStream(fileStream);
+                        result = BitmapUtils.FromPath(path);
                         _name = Path.GetFileNameWithoutExtension(path);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
                     }
                     finally
                     {

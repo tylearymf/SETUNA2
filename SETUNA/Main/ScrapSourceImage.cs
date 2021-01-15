@@ -5,6 +5,9 @@ namespace SETUNA.Main
     // Token: 0x02000057 RID: 87
     public class ScrapSourceImage : ScrapSource
     {
+        public override bool IsDone => true;
+
+
         // Token: 0x06000320 RID: 800 RVA: 0x0001534C File Offset: 0x0001354C
         public ScrapSourceImage(Image img)
         {
