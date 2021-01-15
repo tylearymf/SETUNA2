@@ -79,4 +79,4 @@ A best screenshot small tool (support high dpi screenshots)
 ---
 
 ## 引用
-- [JosePineiro/WebP-wrapper](https://github.com.JosePineiro/WebP-wrapper)
+- [JosePineiro/WebP-wrapper](https://github.com/JosePineiro/WebP-wrapper)
