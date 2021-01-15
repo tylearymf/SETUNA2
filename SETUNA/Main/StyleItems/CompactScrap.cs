@@ -50,7 +50,7 @@ namespace SETUNA.Main.StyleItems
         {
             if (scrap != null)
             {
-                if (scrap.Visible)
+                //if (scrap.Visible)
                 {
                     scrap.Visible = false;
                     scrap.StyleForm = this;
@@ -64,7 +64,7 @@ namespace SETUNA.Main.StyleItems
         {
             if (scrap != null)
             {
-                if (!scrap.Visible)
+                //if (!scrap.Visible)
                 {
                     scrap.Visible = true;
                     scrap.StyleForm = null;

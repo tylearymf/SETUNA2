@@ -800,6 +800,8 @@ namespace SETUNA.Main
                     base.ShowInTaskbar = true;
                 }
                 base.Visible = value;
+
+                _visible = value;
             }
         }
 
@@ -950,6 +952,22 @@ namespace SETUNA.Main
         }
 
 
+        private void ScrapBase_SizeChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void ScrapBase_VisibleChanged(object sender, EventArgs e)
+        {
+            _visible = Visible;
+        }
+
+
+        public bool GetVisibleFlag()
+        {
+            return _visible;
+        }
+
+
         // Token: 0x04000021 RID: 33
         private const int WS_EX_LAYERED = 524288;
 
@@ -1054,8 +1072,7 @@ namespace SETUNA.Main
         // (Invoke) Token: 0x060001AC RID: 428
         public delegate void ScrapSubMenuHandler(object sender, ScrapMenuArgs e);
 
-        private void ScrapBase_SizeChanged(object sender, EventArgs e)
-        {
-        }
+        private bool _visible = true;
+
     }
 }

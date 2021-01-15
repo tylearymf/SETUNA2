@@ -35,6 +35,7 @@
             this.Activated += new System.EventHandler(this.ScrapBase_Activated);
             this.Deactivate += new System.EventHandler(this.ScrapBase_Deactivate);
             this.SizeChanged += new System.EventHandler(this.ScrapBase_SizeChanged);
+            this.VisibleChanged += new System.EventHandler(this.ScrapBase_VisibleChanged);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.ScrapBase_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.ScrapBase_DragEnter);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ScrapBase_KeyPress);

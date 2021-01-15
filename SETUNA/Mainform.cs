@@ -459,7 +459,7 @@ namespace SETUNA
                 }
                 else
                 {
-                    scrapBook.AddScrapThenShow(scrapBase);
+                    scrapBook.AddScrapThenDo(scrapBase);
                 }
             }
             dustbox.Clear();
@@ -883,16 +883,21 @@ namespace SETUNA
             SETUNA.Main.WindowManager.Instance.Update();
         }
 
-        bool allScrapActive = true;
-        List<Form> forms = new List<Form>();
         private void SetAllScrapsActive(bool active)
         {
+            if (allScrapActive == active)
+            {
+                return;
+            }
+
             allScrapActive = active;
 
             if (active)
             {
                 forms.ForEach(x => x.Visible = active);
                 forms.Clear();
+
+                Main.Layer.LayerManager.Instance.ResumeRefresh();
             }
             else
             {
@@ -909,6 +914,8 @@ namespace SETUNA
                 }
 
                 forms.ForEach(x => x.Visible = active);
+
+                Main.Layer.LayerManager.Instance.SuspendRefresh();
             }
         }
 
@@ -963,5 +970,8 @@ namespace SETUNA
 
         public delegate void MouseWheelCallback(object sender, MouseEventArgs e);
         public event MouseWheelCallback MouseWheelCallbackEvent;
+
+        private List<Form> forms = new List<Form>();
+        private bool allScrapActive = true;
     }
 }

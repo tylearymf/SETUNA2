@@ -35,8 +35,7 @@
             this.Text = "CaptureForm";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CaptureForm_FormClosing);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CaptureForm_FormClosed);
-            this.Shown += new System.EventHandler(this.CaptureForm_Shown);
+            this.VisibleChanged += new System.EventHandler(this.CaptureForm_VisibleChanged);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.CaptureForm_Paint);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CaptureForm_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CaptureForm_KeyUp);

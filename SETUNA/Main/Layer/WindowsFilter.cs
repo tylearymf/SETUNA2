@@ -23,11 +23,13 @@
 
         static FilterInfo[] filterInfos = new FilterInfo[]
         {
-            //QQ
+            // QQ
             new FilterInfo(string.Empty, "TXGuiFoundation"),
-            //有度
+            // QQ右键菜单
+            new FilterInfo("TXMenuWindow","TXGuiFoundation"),
+            // 有度
             new FilterInfo("ScreenShotWnd"),
-            //微信
+            // 微信
             new FilterInfo("SnapshotWnd"),
             new FilterInfo("CToolBarWnd"),
         };

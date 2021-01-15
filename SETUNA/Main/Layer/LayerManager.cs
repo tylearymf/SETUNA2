@@ -20,7 +20,7 @@ namespace SETUNA.Main.Layer
         private FormData topMostFormData;
 
         // 层级刷新 挂起开关
-        private bool isSuspend = false;
+        private int isSuspendCount = 0;
 
         // 窗体过滤器
         private IWindowFilter windowFilter;
@@ -59,12 +59,12 @@ namespace SETUNA.Main.Layer
 
         public void SuspendRefresh()
         {
-            isSuspend = true;
+            isSuspendCount++;
         }
 
         public void ResumeRefresh()
         {
-            isSuspend = false;
+            isSuspendCount = Math.Max(0, isSuspendCount - 1);
         }
 
         public int GetNextSortingOrder()
@@ -134,7 +134,7 @@ namespace SETUNA.Main.Layer
         void CheckRefreshLayer(WindowInfo windowInfo)
         {
             // 是否挂起
-            if (isSuspend)
+            if (isSuspendCount > 0)
             {
                 return;
             }
@@ -290,7 +290,18 @@ namespace SETUNA.Main.Layer
             get => Form.TopMost;
         }
 
-        public WindowInfo WindowInfo => WindowManager.Instance.GetWindowInfo(Form.Handle);
+        public WindowInfo WindowInfo
+        {
+            get
+            {
+                if (Form == null || Form.IsDisposed)
+                {
+                    return WindowInfo.Empty;
+                }
+
+                return WindowManager.Instance.GetWindowInfo(Form.Handle);
+            }
+        }
 
 
         public FormData(Form form, int sortingOrder)

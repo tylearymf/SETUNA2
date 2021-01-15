@@ -128,10 +128,10 @@ namespace SETUNA.Main
             scrapBase.Image = img;
             scrapBase.SetBounds(x, y, img.Width, img.Height, BoundsSpecified.All);
 
-            AddScrapThenShow(scrapBase);
+            AddScrapThenDo(scrapBase);
         }
 
-        public void AddScrapFromCache(Cache.CacheItem cacheItem, Action initFinished = null)
+        public void AddScrapFromCache(Cache.CacheItem cacheItem, Action addFinished = null)
         {
             var image = cacheItem.ReadImage();
             var pos = cacheItem.Position;
@@ -148,22 +148,25 @@ namespace SETUNA.Main
             var cstyle = _mainform.optSetuna.FindStyle(style.ID);
             if (cstyle != null)
             {
-                scrapBase.ApplyStylesFromCache(cstyle, style.ClickPoint, initFinished);
+                scrapBase.ApplyStylesFromCache(cstyle, style.ClickPoint, () =>
+                {
+                    AddScrapThenDo(scrapBase, scrapBase.GetVisibleFlag());
+                    addFinished?.Invoke();
+                });
             }
 
             // 设置所有参数再设置缓存对象
             scrapBase.CacheItem = cacheItem;
 
-            AddScrapThenShow(scrapBase);
-
             if (cstyle == null)
             {
-                initFinished?.Invoke();
+                AddScrapThenDo(scrapBase);
+                addFinished?.Invoke();
             }
         }
 
         // Token: 0x060001C3 RID: 451 RVA: 0x00009CCD File Offset: 0x00007ECD
-        public void AddScrapThenShow(ScrapBase newScrap)
+        public void AddScrapThenDo(ScrapBase newScrap, bool show = true)
         {
             newScrap.addScrapStyleEvent(_mainform);
             newScrap.addScrapMenuEvent(_mainform);
@@ -181,8 +184,11 @@ namespace SETUNA.Main
                 ScrapAdded(this, new ScrapEventArgs(newScrap));
             }
 
-            newScrap.Refresh();
-            newScrap.Show();
+            if (show)
+            {
+                newScrap.Refresh();
+                newScrap.Show();
+            }
         }
 
         // Token: 0x060001C4 RID: 452 RVA: 0x00009D04 File Offset: 0x00007F04

@@ -146,11 +146,15 @@ namespace SETUNA.Main
             CaptureForm.selLineVer2.Visible = false;
             CaptureForm.selArea.Visible = false;
 
-            fullscreenHorLine = new CaptureSelLine(SelLineType.Horizon, opt.FullscreenCursorSolid, opt.FullscreenCursorLineColor);
-            fullscreenHorLine.ShowWhiteBackground = false;
+            fullscreenHorLine = new CaptureSelLine(SelLineType.Horizon, opt.FullscreenCursorSolid, opt.FullscreenCursorLineColor)
+            {
+                ShowWhiteBackground = false
+            };
             InitChildForm(fullscreenHorLine);
-            fullscreenVerLine = new CaptureSelLine(SelLineType.Vertical, opt.FullscreenCursorSolid, opt.FullscreenCursorLineColor);
-            fullscreenVerLine.ShowWhiteBackground = false;
+            fullscreenVerLine = new CaptureSelLine(SelLineType.Vertical, opt.FullscreenCursorSolid, opt.FullscreenCursorLineColor)
+            {
+                ShowWhiteBackground = false
+            };
             InitChildForm(fullscreenVerLine);
 
             magnifier = new Magnifier();
@@ -471,15 +475,17 @@ namespace SETUNA.Main
             DrawSelectArea(point.X, point.Y, point2.X - point.X, point2.Y - point.Y, BoundsSpecified.All);
         }
 
-        private void CaptureForm_Shown(object sender, System.EventArgs e)
+        private void CaptureForm_VisibleChanged(object sender, System.EventArgs e)
         {
-            TopMost = true;
-            Layer.LayerManager.Instance.SuspendRefresh();
-        }
-
-        private void CaptureForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
-        {
-            Layer.LayerManager.Instance.ResumeRefresh();
+            if (Visible)
+            {
+                TopMost = true;
+                Layer.LayerManager.Instance.SuspendRefresh();
+            }
+            else
+            {
+                Layer.LayerManager.Instance.ResumeRefresh();
+            }
         }
 
         // Token: 0x060002A8 RID: 680 RVA: 0x0000EBDF File Offset: 0x0000CDDF
