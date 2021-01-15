@@ -501,6 +501,13 @@ namespace SETUNA.Main
         // Token: 0x0600006A RID: 106 RVA: 0x00004174 File Offset: 0x00002374
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            var styleForm = StyleForm;
+            StyleForm = null;
+            if (styleForm != null)
+            {
+                styleForm.Close();
+            }
+
             if (e.CloseReason == CloseReason.ApplicationExitCall || e.CloseReason == CloseReason.TaskManagerClosing || e.CloseReason == CloseReason.WindowsShutDown)
             {
                 Console.WriteLine("由系统结束");
