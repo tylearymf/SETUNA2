@@ -9,6 +9,8 @@ namespace SETUNA.Main.StyleItems
     // Token: 0x0200000E RID: 14
     public abstract class CImageStyleItem : CStyleItem
     {
+        static PixelFormat[] indexedPixelFormats = { PixelFormat.Undefined, PixelFormat.DontCare, PixelFormat.Format16bppArgb1555, PixelFormat.Format1bppIndexed, PixelFormat.Format4bppIndexed, PixelFormat.Format8bppIndexed };
+
         // Token: 0x060000C6 RID: 198 RVA: 0x00005711 File Offset: 0x00003911
         public CImageStyleItem()
         {
@@ -22,16 +24,27 @@ namespace SETUNA.Main.StyleItems
         public override void Apply(ref ScrapBase scrap, Point clickpoint)
         {
             Bitmap bitmap = null;
+            Graphics graphics = null;
             var text = "";
             try
             {
                 if (HaveMargin)
                 {
-                    bitmap = ((Bitmap)scrap.GetViewImage()).Clone(new Rectangle(0, 0, scrap.Width, scrap.Height), PixelFormat.Format24bppRgb);
+                    bitmap = new Bitmap(scrap.Width, scrap.Height, PixelFormat.Format24bppRgb);
+                    graphics = Graphics.FromImage(bitmap);
+                    graphics.DrawImage(scrap.GetViewImage(), 0, 0, scrap.Width, scrap.Height);
                 }
                 else
                 {
-                    bitmap = ((Bitmap)scrap.Image).Clone(new Rectangle(0, 0, scrap.Image.Width, scrap.Image.Height), scrap.Image.PixelFormat);
+                    var pixelFormat = scrap.Image.PixelFormat;
+                    if (Array.IndexOf(indexedPixelFormats, pixelFormat) != -1)
+                    {
+                        pixelFormat = PixelFormat.Format24bppRgb;
+                    }
+
+                    bitmap = new Bitmap(scrap.Image.Width, scrap.Image.Height, pixelFormat);
+                    graphics = Graphics.FromImage(bitmap);
+                    graphics.DrawImage(scrap.Image, 0, 0, scrap.Image.Width, scrap.Image.Height);
                 }
                 var encoderParams = GetEncoderParams(ref scrap);
                 if (encoderParams != null)
@@ -76,6 +89,11 @@ namespace SETUNA.Main.StyleItems
             }
             finally
             {
+                if (graphics != null)
+                {
+                    graphics.Dispose();
+                }
+
                 if (bitmap != null)
                 {
                     bitmap.Dispose();

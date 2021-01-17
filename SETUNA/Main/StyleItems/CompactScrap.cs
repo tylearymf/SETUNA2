@@ -84,6 +84,9 @@ namespace SETUNA.Main.StyleItems
         // Token: 0x0600040B RID: 1035 RVA: 0x0001A014 File Offset: 0x00018214
         protected override void OnPaint(PaintEventArgs e)
         {
+            e.Graphics.Clear(Color.Green);
+            TransparencyKey = Color.Green;
+
             e.Graphics.DrawImageUnscaled(_thumbnail, new Point(-_clickpoint.X + base.Width / 2, -_clickpoint.Y + base.Height / 2));
             e.Graphics.DrawRectangle(Pens.White, new Rectangle(0, 0, base.Width - 1, base.Height - 1));
             e.Graphics.DrawRectangle(_pen, new Rectangle(0, 0, base.Width - 1, base.Height - 1));

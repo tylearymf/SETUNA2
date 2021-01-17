@@ -460,7 +460,21 @@ namespace SETUNA.Main
             var all = Padding.All;
             e.Graphics.InterpolationMode = _interpolationmode;
             //e.Graphics.DrawImage(imgView, all, all, width, height);
-            e.Graphics.DrawImage(imgView, all, all, Width - all * 2, Height - all * 2);
+
+            if (Mainform.Instance.optSetuna.Setuna.BackgroundTransparentEnabled)
+            {
+                e.Graphics.Clear(Color.Green);
+                TransparencyKey = Color.Green;
+
+                e.Graphics.DrawImage(imgView, all, all, Width - all * 2, Height - all * 2);
+            }
+            else
+            {
+                e.Graphics.Clear(Color.White);
+
+                e.Graphics.DrawImage(imgView, all, all, Width, Height);
+            }
+
             if (!_solidframe)
             {
                 var pen = new Pen(Color.FromArgb(243, 243, 243));

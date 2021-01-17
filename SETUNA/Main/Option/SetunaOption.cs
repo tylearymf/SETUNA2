@@ -49,6 +49,7 @@ namespace SETUNA.Main.Option
             setunaOption.Setuna.FullscreenCursorColorR = Color.Orange.R;
             setunaOption.Setuna.FullscreenCursorColorG = Color.Orange.G;
             setunaOption.Setuna.FullscreenCursorColorB = Color.Orange.B;
+            setunaOption.Setuna.BackgroundTransparentEnabled = false;
 
 
             var cstyle = new CStyle
@@ -1036,6 +1037,8 @@ namespace SETUNA.Main.Option
                 FullscreenCursorColorR = Color.Orange.R;
                 FullscreenCursorColorG = Color.Orange.G;
                 FullscreenCursorColorB = Color.Orange.B;
+
+                BackgroundTransparentEnabled = false;
             }
 
             // Token: 0x17000072 RID: 114
@@ -1119,6 +1122,8 @@ namespace SETUNA.Main.Option
             public bool FullscreenCursor;
 
             public bool MagnifierEnabled;
+
+            public bool BackgroundTransparentEnabled;
 
             public Color FullscreenCursorLineColor => Color.FromArgb(FullscreenCursorColorR, FullscreenCursorColorG, FullscreenCursorColorB);
             public bool FullscreenCursorSolid;

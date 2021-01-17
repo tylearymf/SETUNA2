@@ -79,6 +79,8 @@ namespace SETUNA.Main.Option
             radioButton1_fullscreenCursor.Checked = _so.Setuna.FullscreenCursorSolid;
             radioButton2_fullscreenCursor.Checked = !_so.Setuna.FullscreenCursorSolid;
             pictureBox_fullscreenCursor.BackColor = _so.Setuna.FullscreenCursorLineColor;
+
+            checkBox_transparent.Checked = _so.Setuna.BackgroundTransparentEnabled;
         }
 
         // Token: 0x060002D5 RID: 725 RVA: 0x00013908 File Offset: 0x00011B08
@@ -153,6 +155,13 @@ namespace SETUNA.Main.Option
             _so.Setuna.FullscreenCursorColorR = pictureBox_fullscreenCursor.BackColor.R;
             _so.Setuna.FullscreenCursorColorG = pictureBox_fullscreenCursor.BackColor.G;
             _so.Setuna.FullscreenCursorColorB = pictureBox_fullscreenCursor.BackColor.B;
+
+            _so.Setuna.BackgroundTransparentEnabled = checkBox_transparent.Checked;
+
+            foreach (var item in Mainform.Instance.scrapBook)
+            {
+                item.Refresh();
+            }
         }
 
         // Token: 0x060002D6 RID: 726 RVA: 0x00013D84 File Offset: 0x00011F84

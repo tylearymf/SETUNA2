@@ -39,33 +39,49 @@ namespace SETUNA.Main
         {
             if (File.Exists(path))
             {
+
+                byte[] buffer = null;
+                MemoryStream stream = null;
+                Bitmap bitmap = null;
+
                 try
                 {
                     using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
                     {
-                        var bitmap = new Bitmap(fs);
-                        bitmap.MakeTransparent();
-                        return bitmap;
+                        buffer = new byte[fs.Length];
+                        stream = new MemoryStream(buffer);
+                        fs.CopyTo(stream);
                     }
-                }
-                catch (ArgumentException ex)
-                {
-                    try
+
+                    var imageType = ImageUtils.GetImageType(buffer);
+                    switch (imageType)
                     {
-                        using (var webp = new WebPWrapper.WebP())
-                        {
-                            var bitmap = webp.Load(path);
-                            bitmap.MakeTransparent();
+                        case ImageType.PNG:
+                            bitmap = new Bitmap(stream);
+                            bitmap.MakeTransparent(Color.White);
                             return bitmap;
-                        }
+                        case ImageType.WEBP:
+                            using (var webp = new WebPWrapper.WebP())
+                            {
+                                bitmap = webp.Decode(buffer);
+                                return bitmap;
+                            }
+                        default:
+                            bitmap = new Bitmap(stream);
+                            return bitmap;
                     }
-                    catch { }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                 }
-
+                finally
+                {
+                    if (stream != null)
+                    {
+                        stream.Dispose();
+                    }
+                }
             }
 
             return null;
@@ -113,6 +129,57 @@ namespace SETUNA.Main
         {
             return true;
         }
+    }
+
+    static class ImageUtils
+    {
+        public static ImageType GetImageType(byte[] imageBuffer)
+        {
+            if (imageBuffer.Length > 3 &&
+                imageBuffer[1] == 0x50 &&
+               imageBuffer[2] == 0x4E &&
+               imageBuffer[3] == 0x47
+                )
+            {
+                return ImageType.PNG;
+            }
+            else if (imageBuffer.Length > 9 &&
+                imageBuffer[6] == 0x4A &&
+               imageBuffer[7] == 0x46 &&
+               imageBuffer[8] == 0x49 &&
+               imageBuffer[9] == 0x46
+                )
+            {
+                return ImageType.JPEG;
+            }
+            else if (imageBuffer.Length > 10 &&
+                imageBuffer[8] == 0x57 &&
+               imageBuffer[9] == 0x45 &&
+               imageBuffer[10] == 0x42
+                )
+            {
+                return ImageType.WEBP;
+            }
+            else if (imageBuffer.Length > 2 &&
+               imageBuffer[0] == 0x47 &&
+              imageBuffer[1] == 0x49 &&
+              imageBuffer[2] == 0x46
+               )
+            {
+                return ImageType.GIF;
+            }
+
+            return ImageType.Unknown;
+        }
+    }
+
+    public enum ImageType
+    {
+        Unknown,
+        JPEG,
+        PNG,
+        WEBP,
+        GIF,
     }
 }
 
