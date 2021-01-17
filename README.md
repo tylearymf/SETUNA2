@@ -69,6 +69,8 @@ A best screenshot small tool (support high dpi screenshots)
 - 支持从网站上图片拖拽创建截图
 
   - ###### 从网站拖拽图片到某个截图中会自动创建截图（该功能需要联网，因为需要下载对应的网站图片）
+  
+- 支持从图片格式 **JPEG**、**PNG**、**PSD** 、**GIF**、**BMP**、**ICO**、**TIFF**、**WEBP**、**SVG**、**TGA**、**SVG** 中创建截图
 
 ---
 

@@ -98,12 +98,26 @@ namespace SETUNA.Main
             set => CaptureClosedHandler = value;
         }
 
+        public static Image ImgSnap
+        {
+            get => imgSnap;
+            set
+            {
+                if (imgSnap != null)
+                {
+                    imgSnap.Dispose();
+                }
+
+                imgSnap = value;
+            }
+        }
+
         // Token: 0x0600029C RID: 668 RVA: 0x0000DEA8 File Offset: 0x0000C0A8
         public CaptureForm(SetunaOption.SetunaOptionData opt)
         {
             InitializeComponent();
             targetScreen = GetCurrentScreen();
-            CaptureForm.imgSnap = new Bitmap(targetScreen.Bounds.Width, targetScreen.Bounds.Height, PixelFormat.Format24bppRgb);
+            CaptureForm.ImgSnap = new Bitmap(targetScreen.Bounds.Width, targetScreen.Bounds.Height, PixelFormat.Format24bppRgb);
             CaptureForm.selArea = new Form
             {
                 AutoScaleMode = AutoScaleMode.None,
@@ -178,15 +192,15 @@ namespace SETUNA.Main
         // Token: 0x0600029D RID: 669 RVA: 0x0000E104 File Offset: 0x0000C304
         public void ShowCapture(SetunaOption.SetunaOptionData opt)
         {
-            if (CaptureForm.imgSnap == null)
+            if (CaptureForm.ImgSnap == null)
             {
                 return;
             }
             //Cursor.Current = Cursors.Cross;
             targetScreen = GetCurrentScreen();
-            if (targetScreen.Bounds.Width != CaptureForm.imgSnap.Width || targetScreen.Bounds.Height != CaptureForm.imgSnap.Height)
+            if (targetScreen.Bounds.Width != CaptureForm.ImgSnap.Width || targetScreen.Bounds.Height != CaptureForm.ImgSnap.Height)
             {
-                CaptureForm.imgSnap = new Bitmap(targetScreen.Bounds.Width, targetScreen.Bounds.Height, PixelFormat.Format24bppRgb);
+                CaptureForm.ImgSnap = new Bitmap(targetScreen.Bounds.Width, targetScreen.Bounds.Height, PixelFormat.Format24bppRgb);
             }
             trd = new Thread(new ThreadStart(ThreadTask))
             {
@@ -287,7 +301,7 @@ namespace SETUNA.Main
         // Token: 0x0600029F RID: 671 RVA: 0x0000E680 File Offset: 0x0000C880
         private void ThreadTask()
         {
-            var flag = CaptureForm.CopyFromScreen(CaptureForm.imgSnap, new Point(targetScreen.Bounds.X, targetScreen.Bounds.Y));
+            var flag = CaptureForm.CopyFromScreen(CaptureForm.ImgSnap, new Point(targetScreen.Bounds.X, targetScreen.Bounds.Y));
             if (flag)
             {
                 base.Invoke(new CaptureForm.ShowFormDelegate(ShowForm));
@@ -491,9 +505,9 @@ namespace SETUNA.Main
         // Token: 0x060002A8 RID: 680 RVA: 0x0000EBDF File Offset: 0x0000CDDF
         private void CaptureForm_Paint(object sender, PaintEventArgs e)
         {
-            if (CaptureForm.imgSnap != null)
+            if (CaptureForm.ImgSnap != null)
             {
-                e.Graphics.DrawImageUnscaled(CaptureForm.imgSnap, 0, 0);
+                e.Graphics.DrawImageUnscaled(CaptureForm.ImgSnap, 0, 0);
             }
         }
 
@@ -700,7 +714,7 @@ namespace SETUNA.Main
             bmpClip = new Bitmap(size.Width, size.Height, PixelFormat.Format24bppRgb);
             using (var graphics = Graphics.FromImage(bmpClip))
             {
-                graphics.DrawImageUnscaled(CaptureForm.imgSnap, -(pt.X - targetScreen.Bounds.X), -(pt.Y - targetScreen.Bounds.Y));
+                graphics.DrawImageUnscaled(CaptureForm.ImgSnap, -(pt.X - targetScreen.Bounds.X), -(pt.Y - targetScreen.Bounds.Y));
             }
         }
 

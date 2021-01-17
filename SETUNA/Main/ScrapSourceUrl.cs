@@ -31,7 +31,7 @@ namespace SETUNA.Main
 
         public override Point GetPosition()
         {
-            return point;   
+            return point;
         }
 
         // Token: 0x0400010F RID: 271
