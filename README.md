@@ -18,14 +18,14 @@ A best screenshot small tool (support high dpi screenshots)
 ---
 
 ## 版本说明
-- **SETUNA 3.x 版本的运行要求**（持续更新）
+- **SETUNA 3.x 版本的运行要求**（持续更新）([最新版 3.x 下载链接](https://github.com/tylearymf/SETUNA2/releases))
   
   - Windows 10 14393 及以上
   
     - ###### 查看Win10系统版本：设置 -> 系统 -> 关于 -> Windows 规格详情页里的 操作系统版本
   
   - 安装 .Net Framework 4.7 组件
-- **SETUNA 2.x 版本的运行要求**（停止维护）
+- **SETUNA 2.x 版本的运行要求**（停止维护）([最后一版 2.x 下载链接](https://github.com/tylearymf/SETUNA2/releases/tag/2.6.0))
   
   - 安装 .Net Framework 2.0 组件
 
