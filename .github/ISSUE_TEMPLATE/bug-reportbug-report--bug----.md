@@ -26,7 +26,7 @@ assignees: ''
 **Environment (环境信息)**
 
  - Windows Version: [e.g. Win10 19042.746]
- - Windows DPI: [e.g. 125%]
+ - Screen DPI: [e.g. 125%]
  - SETUNA Version: [e.g. 3.0.0.1]
 
 
